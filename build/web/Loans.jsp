@@ -55,17 +55,17 @@
             </a>
 
 
-            <a href="LoansSpeakers.jsp">
+            <a href="SearchSpeaker.jsp">
                 <input class="botonGeneral" type="button" value="   Parlantes   " name="speaker" />
             </a>
 
 
-            <a href="LoansComputer.jsp">
+            <a href="ComputerLoan.jsp">
                 <input class="botonGeneral" type="button" value=" Computadoras  " name="computer" />
             </a>
 
 
-            <a href="ProjectorLoans.jsp">
+            <a href="ProjectionKitLoan.jsp">
                 <input class="botonesArriba" type="button" value="Kit proyectores" name="projector" />
             </a>
 

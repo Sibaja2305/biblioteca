@@ -12,29 +12,27 @@
         <title>Prestamos de Accesorios</title>
         <style>
             .text{
-               font-size: 20px; 
+                font-size: 20px;
             }
             .form-control{
                 font-size: 17px;
                 margin-left: 30px;
             }
             .button{
-            font-size: 17px;
-            padding: 20px 40px;
-            background-color: #0dcaf0;
-            border: none;
-            border-radius: 10px;
-            color: #fff;
-            margin-left: 70px;
+                font-size: 17px;
+                padding: 20px 40px;
+                background-color: #0dcaf0;
+                border: none;
+                border-radius: 10px;
+                color: #fff;
+                margin-left: 70px;
             }
-                
-           
-           
+
         </style>
     </head>
     <body>
         <div class="container">
-           
+
             <form method="post" action="RegisterLoans.jsp">
                 <div class="form-group">
                     <label class="text">Codigo:</label>
@@ -96,16 +94,13 @@
                     <input type="date" class="form-control" name="loanDate" required>
                 </div>
                 <br><br>
-                
-                    <label class="text">Fecha de Devolución:</label>
-                    <br>
-                    <div class="form-group" style="display:flex;align-items: center">
+
+                <label class="text">Fecha de Devolución:</label>
+                <br>
+                <div class="form-group" style="display:flex;align-items: center">
                     <input type="date" class="form-control" name="returnDate" required>
                     <button type="submit" class="button">Registrar</button>
                 </div>
-                
-                
-
             </form>
         </div>
     </body>

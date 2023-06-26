@@ -4,6 +4,7 @@
  */
 package databasemysql;
 
+import clases.Speaker;
 import clasess.User;
 import java.sql.Connection;
 import java.sql.Date;
@@ -51,6 +52,37 @@ public class ConnectionMysql {
 
     }
 
+    public ArrayList<Speaker> getSpeaker() throws SQLException {
+        Statement stmt = cx.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM speaker;");
+        ArrayList<Speaker> speakers = new ArrayList<>();
+        try {
+            while (rs.next()) {
+
+                String code = rs.getString("code");
+                String speakerWire = rs.getString("speaker_wire");
+                String electricalConnector = rs.getString("electrical_connector");
+                String auxiliaryAudio = rs.getString("auxiliary_audio");
+
+                String state = rs.getString("state");
+
+                Speaker speaker = new Speaker(code, speakerWire, electricalConnector, auxiliaryAudio, state);
+
+                speakers.add(speaker);
+
+            }
+            return speakers;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+
+        } finally {
+            rs.close();
+
+        }
+    }
+
     public ArrayList<User> getUsers() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM users;");
@@ -63,10 +95,10 @@ public class ConnectionMysql {
                 String acLevel = rs.getString("access_level");
                 Date dateCreated = rs.getDate("date_created");
                 String appAccess = rs.getString("app_access");
-                 Date dateUpdate = rs.getDate("date_modify");
+                Date dateUpdate = rs.getDate("date_modify");
 
                 User user = new User(id, userName, password, acLevel,
-                        dateCreated, appAccess,dateUpdate);
+                        dateCreated, appAccess, dateUpdate);
                 users.add(user);
 
             }
@@ -83,7 +115,7 @@ public class ConnectionMysql {
     }
 
     public boolean deleteUser(int id) {
-        try {        
+        try {
 
             String query = "delete from users where id = ?";
             PreparedStatement preparedStmt = cx.prepareStatement(query);
@@ -91,11 +123,10 @@ public class ConnectionMysql {
 
             // execute the preparedstatement
             preparedStmt.execute();
-          
+
             cx.close();
             return true;
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
             return false;
@@ -103,37 +134,37 @@ public class ConnectionMysql {
 
     }
 
-     public boolean updateUser(User user) {
-         System.out.println(user.toString());
-         Calendar calendar = Calendar.getInstance();
-            java.sql.Date updateDate = new java.sql.Date(calendar.getTime().getTime());
-        try { 
+    public boolean updateUser(User user) {
+        System.out.println(user.toString());
+        Calendar calendar = Calendar.getInstance();
+        java.sql.Date updateDate = new java.sql.Date(calendar.getTime().getTime());
+        try {
 
             String query = "UPDATE users "
                     + "     SET user_name = ?, password= ?, access_level= ?,  app_access= ?,  date_modify= ?"
-                    + "     WHERE id = "+user.getId()+";";
-            
+                    + "     WHERE id = " + user.getId() + ";";
+
             PreparedStatement preparedStmt = cx.prepareStatement(query);
-            
+
             preparedStmt.setString(1, user.getUserName());
             preparedStmt.setString(2, user.getPassword());
-            preparedStmt.setString(3, user.getAccessLevel());            
+            preparedStmt.setString(3, user.getAccessLevel());
             preparedStmt.setString(4, user.getAppAccess());
-             preparedStmt.setDate(5, updateDate);
+            preparedStmt.setDate(5, updateDate);
 
             // execute the preparedstatement
             preparedStmt.executeUpdate();
-          
+
             cx.close();
             return true;
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
             return false;
         }
 
     }
+
     public boolean userValidation(String userName, String password) throws SQLException {
         cx = conectar();
         Statement stmt = cx.createStatement();
@@ -174,6 +205,34 @@ public class ConnectionMysql {
             preparedStmt.setString(3, level);
             preparedStmt.setDate(4, startDate);
             preparedStmt.setString(5, "Hotel");
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            cx.close();
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Fallo la inserción" + ex.getMessage());
+        }
+
+        return false;
+    }
+    public boolean insertSpeaker(String code, String speakerWire, String electricalConnector,String auxiliaryAudio) {
+
+        try {
+            
+
+            // the mysql insert statement
+            String query = " insert into speaker (code,speaker_wire,electrical_connector,auxiliary_audio,state)"
+                    + " values (?, ?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = cx.prepareStatement(query);
+            preparedStmt.setString(1, code);
+            preparedStmt.setString(2, speakerWire);
+            preparedStmt.setString(3, electricalConnector);
+            preparedStmt.setString(4, auxiliaryAudio);
+            preparedStmt.setString(5, "1");
 
             // execute the preparedstatement
             preparedStmt.execute();
