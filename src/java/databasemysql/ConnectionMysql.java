@@ -84,6 +84,38 @@ public class ConnectionMysql {
 
         }
     }
+    public ArrayList<Speaker> getSpeaker(String codigo) throws SQLException {
+        Statement stmt = cx.createStatement();
+        String consulta = "SELECT * FROM speaker where code='"+codigo+"';";
+        System.out.println("consulta = " + consulta);
+        ResultSet rs = stmt.executeQuery(consulta);
+        ArrayList<Speaker> speakers = new ArrayList<>();
+        try {
+            while (rs.next()) {
+
+                String code = rs.getString("code");
+                String speakerWire = rs.getString("speaker_wire");
+                String electricalConnector = rs.getString("electrical_connector");
+                String auxiliaryAudio = rs.getString("auxiliary_audio");
+
+                String state = rs.getString("state");
+
+                Speaker speaker = new Speaker(code, speakerWire, electricalConnector, auxiliaryAudio, state);
+
+                speakers.add(speaker);
+
+            }
+            return speakers;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+
+        } finally {
+            rs.close();
+
+        }
+    }
     public ArrayList<Computer> getComputer() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM computer;");
