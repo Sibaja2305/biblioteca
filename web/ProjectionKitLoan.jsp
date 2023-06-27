@@ -10,7 +10,7 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+        <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>Prestamos de Proyectores</title>
         
         <link rel="stylesheet" href="estilos.css"/>
@@ -22,8 +22,14 @@
     </style>
     </head>
     <body>
-         <div class="title">
-            <h1>Prestamos de Kit de Proyectores</h1>
+          <%
+
+            String projection = request.getParameter("selectProjectionKit").trim();
+
+
+        %>
+         <div class="text-center" style=" background-color: #0dcaf0; color: #fff; font-size: 25px;">
+            <h1 class="display-3">Prestamos de Kit de Proyectores</h1>
         </div>
         <form action="ValidarProceso.jsp">
             

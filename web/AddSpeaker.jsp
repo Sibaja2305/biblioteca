@@ -17,7 +17,7 @@
         <h1>Agregar Parlante</h1>
         <hr>
         <form action="RegisterValidationSpeaker.jsp" method="post" class="form-control" >
-            Code:
+            Código:
             <input type="text" name="txtCodeSpeaker" class="form-control" required>
             <br>
              Cable de Electricidad:

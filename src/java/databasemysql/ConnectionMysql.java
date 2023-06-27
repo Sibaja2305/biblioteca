@@ -4,6 +4,8 @@
  */
 package databasemysql;
 
+import clases.Computer;
+import clases.ProjectionKit;
 import clases.Speaker;
 import clasess.User;
 import java.sql.Connection;
@@ -82,6 +84,72 @@ public class ConnectionMysql {
 
         }
     }
+    public ArrayList<Computer> getComputer() throws SQLException {
+        Statement stmt = cx.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM computer;");
+        ArrayList<Computer> computers = new ArrayList<>();
+        try {
+            while (rs.next()) {
+
+                String code = rs.getString("code");
+                String charger = rs.getString("charger");
+                String softCase = rs.getString("soft_case");
+                String briefcase = rs.getString("briefcase");
+
+                String state = rs.getString("state");
+
+                Computer computer = new Computer(code, charger, softCase, briefcase, state);
+
+                computers.add(computer);
+
+            }
+            return computers;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+
+        } finally {
+            rs.close();
+
+        }
+    }
+    public ArrayList<ProjectionKit> getProjectionKit() throws SQLException {
+        Statement stmt = cx.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM projection_kit;");
+        ArrayList<ProjectionKit> projections = new ArrayList<>();
+        try {
+            while (rs.next()) {
+
+                String code = rs.getString("code");
+                String projectorCase = rs.getString("projector_case");
+                String electricityWire = rs.getString("electricity_wire");
+                String VGAConnector = rs.getString("VGA_connector");
+                 String HDMIConnector = rs.getString("HDMI_connector");
+                  String projectorControl = rs.getString("projector_control");
+                  String batteries = rs.getString("batteries");
+                  String extension = rs.getString("extension");
+                  String powerStrip = rs.getString("power_strip");
+                  String plasticBox = rs.getString("plastic_box");
+                String state = rs.getString("state");
+
+                ProjectionKit projection = new ProjectionKit(code, projectorCase, electricityWire, 
+                        VGAConnector, HDMIConnector, projectorControl, batteries, extension, powerStrip, plasticBox, state);
+
+                projections.add(projection);
+
+            }
+            return projections;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+
+        } finally {
+            rs.close();
+
+        }
+    }
 
     public ArrayList<User> getUsers() throws SQLException {
         Statement stmt = cx.createStatement();
@@ -133,6 +201,64 @@ public class ConnectionMysql {
         }
 
     }
+     public boolean deleteSpeaker(String code) {
+        try {
+
+            String query = "delete from speaker where code = ?";
+            PreparedStatement preparedStmt = cx.prepareStatement(query);
+            preparedStmt.setString(1, code);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            cx.close();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+            return false;
+        }
+
+    }
+     public boolean deleteComputer(String code) {
+        try {
+
+            String query = "delete from computer where code = ?";
+            PreparedStatement preparedStmt = cx.prepareStatement(query);
+            preparedStmt.setString(1, code);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            cx.close();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+            return false;
+        }
+
+    }
+      public boolean deleteProjectionKit(String code) {
+        try {
+
+            String query = "delete from projection_kit where code = ?";
+            PreparedStatement preparedStmt = cx.prepareStatement(query);
+            preparedStmt.setString(1, code);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            cx.close();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+            return false;
+        }
+
+    }
+   
 
     public boolean updateUser(User user) {
         System.out.println(user.toString());
@@ -245,5 +371,68 @@ public class ConnectionMysql {
 
         return false;
     }
+ public boolean insertComputer(String code, String chargerComputer, String softCaseComputer,String briefcaseComputer) {
 
+        try {
+            
+
+            // the mysql insert statement
+            String query = " insert into computer (code,charger,soft_case,briefcase,state)"
+                    + " values (?, ?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = cx.prepareStatement(query);
+            preparedStmt.setString(1, code);
+            preparedStmt.setString(2, chargerComputer);
+            preparedStmt.setString(3, softCaseComputer);
+            preparedStmt.setString(4, briefcaseComputer);
+            preparedStmt.setString(5, "1");
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            cx.close();
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Fallo la inserción" + ex.getMessage());
+        }
+
+        return false;
+    }
+ public boolean insertProjectionKit(String code, String projectionCase, 
+         String electricityWire,String VGAConnector,String HDMIConnector, 
+         String projectionControl, String battery,String extension,String powerStrip,String plasticBox  ) {
+
+        try {
+            
+
+            // the mysql insert statement
+            String query = " insert into projection_kit (code,projector_case,electricity_wire,VGA_connector,HDMI_connector,projector_control,batteries,extension,power_strip,plastic_box,state)"
+                    + " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = cx.prepareStatement(query);
+            preparedStmt.setString(1, code);
+            preparedStmt.setString(2, projectionCase);
+            preparedStmt.setString(3, electricityWire);
+            preparedStmt.setString(4, VGAConnector);
+            preparedStmt.setString(5, HDMIConnector);
+             preparedStmt.setString(6, projectionControl);
+            preparedStmt.setString(7, battery);
+            preparedStmt.setString(8, extension);
+            preparedStmt.setString(9, powerStrip);
+            preparedStmt.setString(10, plasticBox);
+            preparedStmt.setString(11, "1");
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            cx.close();
+            return true;
+        } catch (Exception ex) {
+            System.out.println("Fallo la inserción" + ex.getMessage());
+        }
+
+        return false;
+    }
 }

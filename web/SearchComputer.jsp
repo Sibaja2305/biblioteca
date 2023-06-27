@@ -1,15 +1,12 @@
 <%-- 
-    Document   : LoansSpeaker
-    Created on : 24/06/2023, 03:17:38 PM
+    Document   : SearchComputer
+    Created on : 26/06/2023, 08:43:41 PM
     Author     : Hp EliteBook
 --%>
 
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
+<%@page import="clases.Computer"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="clases.Speaker"%>
 <%@page import="databasemysql.ConnectionMysql"%>
-<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,24 +15,21 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
-        
-         
     </head>
-    
     <body>
-        <%
+         <%
 
             ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
-            ArrayList<Speaker> listSpeaker = mysql.getSpeaker();
+            ArrayList<Computer> listComputer = mysql.getComputer();
 
 
         %>
         <div class="container">
-            <h1>Buscador de Parlantes</h1>
+            <h1>Buscador de Computadoras</h1>
             <hr>
             <br>
             <div >
-            <a class="btn btn-success btn-lg" href="AddSpeaker.jsp">Nuevo </a>
+            <a class="btn btn-success btn-lg" href="AddComputer.jsp">Nuevo </a>
             </div>
             <form class="container" style="display: inline-block;">
                 <div style="float: right;">
@@ -51,10 +45,10 @@
                 <thead>
                     <tr>
 
-                        <th class="text-center">Codigo</th>
-                        <th class="text-center" >Cable de electricidad</th>
-                        <th class="text-center">Conector a electricidad</th>
-                        <th class="text-center">Auxiliar de audio</th>
+                        <th class="text-center">Código</th>
+                        <th class="text-center" >Cargador</th>
+                        <th class="text-center">Estuche Suave</th>
+                        <th class="text-center">Estuche Estilo Maletín</th>
                         <th class="text-center">Estado</th>
                         <th class="text-center">Prestamos</th>
                         <th class="text-center">Acciones</th>
@@ -62,30 +56,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (int i = 0; i < listSpeaker.size(); i++) {
+                    <% for (int i = 0; i < listComputer.size(); i++) {
                     %>
                     <tr>
 
-                        <td class="align-middle text-center"><%=listSpeaker.get(i).getCode()%></td>
-                        <td class="align-middle text-center"><%=listSpeaker.get(i).getSpeakerWire().equalsIgnoreCase("1")
+                        <td class="align-middle text-center"><%=listComputer.get(i).getCode()%></td>
+                        <td class="align-middle text-center"><%=listComputer.get(i).getCharger().equalsIgnoreCase("1")
                                 ? "Si"
                                 : "no"%> </td>
-                        <td class="align-middle text-center"><%=listSpeaker.get(i).getElectricalConnector().equalsIgnoreCase("1")
+                        <td class="align-middle text-center"><%=listComputer.get(i).getSoftCase().equalsIgnoreCase("1")
                                 ? "Si"
                                 : "no"%></td>
-                        <td class="align-middle text-center"><%=listSpeaker.get(i).getAuxiliaryAudio().equalsIgnoreCase("1")
+                        <td class="align-middle text-center"><%=listComputer.get(i).getBriefcase().equalsIgnoreCase("1")
                                 ? "Si"
                                 : "no"%></td>
-                        <td class="align-middle text-center"><%=listSpeaker.get(i).getState().equalsIgnoreCase("1")
+                        <td class="align-middle text-center"><%=listComputer.get(i).getState().equalsIgnoreCase("1")
                                 ? "Disponible"
                                 : "Prestado"%></td>
                          <td class="align-middle text-center ">
-                            <form action="SpeakerLoan.jsp">
+                            <form action="ComputerLoan.jsp">
                                 <input 
                                     hidden="true"
                                     type="text" 
-                                    name="selectSpeaker"                                         
-                                    value="<%=listSpeaker.get(i).getCode()%>">
+                                    name="selectComputer"                                         
+                                    value="<%=listComputer.get(i).getCode()%>">
                                 <input                                        
                                     class="btn btn-outline-success btn-sm" 
                                     type="submit"                                                                              
@@ -93,13 +87,13 @@
                             </form>
                         </td>
                         <td class="text-center">
-                            <form action="DeleteSpeaker.jsp">
+                            <form action="DeleteComputer.jsp">
                                 <input 
                                     hidden="true"
                                     type="text" 
-                                    name="deleteSpeaker" 
+                                    name="deleteComputer" 
                                     id="id" 
-                                    value="<%=listSpeaker.get(i).getCode()%>">
+                                    value="<%=listComputer.get(i).getCode()%>">
                                 <input                                        
                                     class="btn btn-danger btn-sm" 
                                     type="submit"                                                                              

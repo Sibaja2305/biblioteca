@@ -60,12 +60,12 @@
             </a>
 
 
-            <a href="ComputerLoan.jsp">
+            <a href="SearchComputer.jsp">
                 <input class="botonGeneral" type="button" value=" Computadoras  " name="computer" />
             </a>
 
 
-            <a href="ProjectionKitLoan.jsp">
+            <a href="SearchProjection.jsp">
                 <input class="botonesArriba" type="button" value="Kit proyectores" name="projector" />
             </a>
 
