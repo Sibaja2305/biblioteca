@@ -1,0 +1,55 @@
+body{
+.button-group {
+                display: flex;
+                font-size: 20px;
+            }
+
+            .button-group label {
+                margin-right: 10px;
+            }
+            .form-group{
+                margin-top: 130px;
+                font-size: 20px;
+                
+            }
+            .form-control{
+                font-size: 17px;
+                margin-left: 30px;
+                
+            }
+            .button{
+                 
+                font-size: 17px;
+                padding: 20px 40px;
+                background-color: #0dcaf0;
+                border: none;
+                border-radius: 10px;
+                color: #fff;
+                margin-left: 70px;
+            }
+            .title{
+            
+            
+            background-color: #0dcaf0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            color: #fff;
+            font-size: 25px;
+            
+        }
+        .container{
+            width:60%;
+        }
+        .buscar{
+            margin-left: 30px;
+        }
+        .form{
+            display: flex;
+            padding-left: 400px;
+        }
+        
+        
+
+    
+}

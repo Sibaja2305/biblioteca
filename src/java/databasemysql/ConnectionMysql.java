@@ -26,7 +26,7 @@ public class ConnectionMysql {
     String bd = "world";
     String url = "jdbc:mysql://localhost:3306/";
     String usuario = "root";
-    String contraseña = "Racataca2305.";
+    String contraseña = "Supercell07*";
     String driver = "com.mysql.cj.jdbc.Driver";
     Connection cx;
 
@@ -146,6 +146,38 @@ public class ConnectionMysql {
 
         }
     }
+     public ArrayList<Computer> getComputer(String codeSearch) throws SQLException {
+        Statement stmt = cx.createStatement();
+        String consulta = "SELECT * FROM computer where code='"+codeSearch+"';";
+        System.out.println("consulta = " + consulta);
+        ResultSet rs = stmt.executeQuery(consulta);
+        ArrayList<Computer> computers = new ArrayList<>();
+        try {
+            while (rs.next()) {
+
+                String code = rs.getString("code");
+                String charger = rs.getString("charger");
+                String softCase = rs.getString("soft_case");
+                String briefcase = rs.getString("briefcase");
+
+                String state = rs.getString("state");
+
+                Computer computer = new Computer(code, charger, softCase, briefcase, state);
+
+                computers.add(computer);
+
+            }
+            return computers;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+
+        } finally {
+            rs.close();
+
+        }
+    }
     public ArrayList<ProjectionKit> getProjectionKit() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM projection_kit;");
@@ -182,7 +214,44 @@ public class ConnectionMysql {
 
         }
     }
+public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLException {
+        Statement stmt = cx.createStatement();
+        String consulta = "SELECT * FROM projection_kit where code='"+codeSearch+"';";
+        System.out.println("consulta = " + consulta);
+        ResultSet rs = stmt.executeQuery(consulta);
+        ArrayList<ProjectionKit> projections = new ArrayList<>();
+        try {
+            while (rs.next()) {
 
+                String code = rs.getString("code");
+                String projectorCase = rs.getString("projector_case");
+                String electricityWire = rs.getString("electricity_wire");
+                String VGAConnector = rs.getString("VGA_connector");
+                 String HDMIConnector = rs.getString("HDMI_connector");
+                  String projectorControl = rs.getString("projector_control");
+                  String batteries = rs.getString("batteries");
+                  String extension = rs.getString("extension");
+                  String powerStrip = rs.getString("power_strip");
+                  String plasticBox = rs.getString("plastic_box");
+                String state = rs.getString("state");
+
+                ProjectionKit projection = new ProjectionKit(code, projectorCase, electricityWire, 
+                        VGAConnector, HDMIConnector, projectorControl, batteries, extension, powerStrip, plasticBox, state);
+
+                projections.add(projection);
+
+            }
+            return projections;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+
+        } finally {
+            rs.close();
+
+        }
+    }
     public ArrayList<User> getUsers() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM users;");
