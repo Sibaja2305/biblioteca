@@ -5,6 +5,7 @@
 package databasemysql;
 
 import clases.Computer;
+import clases.LogBookLoans;
 import clases.ProjectionKit;
 import clases.Speaker;
 import clasess.User;
@@ -15,6 +16,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -26,7 +30,7 @@ public class ConnectionMysql {
     String bd = "world";
     String url = "jdbc:mysql://localhost:3306/";
     String usuario = "root";
-    String contraseña = "Supercell07*";
+    String contraseña = "Racataca2305.";
     String driver = "com.mysql.cj.jdbc.Driver";
     Connection cx;
 
@@ -84,9 +88,10 @@ public class ConnectionMysql {
 
         }
     }
+
     public ArrayList<Speaker> getSpeaker(String codigo) throws SQLException {
         Statement stmt = cx.createStatement();
-        String consulta = "SELECT * FROM speaker where code='"+codigo+"';";
+        String consulta = "SELECT * FROM speaker where code='" + codigo + "';";
         System.out.println("consulta = " + consulta);
         ResultSet rs = stmt.executeQuery(consulta);
         ArrayList<Speaker> speakers = new ArrayList<>();
@@ -116,6 +121,7 @@ public class ConnectionMysql {
 
         }
     }
+
     public ArrayList<Computer> getComputer() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM computer;");
@@ -146,9 +152,10 @@ public class ConnectionMysql {
 
         }
     }
-     public ArrayList<Computer> getComputer(String codeSearch) throws SQLException {
+
+    public ArrayList<Computer> getComputer(String codeSearch) throws SQLException {
         Statement stmt = cx.createStatement();
-        String consulta = "SELECT * FROM computer where code='"+codeSearch+"';";
+        String consulta = "SELECT * FROM computer where code='" + codeSearch + "';";
         System.out.println("consulta = " + consulta);
         ResultSet rs = stmt.executeQuery(consulta);
         ArrayList<Computer> computers = new ArrayList<>();
@@ -178,6 +185,7 @@ public class ConnectionMysql {
 
         }
     }
+
     public ArrayList<ProjectionKit> getProjectionKit() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM projection_kit;");
@@ -189,15 +197,15 @@ public class ConnectionMysql {
                 String projectorCase = rs.getString("projector_case");
                 String electricityWire = rs.getString("electricity_wire");
                 String VGAConnector = rs.getString("VGA_connector");
-                 String HDMIConnector = rs.getString("HDMI_connector");
-                  String projectorControl = rs.getString("projector_control");
-                  String batteries = rs.getString("batteries");
-                  String extension = rs.getString("extension");
-                  String powerStrip = rs.getString("power_strip");
-                  String plasticBox = rs.getString("plastic_box");
+                String HDMIConnector = rs.getString("HDMI_connector");
+                String projectorControl = rs.getString("projector_control");
+                String batteries = rs.getString("batteries");
+                String extension = rs.getString("extension");
+                String powerStrip = rs.getString("power_strip");
+                String plasticBox = rs.getString("plastic_box");
                 String state = rs.getString("state");
 
-                ProjectionKit projection = new ProjectionKit(code, projectorCase, electricityWire, 
+                ProjectionKit projection = new ProjectionKit(code, projectorCase, electricityWire,
                         VGAConnector, HDMIConnector, projectorControl, batteries, extension, powerStrip, plasticBox, state);
 
                 projections.add(projection);
@@ -214,9 +222,10 @@ public class ConnectionMysql {
 
         }
     }
-public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLException {
+
+    public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLException {
         Statement stmt = cx.createStatement();
-        String consulta = "SELECT * FROM projection_kit where code='"+codeSearch+"';";
+        String consulta = "SELECT * FROM projection_kit where code='" + codeSearch + "';";
         System.out.println("consulta = " + consulta);
         ResultSet rs = stmt.executeQuery(consulta);
         ArrayList<ProjectionKit> projections = new ArrayList<>();
@@ -227,15 +236,15 @@ public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLEx
                 String projectorCase = rs.getString("projector_case");
                 String electricityWire = rs.getString("electricity_wire");
                 String VGAConnector = rs.getString("VGA_connector");
-                 String HDMIConnector = rs.getString("HDMI_connector");
-                  String projectorControl = rs.getString("projector_control");
-                  String batteries = rs.getString("batteries");
-                  String extension = rs.getString("extension");
-                  String powerStrip = rs.getString("power_strip");
-                  String plasticBox = rs.getString("plastic_box");
+                String HDMIConnector = rs.getString("HDMI_connector");
+                String projectorControl = rs.getString("projector_control");
+                String batteries = rs.getString("batteries");
+                String extension = rs.getString("extension");
+                String powerStrip = rs.getString("power_strip");
+                String plasticBox = rs.getString("plastic_box");
                 String state = rs.getString("state");
 
-                ProjectionKit projection = new ProjectionKit(code, projectorCase, electricityWire, 
+                ProjectionKit projection = new ProjectionKit(code, projectorCase, electricityWire,
                         VGAConnector, HDMIConnector, projectorControl, batteries, extension, powerStrip, plasticBox, state);
 
                 projections.add(projection);
@@ -252,6 +261,7 @@ public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLEx
 
         }
     }
+
     public ArrayList<User> getUsers() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM users;");
@@ -283,6 +293,41 @@ public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLEx
         }
     }
 
+    public ArrayList<LogBookLoans> getLogBookLoans() throws SQLException {
+        Statement stmt = cx.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM logbook_loans;");
+        ArrayList<LogBookLoans> logBookLoans = new ArrayList<>();
+        try {
+            while (rs.next()) {
+
+                int id = Integer.parseInt(rs.getString("id"));
+                String code = rs.getString("code");
+                String ucrCard = rs.getString("identification");
+                String fullName = rs.getString("full_name");
+                String typeUser = rs.getString("type_user");
+                String career = rs.getString("career");
+                String nameAccessory = rs.getString("name_accessory");
+                Date loanDate = rs.getDate("loan_date");
+                Date returnDate = rs.getDate("return_date");
+
+                LogBookLoans logBookLoan = new LogBookLoans(id, code, ucrCard, fullName,
+                        typeUser, career, nameAccessory, loanDate, returnDate);
+
+                logBookLoans.add(logBookLoan);
+
+            }
+            return logBookLoans;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+
+        } finally {
+            rs.close();
+
+        }
+    }
+
     public boolean deleteUser(int id) {
         try {
 
@@ -302,7 +347,8 @@ public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLEx
         }
 
     }
-     public boolean deleteSpeaker(String code) {
+
+    public boolean deleteSpeaker(String code) {
         try {
 
             String query = "delete from speaker where code = ?";
@@ -321,7 +367,8 @@ public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLEx
         }
 
     }
-     public boolean deleteComputer(String code) {
+
+    public boolean deleteComputer(String code) {
         try {
 
             String query = "delete from computer where code = ?";
@@ -340,7 +387,8 @@ public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLEx
         }
 
     }
-      public boolean deleteProjectionKit(String code) {
+
+    public boolean deleteProjectionKit(String code) {
         try {
 
             String query = "delete from projection_kit where code = ?";
@@ -359,7 +407,6 @@ public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLEx
         }
 
     }
-   
 
     public boolean updateUser(User user) {
         System.out.println(user.toString());
@@ -444,10 +491,53 @@ public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLEx
 
         return false;
     }
-    public boolean insertSpeaker(String code, String speakerWire, String electricalConnector,String auxiliaryAudio) {
+
+    public boolean insertLoans(String code, String identification, String fullName, String typeUser,
+            String career, String nameAccessory, java.sql.Date loanDate, String returnDate) {
+
+        System.out.println("date: "+ loanDate);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+      try{
+            
+            // the mysql insert statement
+            String query = " insert into logbook_loans (code, identification, full_name, type_user, career, name_accessory, loan_date, return_date)"
+                    + " values (?, ?, ?, ?, ?, ?, ?, ?)";
+        
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = cx.prepareStatement(query);
+            preparedStmt.setString(1, code);
+            preparedStmt.setString(2, identification);
+            preparedStmt.setString(3, fullName);
+            preparedStmt.setString(4, typeUser);
+            preparedStmt.setString(5, career);
+            preparedStmt.setString(6, nameAccessory);
+          
+
+            // Convertir las cadenas de fecha en objetos java.util.Date
+       
+        
+        // Establecer los parámetros de fecha y hora en el PreparedStatement
+        preparedStmt.setDate(7, loanDate);
+        preparedStmt.setDate(8, loanDate);
+
+
+            
+
+            // execute the preparedstatement
+            preparedStmt.executeUpdate();
+
+            cx.close();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Fallo la inserción" + ex.getMessage());
+        }
+
+        return false;
+    }
+
+    public boolean insertSpeaker(String code, String speakerWire, String electricalConnector, String auxiliaryAudio) {
 
         try {
-            
 
             // the mysql insert statement
             String query = " insert into speaker (code,speaker_wire,electrical_connector,auxiliary_audio,state)"
@@ -472,10 +562,10 @@ public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLEx
 
         return false;
     }
- public boolean insertComputer(String code, String chargerComputer, String softCaseComputer,String briefcaseComputer) {
+
+    public boolean insertComputer(String code, String chargerComputer, String softCaseComputer, String briefcaseComputer) {
 
         try {
-            
 
             // the mysql insert statement
             String query = " insert into computer (code,charger,soft_case,briefcase,state)"
@@ -500,12 +590,12 @@ public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLEx
 
         return false;
     }
- public boolean insertProjectionKit(String code, String projectionCase, 
-         String electricityWire,String VGAConnector,String HDMIConnector, 
-         String projectionControl, String battery,String extension,String powerStrip,String plasticBox  ) {
+
+    public boolean insertProjectionKit(String code, String projectionCase,
+            String electricityWire, String VGAConnector, String HDMIConnector,
+            String projectionControl, String battery, String extension, String powerStrip, String plasticBox) {
 
         try {
-            
 
             // the mysql insert statement
             String query = " insert into projection_kit (code,projector_case,electricity_wire,VGA_connector,HDMI_connector,projector_control,batteries,extension,power_strip,plastic_box,state)"
@@ -518,7 +608,7 @@ public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLEx
             preparedStmt.setString(3, electricityWire);
             preparedStmt.setString(4, VGAConnector);
             preparedStmt.setString(5, HDMIConnector);
-             preparedStmt.setString(6, projectionControl);
+            preparedStmt.setString(6, projectionControl);
             preparedStmt.setString(7, battery);
             preparedStmt.setString(8, extension);
             preparedStmt.setString(9, powerStrip);

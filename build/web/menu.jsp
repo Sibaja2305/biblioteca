@@ -118,7 +118,7 @@
                         </li>
                         <br><br>
                         <li class="nav-item">
-                            <a href="Returns.jsp" >
+                            <a href="Return.jsp" >
                                 <input class="botonGeneral" type="button" value="devoluciones" name="returns"/> 
                             </a> 
                         </li>

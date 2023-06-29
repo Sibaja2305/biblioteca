@@ -33,70 +33,70 @@
 
             <form method="post" action="RegisterLoans.jsp">
                 <div class="form-group">
-                    <label class="text">Codigo:</label>
+                    <label class="text">Codigo:  </label>
                     <br>
-                    <input type="text" class="form-control"   name="code" maxlength="10" size="5" required>
+                    <input type="text" class="form-control"   name="txtCode" maxlength="10" size="5" required>
                 </div>
                 <br>
                 <div class="form-group">
                     <label class="text">Nombre completo:</label>
                     <br>
-                    <input type="text" class="form-control" size="10" name="fullName" maxlength="10" size="5" required>
+                    <input type="text" class="form-control" size="10" name="txtFullName" maxlength="10" size="5" required>
                 </div>
                 <br>
                 <div class="form-group">
-                    <label class="text">Carnet UCR:</label>
+                    <label class="text">Identificación:</label>
                     <br>
-                    <input type="text" class="form-control"  name="ucrCard" maxlength="10" size="5" required>
+                    <input type="text" class="form-control"  name="txtIdentification" maxlength="10" size="5" required>
                 </div>
                 <br>
                 <div class="form-group">
                     <label class="text">Tipo de Usuario:</label>
                     <br>
-                    <select class="form-control" name="typeUser"  required>
+                    <select class="form-control" name="txtTypeUser"  required>
                         <option value="">Selecciona una opción</option>
-                        <option value="student">Estudiante</option>
-                        <option value="teacher">Profesor</option>
+                        <option value="Estudiante">Estudiante</option>
+                        <option value="Profesor">Profesor</option>
                     </select>
                 </div>
                 <br>
                 <div class="form-group">
                     <label class="text">Carreras:</label>
                     <br>
-                    <select class="form-control" name="career" required>
+                    <select class="form-control" name="txtCareer" required>
                         <option value="">Selecciona una opción</option>
-                        <option value="Info">Informática Empresarial</option>
-                        <option value="English">Inglés</option>
-                        <option value="graphicDesign">Diseño Gráfico</option>
-                        <option value="tourism">Turismo</option>
-                        <option value="primaryEducation">Educación Primaria</option>
-                        <option value="mathEducation">Educación Matemáticas</option>
-                        <option value="agriculturalEconomy">Economía Agrícola y agronegocios</option>
-                        <option value="libraryScience">Bibliotecología Énf. Bibliotecas Educativa</option>
-                        <option value="customs">Administración Aduanera y Comercio Exterior</option>
-                        <option value="EnglishEducation">Ciencias de la Educación Primaria con Concentracion en Inglés</option>
-                        <option value="naturalSciences">Enseñanza de las Ciencias Naturales</option>
-                        <option value="agribusinessManagement">Maestría en Gerencia Agroempresarial</option>
+                        <option value="Informática Empresarial">Informática Empresarial</option>
+                        <option value="Inglés">Inglés</option>
+                        <option value="Diseño Gráfico">Diseño Gráfico</option>
+                        <option value="Turismo">Turismo</option>
+                        <option value="Educación Primaria">Educación Primaria</option>
+                        <option value="Educación Matemáticas">Educación Matemáticas</option>
+                        <option value="Economía Agrícola y agronegocios">Economía Agrícola y agronegocios</option>
+                        <option value="Bibliotecología Énf. Bibliotecas Educativa">Bibliotecología Énf. Bibliotecas Educativa</option>
+                        <option value="Administración Aduanera y Comercio Exterior">Administración Aduanera y Comercio Exterior</option>
+                        <option value="Ciencias de la Educación Primaria con Concentracion en Inglés">Ciencias de la Educación Primaria con Concentracion en Inglés</option>
+                        <option value="Enseñanza de las Ciencias Naturales">Enseñanza de las Ciencias Naturales</option>
+                        <option value="Maestría en Gerencia Agroempresarial">Maestría en Gerencia Agroempresarial</option>
                     </select>
                 </div>
                 <br>
                 <div class="form-group">
                     <label class="text">Accesorio Prestado:</label>
                     <br>
-                    <input type="text" class="form-control" name="nameAccessorie" maxlength="10" size="5" required>
+                    <input type="text" class="form-control" name="txtNameAccessorie" maxlength="10" size="5" required>
                 </div>
                 <br>
                 <div class="form-group">
                     <label class="text">Fecha de Prestamo:</label>
                     <br>
-                    <input type="date" class="form-control"  name="loanDate"  maxlength="10" size="5"required>
+                    <input type="datetime-local" class="form-control"  name="txtLoanDate"  maxlength="10" size="5"required>
                 </div>
                 <br>
 
                 <label class="text">Fecha de Devolución:</label>
                 <br>
                 <div class="form-group" >
-                    <input type="date" class="form-control"  name="returnDate" maxlength="10" size="5" required>
+                    <input type="datetime-local" class="form-control"  name="txtReturnDate" maxlength="10" size="5" required>
                      
                 </div>
                 <br>
