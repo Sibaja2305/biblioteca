@@ -18,19 +18,26 @@
     String nameAccessorie = request.getParameter("txtNameAccessorie").trim();
     String loanDate = request.getParameter("txtLoanDate").trim();
     String returnDate = request.getParameter("txtReturnDate").trim();
-    out.println(loanDate);
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     String fecha =loanDate.split("T")[0].replace("-", "/");
     fecha = fecha.split("/")[2] +"/"+ fecha.split("/")[1] +"/"+fecha.split("/")[0];
-    Date loanDateTime =  dateFormat.parse(fecha);
-    java.sql.Date sqlDate = new java.sql.Date(loanDateTime.getTime());
-out.println("utilDate:" + loanDateTime);
-out.println("sqlDate:" + sqlDate);
+    String hora=loanDate.split("T")[1].split("\\.")[0];
+    String fechaHora=fecha+ " "+ hora;
+    Date loanDateTime =  dateFormat.parse(fechaHora);
+    java.sql.Timestamp sqlLoanDate= new java.sql.Timestamp(loanDateTime.getTime());
+    //date returnDate
+    String devolver=returnDate.split("T")[0].replace("-", "/");
+     devolver = devolver.split("/")[2] +"/"+ devolver.split("/")[1] +"/"+devolver.split("/")[0];
+    String hoursReturn=loanDate.split("T")[1].split("\\.")[0];
+   String fechadevolver=devolver+ " "+ hoursReturn;
+    Date ReturnDateTime =  dateFormat.parse(fechadevolver);
+    java.sql.Timestamp sqlReturnDate= new java.sql.Timestamp(ReturnDateTime.getTime());
     
-    out.println(loanDateTime.getYear());
-    // Validar el usuario y contraseña
-    if (mysql.insertLoans(code, identification, fullName, typeUser, career, nameAccessorie, sqlDate, returnDate)) {
-        // Inicio de sesión exitoso
+    
+    
+    if (mysql.insertLoans(code, identification, fullName, typeUser, career, nameAccessorie, sqlLoanDate, sqlReturnDate)) {
+        // Registro correctamente a la dataBases
 
         response.sendRedirect("menu.jsp"); // Página de inicio después de iniciar sesión
     } 

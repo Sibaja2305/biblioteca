@@ -493,7 +493,7 @@ public class ConnectionMysql {
     }
 
     public boolean insertLoans(String code, String identification, String fullName, String typeUser,
-            String career, String nameAccessory, java.sql.Date loanDate, String returnDate) {
+            String career, String nameAccessory, java.sql.Timestamp loanDate, java.sql.Timestamp returnDate) {
 
         System.out.println("date: "+ loanDate);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -513,12 +513,8 @@ public class ConnectionMysql {
             preparedStmt.setString(6, nameAccessory);
           
 
-            // Convertir las cadenas de fecha en objetos java.util.Date
-       
-        
-        // Establecer los parámetros de fecha y hora en el PreparedStatement
-        preparedStmt.setDate(7, loanDate);
-        preparedStmt.setDate(8, loanDate);
+        preparedStmt.setTimestamp(7, loanDate);
+        preparedStmt.setTimestamp(8, returnDate);
 
 
             
