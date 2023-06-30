@@ -124,7 +124,7 @@
                         </li>
                         <br><br>
                         <li class="nav-item ">
-                            <a href="report.jsp">
+                            <a href="LoanHistory.jsp">
                                 <input class="botonGeneral" type="button" value="   Informe    " name="report" />
                             </a>
                         </li>

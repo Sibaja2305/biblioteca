@@ -30,7 +30,7 @@ public class ConnectionMysql {
     String bd = "world";
     String url = "jdbc:mysql://localhost:3306/";
     String usuario = "root";
-    String contraseña = "Racataca2305.";
+    String contraseña = "Supercell07*";
     String driver = "com.mysql.cj.jdbc.Driver";
     Connection cx;
 
@@ -327,7 +327,40 @@ public class ConnectionMysql {
 
         }
     }
+ public ArrayList<LogBookLoans> getHistoryLoans() throws SQLException {
+        Statement stmt = cx.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM loan_history;");
+        ArrayList<LogBookLoans> logBookLoans = new ArrayList<>();
+        try {
+            while (rs.next()) {
 
+                int id = Integer.parseInt(rs.getString("id"));
+                String code = rs.getString("code");
+                String ucrCard = rs.getString("identification");
+                String fullName = rs.getString("full_name");
+                String typeUser = rs.getString("type_user");
+                String career = rs.getString("career");
+                String nameAccessory = rs.getString("name_accessory");
+                Date loanDate = rs.getDate("loan_date");
+                Date returnDate = rs.getDate("return_date");
+
+                LogBookLoans logBookLoan = new LogBookLoans(id, code, ucrCard, fullName,
+                        typeUser, career, nameAccessory, loanDate, returnDate);
+
+                logBookLoans.add(logBookLoan);
+
+            }
+            return logBookLoans;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+
+        } finally {
+            rs.close();
+
+        }
+    }
     public boolean deleteUser(int id) {
         try {
 
@@ -501,6 +534,44 @@ public class ConnectionMysql {
             
             // the mysql insert statement
             String query = " insert into logbook_loans (code, identification, full_name, type_user, career, name_accessory, loan_date, return_date)"
+                    + " values (?, ?, ?, ?, ?, ?, ?, ?)";
+        
+            // create the mysql insert preparedstatement
+            PreparedStatement preparedStmt = cx.prepareStatement(query);
+            preparedStmt.setString(1, code);
+            preparedStmt.setString(2, identification);
+            preparedStmt.setString(3, fullName);
+            preparedStmt.setString(4, typeUser);
+            preparedStmt.setString(5, career);
+            preparedStmt.setString(6, nameAccessory);
+          
+
+        preparedStmt.setTimestamp(7, loanDate);
+        preparedStmt.setTimestamp(8, returnDate);
+
+
+            
+
+            // execute the preparedstatement
+            preparedStmt.executeUpdate();
+
+            cx.close();
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Fallo la inserción" + ex.getMessage());
+        }
+
+        return false;
+    }
+    public boolean insertHistoryLoans(String code, String identification, String fullName, String typeUser,
+            String career, String nameAccessory, java.sql.Timestamp loanDate, java.sql.Timestamp returnDate) {
+
+        System.out.println("date: "+ loanDate);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+      try{
+            
+            // the mysql insert statement
+            String query = " insert into loan_history (code, identification, full_name, type_user, career, name_accessory, loan_date, return_date)"
                     + " values (?, ?, ?, ?, ?, ?, ?, ?)";
         
             // create the mysql insert preparedstatement

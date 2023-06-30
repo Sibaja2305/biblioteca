@@ -1,25 +1,26 @@
 <%-- 
-    Document   : RegisterLoans
-    Created on : 28/06/2023, 02:11:06 PM
-    Author     : Hp EliteBook
+    Document   : RegisterValidationHistory
+    Created on : 29/06/2023, 10:16:26 PM
+    Author     : yorda
 --%>
+
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
+<%@page import="java.sql.Date"%>
 <%@page import="databasemysql.ConnectionMysql"%>
 <%
 
     ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
 
-    String code = request.getParameter("txtCode").trim();
-    String identification = request.getParameter("txtIdentification").trim();
-    String fullName = request.getParameter("txtFullName").trim();
-    String typeUser = request.getParameter("txtTypeUser").trim();
-    String career = request.getParameter("txtCareer").trim();
-    String nameAccessorie = request.getParameter("txtNameAccessorie").trim();
-    String loanDate = request.getParameter("txtLoanDate").trim();
-    String returnDate = request.getParameter("txtReturnDate").trim();
+    String code = request.getParameter("code").trim();
+    String identification = request.getParameter("identification").trim();
+    String fullName = request.getParameter("fullName").trim();
+    String typeUser = request.getParameter("typeUser").trim();
+    String career = request.getParameter("career").trim();
+    String nameAccessorie = request.getParameter("nameAccesory").trim();
+    String loanDate = request.getParameter("loanDate").trim();
+    String returnDate = request.getParameter("returnDate").trim();
     
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+ SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
     String fecha =loanDate.split("T")[0].replace("-", "/");
     fecha = fecha.split("/")[2] +"/"+ fecha.split("/")[1] +"/"+fecha.split("/")[0];
     String hora=loanDate.split("T")[1].split("\\.")[0];
@@ -34,12 +35,11 @@
     Date ReturnDateTime =  dateFormat.parse(fechadevolver);
     java.sql.Timestamp sqlReturnDate= new java.sql.Timestamp(ReturnDateTime.getTime());
     
-    
-    
-    if (mysql.insertHistoryLoans(code, identification, fullName, typeUser, career, nameAccessorie, sqlLoanDate, sqlReturnDate)) {
+
+ if (mysql.insertLoans(code, identification, fullName, typeUser, career, nameAccessorie, sqlLoanDate, sqlReturnDate)) {
         // Registro correctamente a la dataBases
 
         response.sendRedirect("menu.jsp"); // Página de inicio después de iniciar sesión
-    } 
-%>
+    }
 
+%>
