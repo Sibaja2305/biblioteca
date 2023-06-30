@@ -440,6 +440,25 @@ public class ConnectionMysql {
         }
 
     }
+    public boolean deleteLoan(int id) {
+        try {
+
+            String query = "delete from logbook_loans where id = ?";
+            PreparedStatement preparedStmt = cx.prepareStatement(query);
+            preparedStmt.setInt(1, id);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            cx.close();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+            return false;
+        }
+
+    }
 
     public boolean updateUser(User user) {
         System.out.println(user.toString());
@@ -566,8 +585,6 @@ public class ConnectionMysql {
     public boolean insertHistoryLoans(String code, String identification, String fullName, String typeUser,
             String career, String nameAccessory, java.sql.Timestamp loanDate, java.sql.Timestamp returnDate) {
 
-        System.out.println("date: "+ loanDate);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
       try{
             
             // the mysql insert statement

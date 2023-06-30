@@ -36,7 +36,7 @@
     
     
     
-    if (mysql.insertHistoryLoans(code, identification, fullName, typeUser, career, nameAccessorie, sqlLoanDate, sqlReturnDate)) {
+    if (mysql.insertLoans(code, identification, fullName, typeUser, career, nameAccessorie, sqlLoanDate, sqlReturnDate)) {
         // Registro correctamente a la dataBases
 
         response.sendRedirect("menu.jsp"); // Página de inicio después de iniciar sesión
