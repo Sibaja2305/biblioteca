@@ -88,6 +88,13 @@
                 </thead>
                 <tbody>
                     <% for (int i = 0; i < listSpeakerSearch.size(); i++) {
+                       String visibleSearch = "";
+                                if (listSpeakerSearch.get(i).getState().equalsIgnoreCase("2")) {
+                                     visibleSearch = "hidden";  
+                                     
+                                    }
+                               
+
                     %>
                     <tr>
 
@@ -111,7 +118,9 @@
                                     type="text" 
                                     name="selectSpeaker"                                         
                                     value="<%=listSpeakerSearch.get(i).getCode()%>">
-                                <input                                        
+                                
+                                <input  
+                                     <%=visibleSearch%>
                                     class="btn btn-outline-success btn-sm" 
                                     type="submit"                                                                              
                                     value="seleccionar" >
@@ -161,6 +170,12 @@
                         <br>
                         <tbody>
                             <% for (int i = 0; i < listSpeaker.size(); i++) {
+                                String visible = "";
+                                if (listSpeaker.get(i).getState().equalsIgnoreCase("2")) {
+                                     visible = "hidden";  
+                                     
+                                    }
+                              
                             %>
                             <tr>
 
@@ -184,7 +199,8 @@
                                             type="text" 
                                             name="selectSpeaker"                                         
                                             value="<%=listSpeaker.get(i).getCode()%>">
-                                        <input                                        
+                                        <input   
+                                            <%=visible%>
                                             class="btn btn-outline-success btn-sm" 
                                             type="submit"                                                                              
                                             value="seleccionar" >

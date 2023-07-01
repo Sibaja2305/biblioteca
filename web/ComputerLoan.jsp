@@ -23,7 +23,7 @@
             <h1 class="display-3">Prestamos de Computadora</h1>
         </div>
         <div class="container" >
-            <form action="ValidarProceso.jsp">
+            <form action="LoansAccessories.jsp">
                 <br>
                 <label class="form-control-lg">Codigo</label>
                 <br>
@@ -31,7 +31,7 @@
 
                 <div class="form-control-lg">
 
-                    <input hidden="true" type="text" class="form-label" name="codeComputer" required value="<%=computer%>">
+                    <input hidden="true" type="text" class="form-label" name="code" required value="<%=computer%>">
                 </div>
 
 
@@ -71,6 +71,7 @@
                         No
                     </label>
                 </div>
+                 <input hidden="true" type="text" name="category" value="computer">
                <br>
                 <div class="form-control-lg">
                     <button type="submit" class="btn btn-primary btn-lg">Registrar</button>

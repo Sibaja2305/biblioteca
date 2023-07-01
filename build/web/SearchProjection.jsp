@@ -83,6 +83,11 @@
                 </thead>
                 <tbody>
                     <% for (int i = 0; i < listProjectionSearch.size(); i++) {
+                        String visibleSearch = "";
+                                if (listProjectionSearch.get(i).getState().equalsIgnoreCase("2")) {
+                                     visibleSearch = "hidden";  
+                                     
+                                    }
                     %>
                     <tr>
 
@@ -124,7 +129,8 @@
                                     type="text" 
                                     name="selectProjectionKit"                                         
                                     value="<%=listProjectionSearch.get(i).getCode()%>">
-                                <input                                        
+                                <input   
+                                    <%=visibleSearch%>
                                     class="btn btn-outline-success btn-sm" 
                                     type="submit"                                                                              
                                     value="seleccionar" >
@@ -178,6 +184,11 @@
                 </thead>
                 <tbody>
                     <% for (int i = 0; i < listProjectionKit.size(); i++) {
+                         String visible = "";
+                                if (listProjectionKit.get(i).getState().equalsIgnoreCase("2")) {
+                                     visible = "hidden";  
+                                     
+                                    }
                     %>
                     <tr>
 
@@ -219,7 +230,8 @@
                                     type="text" 
                                     name="selectProjectionKit"                                         
                                     value="<%=listProjectionKit.get(i).getCode()%>">
-                                <input                                        
+                                <input  
+                                    <%=visible%>
                                     class="btn btn-outline-success btn-sm" 
                                     type="submit"                                                                              
                                     value="seleccionar" >

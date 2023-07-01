@@ -78,6 +78,11 @@
                 </thead>
                 <tbody>
                     <% for (int i = 0; i < listComputerSearch.size(); i++) {
+                        String visibleSearch = "";
+                                if (listComputerSearch.get(i).getState().equalsIgnoreCase("2")) {
+                                     visibleSearch = "hidden";  
+                                     
+                                    }
                     %>
                     <tr>
 
@@ -101,7 +106,8 @@
                                     type="text" 
                                     name="selectComputer"                                         
                                     value="<%=listComputerSearch.get(i).getCode()%>">
-                                <input                                        
+                                <input 
+                                     <%=visibleSearch%>
                                     class="btn btn-outline-success btn-sm" 
                                     type="submit"                                                                              
                                     value="seleccionar" >
@@ -150,6 +156,9 @@
                 </thead>
                 <tbody>
                     <% for (int i = 0; i < listComputer.size(); i++) {
+                         String visible = "";
+                                if (listComputer.get(i).getState().equalsIgnoreCase("2")) {
+                                     visible = "hidden";  
                     %>
                     <tr>
 
@@ -173,7 +182,8 @@
                                     type="text" 
                                     name="selectComputer"                                         
                                     value="<%=listComputer.get(i).getCode()%>">
-                                <input                                        
+                                <input  
+                                    <%=visible%>
                                     class="btn btn-outline-success btn-sm" 
                                     type="submit"                                                                              
                                     value="seleccionar" >

@@ -29,7 +29,7 @@
         </div>
         <br>
         <div class="container" >
-            <form action="ValidarProceso.jsp">
+            <form action="LoansAccessories.jsp">
                 <br>
                 <label class="form-control-lg">Codigo</label>
                 <br>
@@ -37,7 +37,7 @@
 
                 <div class="form-control-lg">
 
-                    <input hidden="true" type="text" class="form-label" name="codeSpeaker" required value="<%=speaker%>">
+                    <input hidden="true" type="text" class="form-label" name="code" required value="<%=speaker%>">
                 </div>
 
                 <div class="form-control-lg">
@@ -76,12 +76,13 @@
                         No
                     </label>
                 </div>
+                <input hidden="true" type="text" name="category" value="speaker">
 
                 <div class="form-control-lg">
                     <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
                     <a href="SearchSpeaker.jsp" class="btn btn-primary btn-lg">Regresar</a>
                 </div>
-
+                
 
             </form>
         </div>

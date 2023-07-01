@@ -31,12 +31,13 @@
          <div class="text-center" style=" background-color: #0dcaf0; color: #fff; font-size: 25px;">
             <h1 class="display-3">Prestamos de Kit de Proyectores</h1>
         </div>
-        <form action="ValidarProceso.jsp">
+        <form action="LoansAccessories.jsp">
             
             <div class="form-group"> 
                 <label class="text">Codigo:</label>
                 <br>
-                    <input type="text" class="form-control" name="projectionCode" required>
+                 <input disabled="true" type="text" class="form-label" style="font-size:16px;" name="idsd" required value="<%=projection%>">
+                    <input hidden="true" type="text" class="form-label" name="code" required value="<%=projection%>">
             </div>
             <br><br>
         <div class="button-group">
@@ -138,6 +139,7 @@
                 No
             </label>
         </div>
+             <input hidden="true" type="text" name="category" value="projection_kit">
              <br>
                  
                     <button type="submit" class="button">Registrar</button>

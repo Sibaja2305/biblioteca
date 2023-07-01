@@ -32,7 +32,7 @@
 
                 //listLogBookSearch = mysql.getProjectionKit(codeSearch);
             }
-
+          
         %>
         <div class="container">
             <h1>Devoluciones</h1>
@@ -154,6 +154,7 @@
 
                         <td class="align-middle text-center ">
                             <form action="RegisterValidationHistory.jsp" method="post">
+                                <input type="hidden" name="category" value="<%= listLogBookLoans.get(i).getCategory()%>" />
                                 <input type="hidden" name="id" value="<%= listLogBookLoans.get(i).getId()%>" />
                                 <input type="hidden" name="code" value="<%= listLogBookLoans.get(i).getCode()%>" />
                                 <input type="hidden" name="identification" value="<%= listLogBookLoans.get(i).getUcrCard()%>" />

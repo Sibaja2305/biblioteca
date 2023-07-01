@@ -29,13 +29,28 @@
         </style>
     </head>
     <body style="background-color: #0dcaf0;">
+        <%
+        String category = request.getParameter("category");
+        String code = request.getParameter("code");
+        if (category == null) {
+            category = "Accesorio";   
+            }else{
+            category = category.trim();
+        }
+        if (code == null) {
+             code = "0";   
+            }else{
+            code = code.trim();
+        }
+        out.print(category);
+        %>
         <div class="container">
 
             <form method="post" action="RegisterLoans.jsp">
                 <div class="form-group">
                     <label class="text">Codigo:  </label>
                     <br>
-                    <input type="text" class="form-control"   name="txtCode" maxlength="10" size="5" required>
+                   <input type="text" class="form-label" style="font-size:16px;" name="txtCode" required value="<%=code%>">
                 </div>
                 <br>
                 <div class="form-group">
@@ -103,7 +118,9 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-success btn-lg">Registrar</button>
                 </div>
+                <input hidden="true" type="text" name="category" value="<%=category%>">
             </form>
+
         </div>
     </body>
 </html>

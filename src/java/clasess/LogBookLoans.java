@@ -17,6 +17,7 @@ public class LogBookLoans {
     private String nameAccesory;
     private Date loanDate;
     private Date returnDate;
+    private String category;
 
     public LogBookLoans() {
         this.code = "No registrado";
@@ -25,12 +26,13 @@ public class LogBookLoans {
         this.typeUser = "No";
         this.career = "No registrado";
         this.nameAccesory = "No registrado";
+        this.category = "No registrado";
         this.loanDate = null;
         this.returnDate = null;
 
     }
 
-    public LogBookLoans(int id, String code, String ucrCard, String fullName, String typeUser, String career, String nameAccesory, Date loanDate, Date returnDate) {
+    public LogBookLoans(int id, String code, String ucrCard, String fullName, String typeUser, String career, String nameAccesory, Date loanDate, Date returnDate, String category) {
         this.id = id;
         this.code = code;
         this.ucrCard = ucrCard;
@@ -40,8 +42,22 @@ public class LogBookLoans {
         this.nameAccesory = nameAccesory;
         this.loanDate = loanDate;
         this.returnDate = returnDate;
+       this.category = category;
     }
 
+    /**
+     * @return the category
+     */
+    public String getCategory() {
+        return category;
+    }
+
+    /**
+     * @param category the category to set
+     */
+    public void setCategory(String category) {
+        this.category = category;
+    }
     /**
      * @return the id
      */
@@ -180,8 +196,11 @@ public class LogBookLoans {
         sb.append(", nameAccesory=").append(nameAccesory);
         sb.append(", loanDate=").append(loanDate);
         sb.append(", returnDate=").append(returnDate);
+        sb.append(", category=").append(category);
         sb.append('}');
         return sb.toString();
     }
+
+  
 
 }

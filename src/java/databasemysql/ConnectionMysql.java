@@ -309,9 +309,9 @@ public class ConnectionMysql {
                 String nameAccessory = rs.getString("name_accessory");
                 Date loanDate = rs.getDate("loan_date");
                 Date returnDate = rs.getDate("return_date");
-
+                String category = rs.getString("category");
                 LogBookLoans logBookLoan = new LogBookLoans(id, code, ucrCard, fullName,
-                        typeUser, career, nameAccessory, loanDate, returnDate);
+                        typeUser, career, nameAccessory, loanDate, returnDate, category);
 
                 logBookLoans.add(logBookLoan);
 
@@ -327,7 +327,8 @@ public class ConnectionMysql {
 
         }
     }
- public ArrayList<LogBookLoans> getHistoryLoans() throws SQLException {
+
+    public ArrayList<LogBookLoans> getHistoryLoans() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM loan_history;");
         ArrayList<LogBookLoans> logBookLoans = new ArrayList<>();
@@ -343,9 +344,9 @@ public class ConnectionMysql {
                 String nameAccessory = rs.getString("name_accessory");
                 Date loanDate = rs.getDate("loan_date");
                 Date returnDate = rs.getDate("return_date");
-
+                String category = rs.getString("category");
                 LogBookLoans logBookLoan = new LogBookLoans(id, code, ucrCard, fullName,
-                        typeUser, career, nameAccessory, loanDate, returnDate);
+                        typeUser, career, nameAccessory, loanDate, returnDate, category);
 
                 logBookLoans.add(logBookLoan);
 
@@ -361,6 +362,7 @@ public class ConnectionMysql {
 
         }
     }
+
     public boolean deleteUser(int id) {
         try {
 
@@ -440,6 +442,7 @@ public class ConnectionMysql {
         }
 
     }
+
     public boolean deleteLoan(int id) {
         try {
 
@@ -450,7 +453,7 @@ public class ConnectionMysql {
             // execute the preparedstatement
             preparedStmt.execute();
 
-            cx.close();
+      //      cx.close();
             return true;
         } catch (Exception e) {
             System.err.println("Got an exception! ");
@@ -489,6 +492,36 @@ public class ConnectionMysql {
             return false;
         }
 
+    }
+    public void updateStatePres(String table, String code){
+        try {
+            String query = "UPDATE " + table + " SET state = ? "
+                    + "WHERE code = ?;";
+            
+            PreparedStatement preparedStmt = cx.prepareStatement(query);
+            preparedStmt.setString(1, "2");
+            preparedStmt.setString(2, code);
+            preparedStmt.executeUpdate();
+            cx.close();
+        } catch (SQLException e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+    }
+     public void updateStateDis(String table, String code){
+        try {
+            String query = "UPDATE " + table + " SET state = ? "
+                    + "WHERE code = ?;";
+            
+            PreparedStatement preparedStmt = cx.prepareStatement(query);
+            preparedStmt.setString(1, "1");
+            preparedStmt.setString(2, code);
+            preparedStmt.executeUpdate();
+            cx.close();
+        } catch (SQLException e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
     }
 
     public boolean userValidation(String userName, String password) throws SQLException {
@@ -545,16 +578,16 @@ public class ConnectionMysql {
     }
 
     public boolean insertLoans(String code, String identification, String fullName, String typeUser,
-            String career, String nameAccessory, java.sql.Timestamp loanDate, java.sql.Timestamp returnDate) {
+            String career, String nameAccessory, java.sql.Timestamp loanDate, java.sql.Timestamp returnDate, String category) {
 
-        System.out.println("date: "+ loanDate);
+        System.out.println("date: " + loanDate);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-      try{
-            
+        try {
+
             // the mysql insert statement
-            String query = " insert into logbook_loans (code, identification, full_name, type_user, career, name_accessory, loan_date, return_date)"
-                    + " values (?, ?, ?, ?, ?, ?, ?, ?)";
-        
+            String query = " insert into logbook_loans (code, identification, full_name, type_user, career, name_accessory, loan_date, return_date, category)"
+                    + " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = cx.prepareStatement(query);
             preparedStmt.setString(1, code);
@@ -563,18 +596,15 @@ public class ConnectionMysql {
             preparedStmt.setString(4, typeUser);
             preparedStmt.setString(5, career);
             preparedStmt.setString(6, nameAccessory);
-          
 
-        preparedStmt.setTimestamp(7, loanDate);
-        preparedStmt.setTimestamp(8, returnDate);
-
-
-            
+            preparedStmt.setTimestamp(7, loanDate);
+            preparedStmt.setTimestamp(8, returnDate);
+            preparedStmt.setString(9, category);
 
             // execute the preparedstatement
             preparedStmt.executeUpdate();
 
-            cx.close();
+         //   cx.close();
             return true;
         } catch (SQLException ex) {
             System.out.println("Fallo la inserción" + ex.getMessage());
@@ -582,15 +612,16 @@ public class ConnectionMysql {
 
         return false;
     }
-    public boolean insertHistoryLoans(String code, String identification, String fullName, String typeUser,
-            String career, String nameAccessory, java.sql.Timestamp loanDate, java.sql.Timestamp returnDate) {
 
-      try{
-            
+    public boolean insertHistoryLoans(String code, String identification, String fullName, String typeUser,
+            String career, String nameAccessory, java.sql.Timestamp loanDate, java.sql.Timestamp returnDate, String category) {
+
+        try {
+
             // the mysql insert statement
-            String query = " insert into loan_history (code, identification, full_name, type_user, career, name_accessory, loan_date, return_date)"
-                    + " values (?, ?, ?, ?, ?, ?, ?, ?)";
-        
+            String query = " insert into loan_history (code, identification, full_name, type_user, career, name_accessory, loan_date, return_date, category)"
+                    + " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = cx.prepareStatement(query);
             preparedStmt.setString(1, code);
@@ -599,18 +630,14 @@ public class ConnectionMysql {
             preparedStmt.setString(4, typeUser);
             preparedStmt.setString(5, career);
             preparedStmt.setString(6, nameAccessory);
-          
 
-        preparedStmt.setTimestamp(7, loanDate);
-        preparedStmt.setTimestamp(8, returnDate);
-
-
-            
-
+            preparedStmt.setTimestamp(7, loanDate);
+            preparedStmt.setTimestamp(8, returnDate);
+            preparedStmt.setString(9, category);
             // execute the preparedstatement
             preparedStmt.executeUpdate();
 
-            cx.close();
+            //   cx.close();
             return true;
         } catch (SQLException ex) {
             System.out.println("Fallo la inserción" + ex.getMessage());
