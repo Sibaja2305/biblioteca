@@ -17,28 +17,30 @@
             justify-content: center; /* Centra horizontalmente los elementos */
             align-items: center; /* Centra verticalmente los elementos */
             height: 100vh; /* Ajusta la altura del contenedor según tus necesidades */
+            background-color: #e6e6e6;
         }
 
         .botonesArriba,
         .botonGeneral {
             font-size: 20px;
             padding: 50px;
-            background-color: #0dcaf0;
+            background-color: #005da4;
             border: none;
             border-radius: 10px;
             color: #fff;
-             margin: 40px;
+            margin: 40px;
         }
         .title{
             width: 100%;
             height: 120px;
-            background-color: #0dcaf0;
+            background-color: #00c0f3;
             position: fixed;
             top: 0;
             left: 0;
             color: #fff;
-            font-size: 25px;
+            font-size: 20px;
             text-align: center;
+            font-family: Arial, sans-serif;
         }
 
     </style>

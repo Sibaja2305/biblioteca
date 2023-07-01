@@ -17,7 +17,16 @@
         <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
+    <style>
+        .title{
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
     <body>
+        <div class="title">
+            <h1>Devoluciones</h1>
+        </div>
         <%
 
             ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
@@ -32,10 +41,9 @@
 
                 //listLogBookSearch = mysql.getProjectionKit(codeSearch);
             }
-          
+
         %>
         <div class="container">
-            <h1>Devoluciones</h1>
             <hr>
             <br>
 

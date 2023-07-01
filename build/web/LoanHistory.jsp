@@ -17,6 +17,12 @@
         <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
+    <style>
+        h1{
+              text-align: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
     <body>
         <%
 

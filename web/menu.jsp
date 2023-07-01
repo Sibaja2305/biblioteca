@@ -8,25 +8,19 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
         <style>
-            .menu-header {
-                background-color: #f1f1f1;
-                padding: 20px;
-            }
 
             .menu-sidebar {
-
-                background-color: #007bff;
-                color: #fff;
+                background-color: #00c0f3;
                 padding: 20px;
                 height: 100vh;
-
             }
-            .menu-content{
+
+            .menu-content { 
                 padding: 20px;
+                 background-color: #e6e6e6;
             }
-            .boton{
 
-
+            .boton {
                 padding: 10px 15px;
                 border: none;
                 border-radius: 4px;
@@ -38,7 +32,7 @@
                 z-index: 1;
             }
 
-            .boton1{
+            .boton1 {
                 margin-bottom: 10px;
                 margin-top: 10px;
                 padding: 10px 15px;
@@ -52,62 +46,108 @@
                 z-index: 1;
             }
 
-            .botonCerrarSesion{
+            .botonCerrarSesion {
                 margin-top: 110px;
                 font-size: 20px;
-                padding: 15px 70px;
-                background-color: #0dcaf0;
+                padding: 15px 68px;
                 border: none;
-                border-radius:10px;
+                border-radius: 10px;
                 color: #fff;
+                background-color: #005da4;
+                font-family: Arial, sans-serif;
             }
-            .botonGeneral{
+
+            .botonGeneral {
                 font-size: 20px;
                 padding: 15px 70px;
-                background-color: #0dcaf0;
                 border: none;
-                border-radius:10px;
+                border-radius: 10px;
                 color: #fff;
+                background-color: #005da4;
+                font-family: Arial, sans-serif;
             }
-            .title{
+
+            .botonImagen1 {
+                padding: 90px 90px;
+                border: none;
+                border-radius: 4px;
+                background-color: #e6e6e6;
+                margin-left: 150px;
+                margin-top: 150px;
+                background-image: url('https://cdn3.iconfinder.com/data/icons/essentials01-4/512/loans-contract-pay-credit-credit_card-512.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: relative;
+            }
+            .botonImagen2{
+                padding: 90px 90px;
+                border: none;
+                border-radius: 4px;
+                background-color: #e6e6e6;
+                margin-left: 80px;
+                background-image: url('https://cdn1.iconfinder.com/data/icons/talent-management-13/512/FastWorking-performance-handoverwork-giving-document-handover-urgentwork-rush-punctuality-deadline-1024.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: relative;
+            }
+            .botonImagen3{
+                padding: 90px 90px;
+                border: none;
+                border-radius: 4px;
+                background-color: #e6e6e6;
+                margin-left: 80px;
+                background-image: url('https://cdn2.iconfinder.com/data/icons/coronavirus-covid19-1/49/47-512.png');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: relative;
+            }
+
+            .title {
                 text-align: center;
-                font-size: 14px;
+                font-size: 15px;
+                font-family: Arial, sans-serif;
             }
-
-
-
+            header{
+                background-color: #00c0f3;
+                padding: 0px 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+           
         </style>
     </head>
 
     <body>
-        <%
-            String flag = request.getParameter("cerrar");
-            if (flag != null) {
+        <header>
+            <img src="https://ecp.ucr.ac.cr/images/firma-horizontal-una-linea-rgb.png"alt="alt">
+                   </header>
+            <%
+                String flag = request.getParameter("cerrar");
+                if (flag != null) {
 
-            } else {
+                } else {
 
-                flag = session.getAttribute("flag").toString();
+                    flag = session.getAttribute("flag").toString();
 
-            }
-        %>
+                }
+            %>
 
         <div class="container-fluid">
 
             <div class="row">
-                <!<!-- barra lateral -->
+                <!-- barra lateral -->
                 <%
                     if (!flag.equalsIgnoreCase("2")) {
-
 
                 %>
                 <div class="col-md-3 menu-sidebar">
                     <!-- Contenido del menú lateral -->
                     <ul class="nav flex-column text-center">
-                        <br><br><br><br>
-                        <li class="nav-item ">
-                            <a href="User.jsp">
-                                <input class="botonGeneral" type="button" value="    usuario     " name="user" />
-                            </a>
+
                         </li>
                         <br><br>
 
@@ -119,24 +159,22 @@
                         <br><br>
                         <li class="nav-item">
                             <a href="Return.jsp" >
-                                <input class="botonGeneral" type="button" value="devoluciones" name="returns"/> 
+                                <input class="botonGeneral" type="button" value="Devoluciones" name="returns"/> 
                             </a> 
                         </li>
                         <br><br>
                         <li class="nav-item ">
                             <a href="LoanHistory.jsp">
-                                <input class="botonGeneral" type="button" value="   Informe    " name="report" />
+                                <input class="botonGeneral" type="button" value="    Informe     " name="report" />
                             </a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a href="cerrarSesion.jsp" >
                                 <input  class="botonCerrarSesion" type="button" value="Cerrar Sesion" name="returns"  /> 
                             </a> 
                         </li>
                         <br>
-
-
                     </ul>
                 </div>
                 <%                    }
@@ -146,18 +184,14 @@
                     <!-- Contenido -->
                     <div class="title">
                         <p1> <%=session.getAttribute("email")%></p1>
-
                     </div> 
                     <%if (flag != null) {
                             if (flag.equalsIgnoreCase("1")) {
-
-
                     %>
                     <form action="menu.jsp">
                         <input hidden="true"
                                type="text"
                                name="cerrar"
-
                                value="2">
                         <button
                             class="boton1"
@@ -166,13 +200,11 @@
                             button/> >
                     </form>
                     <%                } else {
-
                     %>
                     <form action="menu.jsp">
                         <input hidden="true"
                                type="text"
                                name="cerrar"
-
                                value="1">
                         <button
                             class="boton"
@@ -180,19 +212,29 @@
                             value="mostrar"
                             button/> >
                     </form>
-
                     <%                    }
                         }
                     %>
 
+                    <div class="button-container">
+                        <a href="Loans.jsp">
+                            <button class="botonImagen1" type="button" value="  Prestamos  " name="loans">
+                            </button>
+                        </a>
+                        <a href="Return.jsp">
+                            <button class="botonImagen2" type="button" value="devoluciones" name="returns">
+                            </button>
+                        </a>
+
+                        <a href="LoanHistory.jsp">
+                            <button class="botonImagen3" type="button" value="   Informe    " name="report">
+                            </button>
+                        </a>
+                    </div>
                 </div>
 
             </div>
 
         </div>
-
-
-
-
     </body>
 </html>
