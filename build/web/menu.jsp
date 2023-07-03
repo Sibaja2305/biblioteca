@@ -7,17 +7,44 @@
         <!-- Agrega los enlaces a los archivos de Bootstrap -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript">
+            // Inactivity time in minutes (5 minutes in this example)
+            var inactivityTime = 10;
+
+            // Variable to store the timer
+            var inactivityTimer;
+
+            // Function to restart the timer
+            function restartTimer() {
+                clearTimeout(inactivityTimer);
+                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+            }
+
+            // Function to redirect the user
+            function redirect() {
+                location.href = "cerrarSesion.jsp";
+            }
+
+            // Restart timer on activity (mousemove or keydown)
+            document.addEventListener("mousemove", restartTimer);
+            document.addEventListener("keydown", restartTimer);
+
+            // Start timer on page load
+            window.onload = function () {
+                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+              };
+  </script>
         <style>
 
             .menu-sidebar {
-                background-color: #00c0f3;
+                background-color: #80a9ba;
                 padding: 20px;
                 height: 100vh;
             }
 
-            .menu-content { 
+            .menu-content {
                 padding: 20px;
-                 background-color: #e6e6e6;
+                background-color: #e6e6e6;
             }
 
             .boton {
@@ -80,6 +107,18 @@
                 background-repeat: no-repeat;
                 position: relative;
             }
+            .botonImagen1:hover::before{
+                content: 'Prestamos';
+                position: absolute;
+                top: 180px;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                color: black;
+                font-weight: bold;
+                font-family: Arial, sans-serif;
+
+            }
             .botonImagen2{
                 padding: 90px 90px;
                 border: none;
@@ -92,6 +131,17 @@
                 background-repeat: no-repeat;
                 position: relative;
             }
+            .botonImagen2:hover::before{
+                content: 'Devoluciones';
+                position: absolute;
+                top: 180px;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                color: black;
+                font-weight: bold;
+                font-family: Arial, sans-serif;
+            }
             .botonImagen3{
                 padding: 90px 90px;
                 border: none;
@@ -103,6 +153,17 @@
                 background-position: center;
                 background-repeat: no-repeat;
                 position: relative;
+            }
+            .botonImagen3:hover::before{
+                content: 'Informe';
+                position: absolute;
+                top: 180px;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                color: black;
+                font-weight: bold;
+                font-family: Arial, sans-serif;
             }
 
             .title {
@@ -117,11 +178,12 @@
                 justify-content: center;
                 align-items: center;
             }
-           
+
         </style>
     </head>
 
-    <body>
+    <body style="background-color: #e6e6e6;">
+
         <header>
             <img src="https://ecp.ucr.ac.cr/images/firma-horizontal-una-linea-rgb.png"alt="alt">
                    </header>

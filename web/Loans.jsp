@@ -51,7 +51,9 @@
 
         <div class="container">
 
+            <a href="LoansAccessories.jsp">
 
+            </a>
             <a href="LoansAccessories.jsp">
                 <input class="botonesArriba" type="button" value=" Accesorios   " name="accessories" />
             </a>
@@ -70,9 +72,6 @@
             <a href="SearchProjection.jsp">
                 <input class="botonesArriba" type="button" value="Kit proyectores" name="projector" />
             </a>
-
-
-
 
         </div>
     </body>

@@ -16,21 +16,34 @@
         <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="estilos.css" rel="stylesheet" type="text/css"/>
     </head>
-
-    <body>
+    <style>
+        .title{
+            width: 100%;
+            height: 120px;
+            background-color: #00c0f3;
+            position: fixed;
+            top: 0;
+            left: 0;
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+    <body style="background-color: #e6e6e6;">
+        <div class="title">
+            <h1>Prestamos de Parlante</h1>
+        </div>
         <%
 
             String speaker = request.getParameter("selectSpeaker").trim();
 
 
         %>
-        <div class="text-center" style=" background-color: #0dcaf0; color: #fff; font-size: 25px;" >
-            <h1 class="display-3">Prestamos</h1>
-        </div>
         <br>
         <div class="container" >
-            <form action="LoansAccessories.jsp">
-                <br>
+            <form action="LoansAccessories.jsp" style=" font-family: Arial, sans-serif;">
+                <br><br><br><br><br>
                 <label class="form-control-lg">Codigo</label>
                 <br>
                 <input disabled="true" type="text" class="form-label" style="font-size:16px;" name="idsd" required value="<%=speaker%>">
@@ -79,10 +92,10 @@
                 <input hidden="true" type="text" name="category" value="speaker">
 
                 <div class="form-control-lg">
-                    <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
-                    <a href="SearchSpeaker.jsp" class="btn btn-primary btn-lg">Regresar</a>
+                    <button type="submit" class="btn btn-primary btn-lg" style="background-color: #005da4">Registrar</button>
+                    <a href="SearchSpeaker.jsp" class="btn btn-primary btn-lg" style="background-color: #005da4">Regresar</a>
                 </div>
-                
+
 
             </form>
         </div>

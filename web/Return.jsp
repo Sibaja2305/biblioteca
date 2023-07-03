@@ -23,7 +23,7 @@
             font-family: Arial, sans-serif;
         }
     </style>
-    <body>
+    <body style="background-color: #e6e6e6;">
         <div class="title">
             <h1>Devoluciones</h1>
         </div>
