@@ -62,6 +62,19 @@
         }
 
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript">
+    // Asignar el evento onclick al botón de eliminar
+    $(document).ready(function() {
+        $(".btn-danger").click(function(e) {
+            e.preventDefault(); // Detener el envío del formulario
+            
+            if (confirm("¿Está seguro que desea eliminar?")) {
+                $("#deleteForm").submit(); // Enviar el formulario
+            }
+        });
+    });
+</script>
 
     <body style="background-color: #e6e6e6;">
         <div class="title">
@@ -121,12 +134,12 @@
                 <thead>
                     <tr>
 
-                        <th class="text-center">Codigo</th>
+                        <th class="text-center">Código</th>
                         <th class="text-center" >Cable de electricidad</th>
                         <th class="text-center">Conector a electricidad</th>
                         <th class="text-center">Auxiliar de audio</th>
                         <th class="text-center">Estado</th>
-                        <th class="text-center">Prestamos</th>
+                        <th class="text-center">Préstamos</th>
                         <th class="text-center">Acciones</th>
 
                     </tr>
@@ -173,7 +186,7 @@
                             </form>
                         </td>
                         <td class="text-center">
-                            <form action="DeleteSpeaker.jsp">
+                            <form action="DeleteSpeaker.jsp" id="deleteForm" method="post">
                                 <input 
                                     hidden="true"
                                     type="text" 
@@ -203,12 +216,12 @@
                         <thead>
                             <tr>
 
-                                <th class="text-center">Codigo</th>
+                                <th class="text-center">Código</th>
                                 <th class="text-center" >Cable de electricidad</th>
                                 <th class="text-center">Conector a electricidad</th>
                                 <th class="text-center">Auxiliar de audio</th>
                                 <th class="text-center">Estado</th>
-                                <th class="text-center">Prestamos</th>
+                                <th class="text-center">Préstamos</th>
                                 <th class="text-center">Acciones</th>
 
                             </tr>
@@ -253,7 +266,7 @@
                                     </form>
                                 </td>
                                 <td class="text-center">
-                                    <form action="DeleteSpeaker.jsp">
+                                    <form action="DeleteSpeaker.jsp" id="deleteForm" method="post">
                                         <input 
                                             hidden="true"
                                             type="text" 
@@ -277,4 +290,31 @@
                     </table>
                     </div>
                     </body>
+                     <script type="text/javascript">
+            // Inactivity time in minutes (5 minutes in this example)
+            var inactivityTime = 10;
+
+            // Variable to store the timer
+            var inactivityTimer;
+
+            // Function to restart the timer
+            function restartTimer() {
+                clearTimeout(inactivityTimer);
+                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+            }
+
+            // Function to redirect the user
+            function redirect() {
+                location.href = "cerrarSesion.jsp";
+            }
+
+            // Restart timer on activity (mousemove or keydown)
+            document.addEventListener("mousemove", restartTimer);
+            document.addEventListener("keydown", restartTimer);
+
+            // Start timer on page load
+            window.onload = function () {
+                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+              };
+  </script>
                     </html>

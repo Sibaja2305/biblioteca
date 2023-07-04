@@ -6,7 +6,7 @@ import java.util.Date;
  *
  * @author yorda
  */
-public class LogBookLoans {
+public class LogBookLoans  {
 
     private int id;
     private String code;
@@ -31,6 +31,11 @@ public class LogBookLoans {
         this.returnDate = null;
 
     }
+
+    public LogBookLoans(String fullName) {
+        this.fullName = fullName;
+    }
+    
 
     public LogBookLoans(int id, String code, String ucrCard, String fullName, String typeUser, String career, String nameAccesory, Date loanDate, Date returnDate, String category) {
         this.id = id;

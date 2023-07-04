@@ -44,7 +44,7 @@
         <div class="container" >
             <form action="LoansAccessories.jsp" style=" font-family: Arial, sans-serif;">
                 <br><br><br><br><br>
-                <label class="form-control-lg">Codigo</label>
+                <label class="form-control-lg">Código</label>
                 <br>
                 <input disabled="true" type="text" class="form-label" style="font-size:16px;" name="idsd" required value="<%=speaker%>">
 
@@ -100,4 +100,31 @@
             </form>
         </div>
     </body>
+     <script type="text/javascript">
+            // Inactivity time in minutes (5 minutes in this example)
+            var inactivityTime = 10;
+
+            // Variable to store the timer
+            var inactivityTimer;
+
+            // Function to restart the timer
+            function restartTimer() {
+                clearTimeout(inactivityTimer);
+                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+            }
+
+            // Function to redirect the user
+            function redirect() {
+                location.href = "cerrarSesion.jsp";
+            }
+
+            // Restart timer on activity (mousemove or keydown)
+            document.addEventListener("mousemove", restartTimer);
+            document.addEventListener("keydown", restartTimer);
+
+            // Start timer on page load
+            window.onload = function () {
+                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+              };
+  </script>
 </html>

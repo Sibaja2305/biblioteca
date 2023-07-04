@@ -3,6 +3,7 @@
     Created on : 26/06/2023, 10:24:13 PM
     Author     : Hp EliteBook
 --%>
+<%@page import="clasess.Ordering"%>
 <%@page import="clases.ProjectionKit"%>
 
 <%@page import="java.util.ArrayList"%>
@@ -16,6 +17,46 @@
         <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
+     <script type="text/javascript">
+            // Inactivity time in minutes (5 minutes in this example)
+            var inactivityTime = 10;
+
+            // Variable to store the timer
+            var inactivityTimer;
+
+            // Function to restart the timer
+            function restartTimer() {
+                clearTimeout(inactivityTimer);
+                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+            }
+
+            // Function to redirect the user
+            function redirect() {
+                location.href = "cerrarSesion.jsp";
+            }
+
+            // Restart timer on activity (mousemove or keydown)
+            document.addEventListener("mousemove", restartTimer);
+            document.addEventListener("keydown", restartTimer);
+
+            // Start timer on page load
+            window.onload = function () {
+                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+              };
+  </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript">
+    // Asignar el evento onclick al botón de eliminar
+    $(document).ready(function() {
+        $(".btn-danger").click(function(e) {
+            e.preventDefault(); // Detener el envío del formulario
+            
+            if (confirm("¿Está seguro que desea eliminar?")) {
+                $("#deleteForm").submit(); // Enviar el formulario
+            }
+        });
+    });
+</script>
     <style>
         .title{
             width: 100%;
@@ -67,16 +108,27 @@
         <%
 
             ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
+            Ordering or = new Ordering();
             ArrayList<ProjectionKit> listProjectionKit = mysql.getProjectionKit();
             ArrayList<ProjectionKit> listProjectionSearch = new ArrayList();
             String looking = "";
-            String codeSearch = "";
+            String codeSearch;
             looking = request.getParameter("buscando");
             codeSearch = request.getParameter("txtSearch");
-
             if (codeSearch != null) {
+               
+                int x = or.ordenar(codeSearch, listProjectionKit);
+                 System.out.print(codeSearch);
+                if (x >= 0) {
+                    
+                    listProjectionSearch = mysql.getProjectionKit(codeSearch);
 
-                listProjectionSearch = mysql.getProjectionKit(codeSearch);
+                } else {
+                    System.out.print(codeSearch);
+                    //out.println("<script>alert('Codigo no encontrado'); window.location.href='SearchProjection.jsp';</script>");
+
+                }
+
             }
 
         %>
@@ -89,7 +141,7 @@
                 <div style="display: inline-block;">
 
                     <input hidden="true" type="text" name="buscando" value="no" class="form-label">
-
+                    <input hidden="true" type="text" name="txtSearch" value="" class="form-label">
                     <input style="background-color: #00c0f3; margin-bottom: 5px"type="submit" class="btn btn-info btn-sm" value="Vaciar">
                 </div>
             </form>
@@ -121,7 +173,7 @@
                         <th class="text-center">Extensión</th>
                         <th class="text-center">Regleta</th>
                         <th class="text-center">Caja plástica</th>
-                        <th class="text-center">Prestamos</th>
+                        <th class="text-center">Préstamos</th>
                         <th class="text-center">Acciones</th>
 
                     </tr>
@@ -182,7 +234,7 @@
                             </form>
                         </td>
                         <td class="text-center">
-                            <form action="DeleteProjectionKit.jsp">
+                            <form action="DeleteProjectionKit.jsp" id="deleteForm" method="post">
                                 <input 
                                     hidden="true"
                                     type="text" 
@@ -222,7 +274,7 @@
                         <th class="text-center">Extensión</th>
                         <th class="text-center">Regleta</th>
                         <th class="text-center">Caja plástica</th>
-                        <th class="text-center">Prestamos</th>
+                        <th class="text-center">Préstamos</th>
                         <th class="text-center">Acciones</th>
 
                     </tr>
@@ -283,7 +335,7 @@
                             </form>
                         </td>
                         <td class="text-center">
-                            <form action="DeleteProjectionKit.jsp">
+                            <form action="DeleteProjectionKit.jsp" id="deleteForm" method="post">
                                 <input 
                                     hidden="true"
                                     type="text" 

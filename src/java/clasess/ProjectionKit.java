@@ -33,6 +33,10 @@ public class ProjectionKit {
 
     }
 
+    public ProjectionKit(String code) {
+        this.code = code;
+    }
+  
     public ProjectionKit(String code, String projectorCase, String electricityWire, String VGAConnector, String HDMIConnector, String projectorControl, String batteries, String extension, String powerStrip, String plasticBox, String state) {
         this.code = code;
         this.projectorCase = projectorCase;

@@ -3,6 +3,7 @@
     Created on : 26/06/2023, 10:24:13 PM
     Author     : Hp EliteBook
 --%>
+<%@page import="clasess.Tree"%>
 <%@page import="clases.LogBookLoans"%>
 
 
@@ -25,17 +26,20 @@
     </style>
     <body style="background-color: #e6e6e6;">
         <%
-
+         
             ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
+             Tree root=new Tree();  
             ArrayList<LogBookLoans> listHistoryLoans = mysql.getHistoryLoans();
             ArrayList<LogBookLoans> listHistoryLoansSearch = new ArrayList();
             String looking = "";
             String codeSearch = "";
             looking = request.getParameter("buscando");
             codeSearch = request.getParameter("txtSearch");
-
+            
+             root.insertarNodo(listHistoryLoans);
+            
             if (codeSearch != null) {
-
+                
                 //listLogBookSearch = mysql.getProjectionKit(codeSearch);
             }
 
@@ -44,8 +48,9 @@
             <h1>Historial</h1>
             <hr>
             <br>
+            
 
-            <form action="SearchProjection.jsp" style="display: inline-block; float: right;">
+            <form action="LoanHistory.jsp" style="display: inline-block; float: right;">
                 <div style="display: inline-block;">
 
                     <input hidden="true" type="text" name="buscando" value="no" class="form-label">
@@ -53,7 +58,7 @@
                     <input style="background-color: #00c0f3; margin-bottom: 5px "type="submit" class="btn btn-info btn-sm" value="Vaciar">
                 </div>
             </form>
-            <form action="Return.jsp" style="display: inline-block; float: right;">
+            <form action="LoanHistory.jsp" style="display: inline-block; float: right;">
                 <div style="display: inline-block;">
                     <input type="text" name="txtSearch" class="form-label">
                     <input hidden="true" type="text" name="buscando" value="si" class="form-label">
@@ -72,13 +77,13 @@
                     <tr>
 
                         <th class="text-center">ID</th>
-                        <th class="text-center" >Codigo</th>
+                        <th class="text-center" >Código</th>
                         <th class="text-center">Carnet UCR</th>
                         <th class="text-center">Nombre Completo</th>
                         <th class="text-center">tipo de Usuario</th>
                         <th class="text-center">Carrera</th>
                         <th class="text-center">Nombre de Accesorio</th>
-                        <th class="text-center">Fecha de Prestamos</th>
+                        <th class="text-center">Fecha de Préstamos</th>
                         <th class="text-center">Fecha de Devolución</th>
 
 
@@ -119,13 +124,13 @@
                     <tr>
 
                         <th class="text-center">ID</th>
-                        <th class="text-center" >Codigo</th>
+                        <th class="text-center" >Código</th>
                         <th class="text-center">Carnet UCR</th>
                         <th class="text-center">Nombre Completo</th>
                         <th class="text-center">tipo de Usuario</th>
                         <th class="text-center">Carrera</th>
                         <th class="text-center">Nombre de Accesorio</th>
-                        <th class="text-center">Fecha de Prestamos</th>
+                        <th class="text-center">Fecha de Préstamos</th>
                         <th class="text-center">Fecha de Devolución</th>
 
 
@@ -156,5 +161,32 @@
             </table>
         </div>
     </body>
+     <script type="text/javascript">
+            // Inactivity time in minutes (5 minutes in this example)
+            var inactivityTime = 10;
+
+            // Variable to store the timer
+            var inactivityTimer;
+
+            // Function to restart the timer
+            function restartTimer() {
+                clearTimeout(inactivityTimer);
+                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+            }
+
+            // Function to redirect the user
+            function redirect() {
+                location.href = "cerrarSesion.jsp";
+            }
+
+            // Restart timer on activity (mousemove or keydown)
+            document.addEventListener("mousemove", restartTimer);
+            document.addEventListener("keydown", restartTimer);
+
+            // Start timer on page load
+            window.onload = function () {
+                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+              };
+  </script>
 </html>
 

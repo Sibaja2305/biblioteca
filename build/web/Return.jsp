@@ -3,6 +3,11 @@
     Created on : 26/06/2023, 10:26:23 PM
     Author     : Hp EliteBook
 --%>
+<%@page import="clasess.Ordering"%>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.Comparator"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="java.sql.Array"%>
 <%@page import="clases.LogBookLoans"%>
 
 
@@ -30,17 +35,14 @@
         <%
 
             ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
+            Ordering or=new Ordering();
             ArrayList<LogBookLoans> listLogBookLoans = mysql.getLogBookLoans();
-            ArrayList<LogBookLoans> listLogBookSearch = new ArrayList();
+            ArrayList<LogBookLoans> listLogBookSearch =new ArrayList<>();
             String looking = "";
-            String codeSearch = "";
+            String nameSearch = "";
             looking = request.getParameter("buscando");
-            codeSearch = request.getParameter("txtSearch");
-
-            if (codeSearch != null) {
-
-                //listLogBookSearch = mysql.getProjectionKit(codeSearch);
-            }
+            nameSearch = request.getParameter("txtSearch");
+           
 
         %>
         <div class="container">
@@ -65,7 +67,7 @@
             </form>
             <% if (looking != null) {
 
-                    if (looking.equalsIgnoreCase("si") && !codeSearch.equalsIgnoreCase("")) {
+                    if (looking.equalsIgnoreCase("si") && !nameSearch.equalsIgnoreCase("")) {
 
 
             %>
@@ -74,13 +76,13 @@
                     <tr>
 
                         <th class="text-center">ID</th>
-                        <th class="text-center" >Codigo</th>
+                        <th class="text-center" >Código</th>
                         <th class="text-center">Carnet UCR</th>
                         <th class="text-center">Nombre Completo</th>
                         <th class="text-center">tipo de Usuario</th>
                         <th class="text-center">Carrera</th>
                         <th class="text-center">Nombre de Accesorio</th>
-                        <th class="text-center">Fecha de Prestamos</th>
+                        <th class="text-center">Fecha de Préstamos</th>
                         <th class="text-center">Fecha de Devolución</th>
                         <th class="text-center">Acciones</th>
 
@@ -133,13 +135,13 @@
                     <tr>
 
                         <th class="text-center">ID</th>
-                        <th class="text-center" >Codigo</th>
+                        <th class="text-center" >Código</th>
                         <th class="text-center">Carnet UCR</th>
                         <th class="text-center">Nombre Completo</th>
                         <th class="text-center">tipo de Usuario</th>
                         <th class="text-center">Carrera</th>
                         <th class="text-center">Nombre de Accesorio</th>
-                        <th class="text-center">Fecha de Prestamos</th>
+                        <th class="text-center">Fecha de Préstamos</th>
                         <th class="text-center">Fecha de Devolución</th>
                         <th class="text-center">Acciones</th>
 
@@ -188,5 +190,32 @@
             </table>
         </div>
     </body>
+     <script type="text/javascript">
+            // Inactivity time in minutes (5 minutes in this example)
+            var inactivityTime = 10;
+
+            // Variable to store the timer
+            var inactivityTimer;
+
+            // Function to restart the timer
+            function restartTimer() {
+                clearTimeout(inactivityTimer);
+                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+            }
+
+            // Function to redirect the user
+            function redirect() {
+                location.href = "cerrarSesion.jsp";
+            }
+
+            // Restart timer on activity (mousemove or keydown)
+            document.addEventListener("mousemove", restartTimer);
+            document.addEventListener("keydown", restartTimer);
+
+            // Start timer on page load
+            window.onload = function () {
+                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+              };
+  </script>
 </html>
 
