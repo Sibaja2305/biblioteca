@@ -23,32 +23,44 @@
             text-align: center;
             font-family: Arial, sans-serif;
         }
+        .title{
+            width: 100%;
+            height: 80px;
+            background-color: #00c0f3;
+            position: absolute;
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
     </style>
     <body style="background-color: #e6e6e6;">
+        <div class="title">
+            <h1>Historial</h1>
+        </div>
         <%
-         
+
             ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
-             Tree root=new Tree();  
+            Tree root = new Tree();
             ArrayList<LogBookLoans> listHistoryLoans = mysql.getHistoryLoans();
             ArrayList<LogBookLoans> listHistoryLoansSearch = new ArrayList();
             String looking = "";
             String codeSearch = "";
             looking = request.getParameter("buscando");
             codeSearch = request.getParameter("txtSearch");
-            
-             root.insertarNodo(listHistoryLoans);
-            
+
+            root.insertarNodo(listHistoryLoans);
+
             if (codeSearch != null) {
-                
+
                 //listLogBookSearch = mysql.getProjectionKit(codeSearch);
             }
 
         %>
         <div class="container" style="font-family: Arial, sans-serif;">
-            <h1>Historial</h1>
-            <hr>
-            <br>
-            
+
+            <br><br><br><br><br>
+
 
             <form action="LoanHistory.jsp" style="display: inline-block; float: right;">
                 <div style="display: inline-block;">
@@ -161,32 +173,32 @@
             </table>
         </div>
     </body>
-     <script type="text/javascript">
-            // Inactivity time in minutes (5 minutes in this example)
-            var inactivityTime = 10;
+    <script type="text/javascript">
+        // Inactivity time in minutes (5 minutes in this example)
+        var inactivityTime = 10;
 
-            // Variable to store the timer
-            var inactivityTimer;
+        // Variable to store the timer
+        var inactivityTimer;
 
-            // Function to restart the timer
-            function restartTimer() {
-                clearTimeout(inactivityTimer);
-                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
-            }
+        // Function to restart the timer
+        function restartTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+        }
 
-            // Function to redirect the user
-            function redirect() {
-                location.href = "cerrarSesion.jsp";
-            }
+        // Function to redirect the user
+        function redirect() {
+            location.href = "cerrarSesion.jsp";
+        }
 
-            // Restart timer on activity (mousemove or keydown)
-            document.addEventListener("mousemove", restartTimer);
-            document.addEventListener("keydown", restartTimer);
+        // Restart timer on activity (mousemove or keydown)
+        document.addEventListener("mousemove", restartTimer);
+        document.addEventListener("keydown", restartTimer);
 
-            // Start timer on page load
-            window.onload = function () {
-                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
-              };
-  </script>
+        // Start timer on page load
+        window.onload = function () {
+            inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+          };
+      </script>
 </html>
 

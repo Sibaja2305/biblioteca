@@ -24,6 +24,12 @@
     </head>
     <style>
         .title{
+            width: 100%;
+            height: 80px;
+            background-color: #00c0f3;
+            position: absolute;
+            color: #fff;
+            font-size: 20px;
             text-align: center;
             font-family: Arial, sans-serif;
         }
@@ -46,8 +52,7 @@
 
         %>
         <div class="container">
-            <hr>
-            <br>
+            <br><br><br><br><br>
 
             <form action="SearchProjection.jsp" style="display: inline-block; float: right;">
                 <div style="display: inline-block;">

@@ -18,11 +18,9 @@
     <style>
         .title{
             width: 100%;
-            height: 120px;
+            height: 80px;
             background-color: #00c0f3;
-            position: fixed;
-            top: 0;
-            left: 0;
+            position: absolute;
             color: #fff;
             font-size: 20px;
             text-align: center;
@@ -38,7 +36,7 @@
         %>
         <div class="container" >
             <form action="LoansAccessories.jsp" style="font-family: Arial, sans-serif;">
-                <br><br><br><br><br><br>
+                <br><br><br><br><br>
                 <label class="form-control-lg">Codigo</label>
                 <br>
                 <input disabled="true" type="text" class="form-label" style="font-size:16px;" name="codeFalse" required value="<%=computer%>">
@@ -47,9 +45,7 @@
 
                     <input hidden="true" type="text" class="form-label" name="code" required value="<%=computer%>">
                 </div>
-
-
-
+                
                 <div class="form-control-lg">
                     <label class="text">Cargador</label>
                     <br>

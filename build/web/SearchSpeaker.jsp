@@ -24,18 +24,16 @@
     <style>
         .title{
             width: 100%;
-            height: 120px;
+            height: 80px;
             background-color: #00c0f3;
-            position: fixed;
-            top: 0;
-            left: 0;
+            position: absolute;
             color: #fff;
             font-size: 20px;
             text-align: center;
             font-family: Arial, sans-serif;
         }
         .home{
-            margin-top: 65px;
+            margin-top: 45px;
             margin-left: 1200px;
             padding: 25px 25px;
             background-color: #e6e6e6;
@@ -102,9 +100,9 @@
 
         %>
         <div class="container" style="font-family: Arial, sans-serif;">
-            <br><br><br><br><br><br>
-            <div >
-                <a class="btn btn-info btn-lg" href="AddSpeaker.jsp" style="background-color: #00c0f3;">Nuevo </a>
+            <br><br><br><br><br>
+            <div>
+                <a class="btn btn-success btn-lg" href="AddSpeaker.jsp" style="background-color: #00c0f3;">Nuevo </a>
             </div>
             <form action="SearchSpeaker.jsp" style="display: inline-block; float: right;">
                 <div style="display: inline-block;">

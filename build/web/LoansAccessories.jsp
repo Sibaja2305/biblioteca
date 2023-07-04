@@ -27,19 +27,17 @@
         }
         .title{
             width: 100%;
-            height: 120px;
+            height: 80px;
             background-color: #00c0f3;
-            position: fixed;
-            top: 0;
-            left: 0;
+            position: absolute;
             color: #fff;
             font-size: 20px;
             text-align: center;
             font-family: Arial, sans-serif;
         }
         .home{
-            margin-bottom: 30px;
-            margin-top: 70px;
+            margin-bottom: 80px;
+            margin-top: 30px;
             margin-left: 1180px;
             padding: 25px 25px;
             background-color: #e6e6e6;
@@ -68,7 +66,7 @@
     </style>
     <body style="background-color: #e6e6e6;">
         <div class="title">
-            <h1>Accesorio</h1>
+            <h1>Prestamo de Accesorio</h1>
             <a href="menu.jsp">
                 <button class="home">
                 </button>
@@ -90,7 +88,7 @@
         %>
 
         <form method="post" action="RegisterLoans.jsp">
-            <br>  <br>  <br>  <br>  <br>  <br>  <br>
+            <br>  <br>  <br>  <br>  <br>  <br> 
             <div class="container" style="font-family: Arial, sans-serif; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 20px;">
                 <div>
 

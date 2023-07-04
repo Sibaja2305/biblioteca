@@ -48,27 +48,29 @@
             }
 
             .boton {
-                padding: 10px 15px;
+                margin-bottom: 10px;
+                padding: 25px 25px;
                 border: none;
                 border-radius: 4px;
-                background-image: url('https://cdn-icons-png.flaticon.com/512/55/55003.png');
+                background-image: url('https://cdn2.iconfinder.com/data/icons/telegram/154/telegram-menu-bar-ui-256.png');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
+                background-color: #e6e6e6;
                 position: relative;
                 z-index: 1;
             }
 
             .boton1 {
                 margin-bottom: 10px;
-                margin-top: 10px;
-                padding: 10px 15px;
+                padding: 25px 25px;
                 border: none;
                 border-radius: 4px;
-                background-image: url('https://cdn-icons-png.flaticon.com/512/55/55003.png');
+                background-image: url('https://cdn2.iconfinder.com/data/icons/telegram/154/telegram-menu-bar-ui-256.png');
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
+                background-color: #e6e6e6;
                 position: relative;
                 z-index: 1;
             }
@@ -178,6 +180,15 @@
                 justify-content: center;
                 align-items: center;
             }
+            h1{
+                margin-top: 80px;
+                margin-left: 5px;
+                font-size: 30px;
+                font-family: Arial, sans-serif;
+                font-weight: bold;
+                
+
+            }
 
         </style>
     </head>
@@ -186,6 +197,7 @@
 
         <header>
             <img src="https://ecp.ucr.ac.cr/images/firma-horizontal-una-linea-rgb.png"alt="alt">
+            <h1>Sistema de Biblioteca</h1>
                    </header>
             <%
                 String flag = request.getParameter("cerrar");
@@ -244,9 +256,7 @@
 
                 <div class="col-md-9 menu-content">
                     <!-- Contenido -->
-                    <div class="title">
-                        <p1> <%=session.getAttribute("email")%></p1>
-                    </div> 
+
                     <%if (flag != null) {
                             if (flag.equalsIgnoreCase("1")) {
                     %>
@@ -259,7 +269,7 @@
                             class="boton1"
                             type="submit"
                             value="ocultar"
-                            button/> >
+                            button/> 
                     </form>
                     <%                } else {
                     %>
@@ -272,7 +282,7 @@
                             class="boton"
                             type="submit"
                             value="mostrar"
-                            button/> >
+                            button/> 
                     </form>
                     <%                    }
                         }

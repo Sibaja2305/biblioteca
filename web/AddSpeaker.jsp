@@ -15,18 +15,16 @@
     <style>
         .title{
             width: 100%;
-            height: 120px;
+            height: 80px;
             background-color: #00c0f3;
-            position: fixed;
-            top: 0;
-            left: 0;
+            position: absolute;
             color: #fff;
             font-size: 20px;
             text-align: center;
             font-family: Arial, sans-serif;
         }
          .home{
-            margin-top: 65px;
+            margin-top: 45px;
             margin-left: 1200px;
             padding: 25px 25px;
             background-color: #e6e6e6;
@@ -61,7 +59,7 @@
             </a>
         </div>
         <div class="container" style="font-family: Arial, sans-serif;">
-            <br><br><br><br><br><br>
+            <br><br><br><br><br>
             <form action="RegisterValidationSpeaker.jsp" method="post" class="form-control" style="background-color: #e6e6e6;">
                 Código:
                 <input type="text" name="txtCodeSpeaker" class="form-control" required>

@@ -25,11 +25,9 @@
             }
             .title{
                 width: 100%;
-                height: 120px;
+                height: 80px;
                 background-color: #00c0f3;
-                position: fixed;
-                top: 0;
-                left: 0;
+                position: absolute;
                 color: #fff;
                 font-size: 20px;
                 text-align: center;
@@ -159,36 +157,39 @@
             <input hidden="true" type="text" name="category" value="projection_kit">
             <br>
 
-            <button type="submit" class="button" style="background-color: #00c0f3">Registrar</button>
+            <div class="form-control-lg">
+                <button type="submit" class="btn btn-primary btn-lg" style="background-color: #005da4">Registrar</button>
+                <a href="SearchProjection.jsp" class="btn btn-primary btn-lg" style="background-color: #005da4">Regresar</a>
+            </div>
 
 
         </form>
     </body>
-     <script type="text/javascript">
-            // Inactivity time in minutes (5 minutes in this example)
-            var inactivityTime = 10;
+    <script type="text/javascript">
+        // Inactivity time in minutes (5 minutes in this example)
+        var inactivityTime = 10;
 
-            // Variable to store the timer
-            var inactivityTimer;
+        // Variable to store the timer
+        var inactivityTimer;
 
-            // Function to restart the timer
-            function restartTimer() {
-                clearTimeout(inactivityTimer);
-                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
-            }
+        // Function to restart the timer
+        function restartTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+        }
 
-            // Function to redirect the user
-            function redirect() {
-                location.href = "cerrarSesion.jsp";
-            }
+        // Function to redirect the user
+        function redirect() {
+            location.href = "cerrarSesion.jsp";
+        }
 
-            // Restart timer on activity (mousemove or keydown)
-            document.addEventListener("mousemove", restartTimer);
-            document.addEventListener("keydown", restartTimer);
+        // Restart timer on activity (mousemove or keydown)
+        document.addEventListener("mousemove", restartTimer);
+        document.addEventListener("keydown", restartTimer);
 
-            // Start timer on page load
-            window.onload = function () {
-                inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
-              };
+        // Start timer on page load
+        window.onload = function () {
+            inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
+          };
   </script>
 </html>
