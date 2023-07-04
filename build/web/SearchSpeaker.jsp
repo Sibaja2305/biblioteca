@@ -33,13 +33,13 @@
             font-family: Arial, sans-serif;
         }
         .home{
-            margin-top: 45px;
-            margin-left: 1200px;
+            margin-top: 25px;
+            margin-right: 1170px;
             padding: 25px 25px;
             background-color: #e6e6e6;
             border: none;
             border-radius: 4px;
-            background-image: url('https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Home-House--256.png');
+            background-image: url('https://cdn1.iconfinder.com/data/icons/systemui/21/home_door-512.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -100,7 +100,7 @@
 
         %>
         <div class="container" style="font-family: Arial, sans-serif;">
-            <br><br><br><br><br>
+            <br><br><br><br><br><br>
             <div>
                 <a class="btn btn-success btn-lg" href="AddSpeaker.jsp" style="background-color: #00c0f3;">Nuevo </a>
             </div>

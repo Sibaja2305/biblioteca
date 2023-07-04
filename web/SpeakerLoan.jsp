@@ -83,7 +83,7 @@
                         <input type="radio" name="auxiliaryAudio" value="1" class="form-check-input" checked>
                         Sí
                         <br>
-                        <input type="radio" name="AuxiliaryAudio" value="2" class="form-check-input">
+                        <input type="radio" name="auxiliaryAudio" value="2" class="form-check-input">
                         No
                     </label>
                 </div>

@@ -38,12 +38,12 @@
         .home{
             margin-bottom: 80px;
             margin-top: 30px;
-            margin-left: 1180px;
+            margin-right: 1160px;
             padding: 25px 25px;
             background-color: #e6e6e6;
             border: none;
             border-radius: 4px;
-            background-image: url('https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Home-House--256.png');
+            background-image: url('https://cdn1.iconfinder.com/data/icons/systemui/21/home_door-512.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -52,7 +52,7 @@
         .home:hover::before{
             content: 'Menu';
             position: absolute;
-            top: 50px;
+            top: 45px;
             left: 0;
             width: 100%;
             text-align: center;
@@ -88,7 +88,7 @@
         %>
 
         <form method="post" action="RegisterLoans.jsp">
-            <br>  <br>  <br>  <br>  <br>  <br> 
+            <br>  <br>  <br>  <br>  <br>  <br> <br>
             <div class="container" style="font-family: Arial, sans-serif; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 20px;">
                 <div>
 
