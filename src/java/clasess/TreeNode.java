@@ -6,6 +6,7 @@ package clasess;
 
 import java.util.ArrayList;
 import clases.LogBookLoans;
+import clases.Speaker;
 
 /**
  *
@@ -13,20 +14,21 @@ import clases.LogBookLoans;
  */
 public class TreeNode {
 
-    LogBookLoans datum;
+    Speaker datum;
 
     TreeNode li;
     TreeNode ld;
 
-    public TreeNode(LogBookLoans datums) {
+    public TreeNode(Speaker datums) {
         this.datum = datums;
         li = null;
         ld = null;
     }
 
-    public synchronized void insert(LogBookLoans list) {
-
-        if (list.getId() < datum.getId()) {
+    public synchronized void insert(Speaker list) {
+String datos1=list.getCode();
+String datos2=datum.getCode();
+        if (datos1.compareToIgnoreCase(datos2)<0 ) {
             if (li == null) {
                 li = new TreeNode(list);
                 System.out.println(list + " Insertado a la izquierda..." + datum);
@@ -34,7 +36,7 @@ public class TreeNode {
                 li.insert(list);
             }
         }
-        if (list.getId() > datum.getId()) {
+        if (datos1.compareToIgnoreCase(datos2)>0 ) {
             if (ld == null) {
                 ld = new TreeNode(list);
                 System.out.println(list + " Insertado a la derecha..." + datum);

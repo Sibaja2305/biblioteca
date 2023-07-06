@@ -8,15 +8,20 @@ import clases.ProjectionKit;
 import java.util.Comparator;
 
 /**
+ * This CodeComparator class implements the Comparator of the ProjectionKit
+ * class what it does to compare a code with another code
  *
- * @author Hp EliteBook
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jonathan Alfaro Herrera
  */
 public class CodeComparator implements Comparator<ProjectionKit> {
 
     @Override
     public int compare(ProjectionKit activoa, ProjectionKit activob) {
-        
+
         return activoa.getCode().compareToIgnoreCase(activob.getCode());
     }
-    
+
 }

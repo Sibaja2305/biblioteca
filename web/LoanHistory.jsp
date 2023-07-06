@@ -3,6 +3,9 @@
     Created on : 26/06/2023, 10:24:13 PM
     Author     : Hp EliteBook
 --%>
+<%@page import="clasess.ListLogBookLoans"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="clasess.Node"%>
 <%@page import="clasess.Tree"%>
 <%@page import="clases.LogBookLoans"%>
 
@@ -13,7 +16,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <meta charset="UTF-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
@@ -41,16 +44,20 @@
         <%
 
             ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
-            Tree root = new Tree();
+           
+            ListLogBookLoans list =new ListLogBookLoans();
             ArrayList<LogBookLoans> listHistoryLoans = mysql.getHistoryLoans();
-            ArrayList<LogBookLoans> listHistoryLoansSearch = new ArrayList();
+            
             String looking = "";
             String codeSearch = "";
             looking = request.getParameter("buscando");
             codeSearch = request.getParameter("txtSearch");
-
-            root.insertarNodo(listHistoryLoans);
-
+            LinkedList<Node> listaEnlazada=list.convertArray(listHistoryLoans);
+            list.sortLinkedList(listaEnlazada);
+            for (Node node : listaEnlazada) {
+                   System.out.println(node.dato.toString()); 
+                }
+           
             if (codeSearch != null) {
 
                 //listLogBookSearch = mysql.getProjectionKit(codeSearch);
@@ -104,20 +111,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (int i = 0; i < listHistoryLoansSearch.size(); i++) {
+                    <% for (int i = 0; i < listaEnlazada.size(); i++) {
                     %>
                     <tr>
 
 
-                        <td class="align-middle text-center"><%=listHistoryLoansSearch.get(i).getId()%> </td>
-                        <td class="align-middle text-center"><%=listHistoryLoansSearch.get(i).getCode()%></td>
-                        <td class="align-middle text-center"><%=listHistoryLoansSearch.get(i).getUcrCard()%></td>
-                        <td class="align-middle text-center"><%=listHistoryLoansSearch.get(i).getFullName()%> </td>
-                        <td class="align-middle text-center"><%=listHistoryLoansSearch.get(i).getTypeUser()%></td>
-                        <td class="align-middle text-center"><%=listHistoryLoansSearch.get(i).getCareer()%></td>
-                        <td class="align-middle text-center"><%=listHistoryLoansSearch.get(i).getNameAccesory()%> </td>
-                        <td class="align-middle text-center"><%=listHistoryLoansSearch.get(i).getLoanDate()%></td>
-                        <td class="align-middle text-center"><%=listHistoryLoansSearch.get(i).getReturnDate()%></td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getId()%> </td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getCode()%></td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getUcrCard()%></td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getFullName()%> </td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getTypeUser()%></td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getCareer()%></td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getNameAccesory()%> </td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getLoanDate()%></td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getReturnDate()%></td>
 
 
 
@@ -149,19 +156,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (int i = 0; i < listHistoryLoans.size(); i++) {
+                    <% for (int i = 0; i < listaEnlazada.size(); i++) {
                     %>
                     <tr>
 
-                        <td class="align-middle text-center"><%=listHistoryLoans.get(i).getId()%></td>
-                        <td class="align-middle text-center"><%=listHistoryLoans.get(i).getCode()%> </td>
-                        <td class="align-middle text-center"><%=listHistoryLoans.get(i).getUcrCard()%></td>
-                        <td class="align-middle text-center"><%=listHistoryLoans.get(i).getFullName()%></td>
-                        <td class="align-middle text-center"><%=listHistoryLoans.get(i).getTypeUser()%> </td>
-                        <td class="align-middle text-center"><%=listHistoryLoans.get(i).getCareer()%></td>
-                        <td class="align-middle text-center"><%=listHistoryLoans.get(i).getNameAccesory()%></td>
-                        <td class="align-middle text-center"><%=listHistoryLoans.get(i).getLoanDate()%> </td>
-                        <td class="align-middle text-center"><%=listHistoryLoans.get(i).getReturnDate()%></td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getId()%></td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getCode()%> </td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getUcrCard()%></td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getFullName()%></td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getTypeUser()%> </td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getCareer()%></td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getNameAccesory()%></td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getLoanDate()%> </td>
+                        <td class="align-middle text-center"><%=listaEnlazada.get(i).dato.getReturnDate()%></td>
 
 
 

@@ -14,6 +14,7 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <meta charset="UTF-8">
         <title>JSP Page</title>
     </head>
    
@@ -288,17 +289,5 @@
                 inactivityTimer = setTimeout(redirect, inactivityTime * 60 * 1000);
               };
   </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script type="text/javascript">
-    // Asignar el evento onclick al botón de eliminar
-    $(document).ready(function() {
-        $("btn-danger").click(function(e) {
-            e.preventDefault(); // Detener el envío del formulario
-            
-            if (confirm("¿Está seguro que desea eliminar?")) {
-                $("#deleteForm").submit(); // Enviar el formulario
-            }
-        });
-    });
-</script>
+   
 </html>

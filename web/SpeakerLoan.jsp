@@ -15,6 +15,7 @@
         <title>Prestamos de parlantes</title>
         <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="estilos.css" rel="stylesheet" type="text/css"/>
+        <meta charset="UTF-8">
     </head>
     <style>
         .title{

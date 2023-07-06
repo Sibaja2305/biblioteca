@@ -14,6 +14,7 @@
         <title>Prestamos de Computadora</title>
         <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="estilos.css"/>
+        <meta charset="UTF-8">
     </head>
     <style>
         .title{

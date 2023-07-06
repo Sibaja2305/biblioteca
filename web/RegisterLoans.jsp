@@ -6,6 +6,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="databasemysql.ConnectionMysql"%>
+<meta charset="UTF-8">
 <%
 
     ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");

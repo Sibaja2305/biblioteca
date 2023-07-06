@@ -4,6 +4,7 @@
     Author     : Hp EliteBook
 --%>
 
+<%@page import="clasess.Tree"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.util.ArrayList"%>
@@ -14,9 +15,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <meta charset="UTF-8"
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <meta charset="UTF-8">
         <title>JSP Page</title>
 
 
@@ -60,20 +62,7 @@
         }
 
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script type="text/javascript">
-    // Asignar el evento onclick al botón de eliminar
-    $(document).ready(function() {
-        $(".btn-danger").click(function(e) {
-            e.preventDefault(); // Detener el envío del formulario
-            
-            if (confirm("¿Está seguro que desea eliminar?")) {
-                $("#deleteForm").submit(); // Enviar el formulario
-            }
-        });
-    });
-</script>
-
+  
     <body style="background-color: #e6e6e6;">
         <div class="title">
             <h1>Buscador de Parlantes</h1>
@@ -86,12 +75,17 @@
             ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
             ArrayList<Speaker> listSpeaker = mysql.getSpeaker();
             ArrayList<Speaker> listSpeakerSearch = new ArrayList();
-
+            Tree root = new Tree();
             String looking = "";
             String codeSearch = "";
             looking = request.getParameter("buscando");
             codeSearch = request.getParameter("txtSearch");
-
+            root.insertarNodo(listSpeaker);
+            root.getInOrden(root.retornaraiz());
+            System.out.println("tamaño: "+ root.getDatos().size());
+            for (int i = 0; i < listSpeakerSearch.size(); i++) {
+                 System.out.println(listSpeakerSearch.get(i).getCode());
+                }
             if (codeSearch != null) {
 
                 listSpeakerSearch = mysql.getSpeaker(codeSearch);
@@ -226,9 +220,9 @@
                         </thead>
                         <br>
                         <tbody>
-                            <% for (int i = 0; i < listSpeaker.size(); i++) {
+                            <% for (int i = 0; i < root.getDatos().size(); i++) {
                                     String visible = "";
-                                    if (listSpeaker.get(i).getState().equalsIgnoreCase("2")) {
+                                    if (root.getDatos().get(i).getState().equalsIgnoreCase("2")) {
                                         visible = "hidden";
 
                                     }
@@ -236,17 +230,17 @@
                             %>
                             <tr>
 
-                                <td class="align-middle text-center"><%=listSpeaker.get(i).getCode()%></td>
-                                <td class="align-middle text-center"><%=listSpeaker.get(i).getSpeakerWire().equalsIgnoreCase("1")
+                                <td class="align-middle text-center"><%=root.getDatos().get(i).getCode()%></td>
+                                <td class="align-middle text-center"><%=root.getDatos().get(i).getSpeakerWire().equalsIgnoreCase("1")
                                         ? "Si"
                                         : "no"%> </td>
-                                <td class="align-middle text-center"><%=listSpeaker.get(i).getElectricalConnector().equalsIgnoreCase("1")
+                                <td class="align-middle text-center"><%=root.getDatos().get(i).getElectricalConnector().equalsIgnoreCase("1")
                                         ? "Si"
                                         : "no"%></td>
-                                <td class="align-middle text-center"><%=listSpeaker.get(i).getAuxiliaryAudio().equalsIgnoreCase("1")
+                                <td class="align-middle text-center"><%=root.getDatos().get(i).getAuxiliaryAudio().equalsIgnoreCase("1")
                                         ? "Si"
                                         : "no"%></td>
-                                <td class="align-middle text-center"><%=listSpeaker.get(i).getState().equalsIgnoreCase("1")
+                                <td class="align-middle text-center"><%=root.getDatos().get(i).getState().equalsIgnoreCase("1")
                                         ? "Disponible"
                                         : "Prestado"%></td>
                                 <td class="align-middle text-center ">
@@ -255,7 +249,7 @@
                                             hidden="true"
                                             type="text" 
                                             name="selectSpeaker"                                         
-                                            value="<%=listSpeaker.get(i).getCode()%>">
+                                            value="<%=root.getDatos().get(i).getCode()%>">
                                         <input   
                                             <%=visible%>
                                             class="btn btn-outline-success btn-sm" 
@@ -270,7 +264,7 @@
                                             type="text" 
                                             name="deleteSpeaker" 
                                             id="id" 
-                                            value="<%=listSpeaker.get(i).getCode()%>">
+                                            value="<%=root.getDatos().get(i).getCode()%>">
                                         <input                                        
                                             class="btn btn-danger btn-sm" 
                                             type="submit"                                                                              
