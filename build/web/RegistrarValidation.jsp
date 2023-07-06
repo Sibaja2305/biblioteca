@@ -1,9 +1,9 @@
 
 <%@page  import="databasemysql.ConnectionMysql"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 
 <%@ page import="databasemysql.ConnectionMysql.*" %>
-<meta charset="UTF-8">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
     

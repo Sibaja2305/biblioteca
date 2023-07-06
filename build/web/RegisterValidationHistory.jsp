@@ -7,7 +7,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Date"%>
 <%@page import="databasemysql.ConnectionMysql"%>
-<meta charset="UTF-8">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     
     ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
@@ -35,7 +35,7 @@
         if (!category.equalsIgnoreCase("Accesorio")) {
           mysql.updateStateDis(category, code);   
         }
-        response.sendRedirect("menu.jsp"); // Página de inicio después de iniciar sesión
+        response.sendRedirect("menu.jsp"); // PÃ¡gina de inicio despuÃ©s de iniciar sesiÃ³n
     } else {
         out.println(Integer.parseInt(id));
     }

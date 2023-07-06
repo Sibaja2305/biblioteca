@@ -18,6 +18,14 @@ import java.util.Comparator;
  */
 public class CodeComparator implements Comparator<ProjectionKit> {
 
+    /**
+     * This CodeComparator class implements the Comparator of the ProjectionKit
+     * class what it does to compare a code with another code
+     *
+     * @param activoa code 1
+     * @param activob code 2
+     * @return comparison between the data
+     */
     @Override
     public int compare(ProjectionKit activoa, ProjectionKit activob) {
 

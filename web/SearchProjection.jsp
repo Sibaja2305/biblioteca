@@ -60,7 +60,7 @@
         }
         .home{
             margin-top: 35px;
-            margin-right: 1170px;
+            margin-right: 1400px;
             padding: 25px 25px;
             background-color: #e6e6e6;
             border: none;
@@ -105,7 +105,7 @@
             codeSearch = request.getParameter("txtSearch");
             if (codeSearch != null) {
                
-                int x = or.ordenar(codeSearch, listProjectionKit);
+                int x = or.order(codeSearch, listProjectionKit);
                  System.out.print(codeSearch);
                 if (x >= 0) {
                     

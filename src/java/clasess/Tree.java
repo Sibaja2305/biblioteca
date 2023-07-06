@@ -34,7 +34,7 @@ public class Tree {
      *
      * @return The root node of the tree.
      */
-    public TreeNode retornaraiz() {
+    public TreeNode returnRoot() {
         return (nodoar);
     }
 
@@ -43,18 +43,18 @@ public class Tree {
      *
      * @param list The list of `Speaker` objects to insert into the tree.
      */
-    public synchronized void insertarNodo(ArrayList<Speaker> list) {
+    public synchronized void insertNode(ArrayList<Speaker> list) {
 
-        for (Speaker elemento : list) {
+        for (Speaker element : list) {
             if (nodoar == null) {
-                nodoar = new TreeNode(elemento);
-                System.out.println("\nInsertado en la Raiz..." + elemento);
+                nodoar = new TreeNode(element);
+                System.out.println("\nInsertado en la Raiz..." + element);
             } else {
-                nodoar.insert(elemento);
+                nodoar.insert(element);
             }
         }
     }
-    private ArrayList<Speaker> datos = new ArrayList<>();
+    private ArrayList<Speaker> data = new ArrayList<>();
 
     /**
      * Traverses the tree in an in-order manner and prints the nodes.
@@ -67,7 +67,7 @@ public class Tree {
         }
 
         System.out.print("\n" + tree.datum.getCode());
-        datos.add(tree.datum);
+        data.add(tree.datum);
 
         if (tree.ld != null) {
             getInOrden(tree.ld);
@@ -76,10 +76,10 @@ public class Tree {
     }
 
     /**
-     * @return the datos
+     * @return the data
      */
     public ArrayList<Speaker> getDatos() {
-        return datos;
+        return data;
     }
 
 }

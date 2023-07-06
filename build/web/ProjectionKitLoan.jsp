@@ -4,7 +4,7 @@
     Author     : Hp EliteBook
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -34,150 +34,159 @@
                 text-align: center;
                 font-family: Arial, sans-serif;
             }
+            .grid-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 20px;
+            }
+            .column {
+                display: flex;
+                flex-direction: column;
+            }
+            .form-control-lg {
+                margin-bottom: 20px;
+            }
+            .text {
+                font-size: 18px;
+            }
+            .button-container {
+                margin-top: 30px;
+            }
         </style>
     </head>
     <body style="background-color: #e6e6e6;">
         <div class="title">
             <h1>Prestamos de Kit de Proyectores</h1>
         </div>
-        <%
-
-            String projection = request.getParameter("selectProjectionKit").trim();
-
-
-        %>
-
+        <% String projection = request.getParameter("selectProjectionKit").trim();%>
         <div class="container">
             <form action="LoansAccessories.jsp" class="loanproyection" style="font-family: Arial, sans-serif;">
                 <br><br><br><br>
-                <div class="form-control-lg"> 
-                    <label class="text">Código:</label>
-                    <br>
-                    <input disabled="true" type="text" class="form-label" style="font-size:16px;" name="idsd" required value="<%=projection%>">
-                    <input hidden="true" type="text" class="form-label" name="code" required value="<%=projection%>">
-                </div>
-                <br><br>
-                <div class="form-control-lg">
-                    <label class="text">Estuche de Proyector</label>
-                    <br>
-                    <label>
-                        <input type="radio" name="projectorCase" value="1" class="form-check-input" checked>
-                        Sí
-                        <br>
-                        <input type="radio" name="projectorCase" value="2" class="form-check-input">
-                        No
-                    </label>
-                </div>
-
-                <br><br>
-                <div class="form-control-lg">
-                    <br>
-                    <label class="text">Cable de Electricidad</label>
-                    <br>
-                    <label>
-                        <input type="radio" name="projectorWire" value="1" class="form-check-input" checked>
-                        Sí
-                        <br>
-                        <input type="radio" name="projectorWire" value="2" class="form-check-input">
-                        No
-                    </label>
-                </div>
-                <br><br>
-                <div class="form-control-lg">
-                    <label class="text">Cable VGA</label>
-                    <br>
-                    <label>
-                        <input type="radio" name="vgaWire" value="1" class="form-check-input" checked>
-                        Sí
-                        <br>
-                        <input type="radio" name="vgaWire" value="2" class="form-check-input">
-                        No
-                    </label>
-                </div>
-                <br><br>
-                <div class="form-control-lg">
-                    <label class="text">Cable HDMI</label>
-                    <br>
-                    <label>
-                        <input type="radio" name="hdmiWire" value="1" class="form-check-input" checked>
-                        Sí
-                        <br>
-                        <input type="radio" name="hdmiWire" value="2" class="form-check-input">
-                        No
-                    </label>
-                </div>
-                <br><br>
-                <div class="form-control-lg">
-                    <label class="text">Control de Proyector</label>
-                    <br>
-                    <label>
-                        <input type="radio" name="projectorControl" value="1" class="form-check-input" checked>
-                        Sí
-                        <br>
-                        <input type="radio" name="projectorControl" value="2" class="form-check-input">
-                        No
-                    </label>
-                </div>
-                <br><br>
-                <div class="form-control-lg">
-                    <label class="text">  Baterías   </label>
-                    <br>
-                    <label>
-                        <input type="radio" name="projectorBattery" value="1" class="form-check-input" checked>
-                        Sí
-                        <br>
-                        <input type="radio" name="projectorBattery" value="2" class="form-check-input">
-                        No
-                    </label>
-                </div>
-                <br><br>
-                <div class="form-control-lg">
-                    <label class="text">Extensión</label>
-                    <br>
-                    <label>
-
-                        <input type="radio" name="projectorExtension" value="1" class="form-check-input" checked>
-                        Sí
-                        <br>
-                        <input type="radio" name="projectorExtension" value="2" class="form-check-input">
-                        No
-                    </label>
-                </div>
-                <br><br>
-                <div class="form-control-lg">
-                    <label class="text">Regleta</label>
-                    <br>
-                    <label>
-                        <input type="radio" name="powerStrip" value="1" class="form-check-input" checked>
-                        Sí
-                        <br>
-                        <input type="radio" name="powerStrip" value="2" class="form-check-input">
-                        No
-                    </label>
-                </div>
-                <br><br>
-                <div class="form-control-lg">
-                    <label class="text">Caja Plástica</label>
-                    <br>
-                    <label>
-                        <input type="radio" name="plasticBox" value="1" class="form-check-input" checked>
-                        Sí
-                        <br>
-                        <input type="radio" name="plasticBox" value="2" class="form-check-input">
-                        No
-                    </label>
+                <div class="grid-container">
+                    <div class="column">
+                        <div class="form-control-lg">
+                            <label class="text">Código:</label>
+                            <br>
+                            <input disabled="true" type="text" class="form-label" style="font-size:16px;" name="idsd" required value="<%=projection%>">
+                            <input hidden="true" type="text" class="form-label" name="code" required value="<%=projection%>">
+                        </div>
+                        <div class="form-control-lg">
+                            <label class="text">Estuche de Proyector</label>
+                            <br>
+                            <label>
+                                <input type="radio" name="projectorCase" value="1" class="form-check-input" checked>
+                                Sí
+                                <br>
+                                <input type="radio" name="projectorCase" value="2" class="form-check-input">
+                                No
+                            </label>
+                        </div>
+                        <div class="form-control-lg">
+                            <label class="text">Cable de Electricidad</label>
+                            <br>
+                            <label>
+                                <input type="radio" name="projectorWire" value="1" class="form-check-input" checked>
+                                Sí
+                                <br>
+                                <input type="radio" name="projectorWire" value="2" class="form-check-input">
+                                No
+                            </label>
+                        </div>
+                         <div class="form-control-lg">
+                            <label class="text">Caja Plástica</label>
+                            <br>
+                            <label>
+                                <input type="radio" name="plasticBox" value="1" class="form-check-input" checked>
+                                Sí
+                                <br>
+                                <input type="radio" name="plasticBox" value="2" class="form-check-input">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <br><br><br><br>
+                        <div class="form-control-lg">
+                            <label class="text">Cable VGA</label>
+                            <br>
+                            <label>
+                                <input type="radio" name="vgaWire" value="1" class="form-check-input" checked>
+                                Sí
+                                <br>
+                                <input type="radio" name="vgaWire" value="2" class="form-check-input">
+                                No
+                            </label>
+                        </div>
+                        <div class="form-control-lg">
+                            <label class="text">Cable HDMI</label>
+                            <br>
+                            <label>
+                                <input type="radio" name="hdmiWire" value="1" class="form-check-input" checked>
+                                Sí
+                                <br>
+                                <input type="radio" name="hdmiWire" value="2" class="form-check-input">
+                                No
+                            </label>
+                        </div>
+                        <div class="form-control-lg">
+                            <label class="text">Regleta</label>
+                            <br>
+                            <label>
+                                <input type="radio" name="powerStrip" value="1" class="form-check-input" checked >
+                                Sí
+                                <br>
+                                <input type="radio" name="powerStrip" value="2" class="form-check-input">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <br><br><br><br>
+                        <div class="form-control-lg">
+                            <label class="text">Control de Proyector</label>
+                            <br>
+                            <label>
+                                <input type="radio" name="projectorControl" value="1" class="form-check-input" checked>
+                                Sí
+                                <br>
+                                <input type="radio" name="projectorControl" value="2" class="form-check-input">
+                                No
+                            </label>
+                        </div>
+                        <div class="form-control-lg">
+                            <label class="text">Baterías</label>
+                            <br>
+                            <label>
+                                <input type="radio" name="projectorBattery" value="1" class="form-check-input" checked>
+                                Sí
+                                <br>
+                                <input type="radio" name="projectorBattery" value="2" class="form-check-input">
+                                No
+                            </label>
+                        </div>
+                        <div class="form-control-lg">
+                            <label class="text">Extensión</label>
+                            <br>
+                            <label>
+                                <input type="radio" name="projectorExtension" value="1" class="form-check-input" checked>
+                                Sí
+                                <br>
+                                <input type="radio" name="projectorExtension" value="2" class="form-check-input">
+                                No
+                            </label>
+                        </div>
+                       
+                    </div>
                 </div>
                 <input hidden="true" type="text" name="category" value="projection_kit">
-                <br>
-
-                <div class="form-control-lg">
-                    <button type="submit" class="btn btn-primary btn-lg" style="background-color: #005da4">Registrar</button>
-                    <a href="SearchProjection.jsp" class="btn btn-primary btn-lg" style="background-color: #005da4">Regresar</a>
+                
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary btn-lg" style="background-color: #005da4; margin-right: 20px;">Registrar</button>
+                    <a href="SearchProjection.jsp" class="btn btn-primary btn-lg" style="background-color: #005da4;">Regresar</a>
                 </div>
-
-
             </form>
         </div>
+
     </body>
     <script type="text/javascript">
         // Inactivity time in minutes (5 minutes in this example)

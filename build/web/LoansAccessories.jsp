@@ -4,7 +4,7 @@
     Author     : Hp EliteBook
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,7 +39,7 @@
         .home{
             margin-bottom: 80px;
             margin-top: 30px;
-            margin-right: 1160px;
+            margin-right: 1400px;
             padding: 25px 25px;
             background-color: #e6e6e6;
             border: none;

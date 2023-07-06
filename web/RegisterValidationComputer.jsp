@@ -5,7 +5,8 @@
 --%>
 
 <%@page import="databasemysql.ConnectionMysql"%>
-<meta charset="UTF-8">
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 
     ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
@@ -16,13 +17,13 @@
     String briefcaseComputer = request.getParameter("txtbriefcaseComputer").trim();
    
 
-    // Validar el usuario y contraseña
+    // Validar el usuario y contraseÃ±a
     if (mysql.insertComputer(code, chargerComputer, softCaseComputer, briefcaseComputer)) {
-        // Inicio de sesión exitoso
+        // Inicio de sesiÃ³n exitoso
 
-        response.sendRedirect("SearchComputer.jsp"); // Página de inicio después de iniciar sesión
+        response.sendRedirect("SearchComputer.jsp"); // PÃ¡gina de inicio despuÃ©s de iniciar sesiÃ³n
     } else {
-        // Inicio de sesión fallido
+        // Inicio de sesiÃ³n fallido
         out.println("<script>alert('Codigo ya esta registrado'); window.location.href='AddComputer.jsp';</script>");
     }
 %>

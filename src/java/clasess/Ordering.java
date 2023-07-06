@@ -27,7 +27,7 @@ public class Ordering {
      * @param search Arraylist in which the search is going to be done
      * @return
      */
-    public int ordenar(String code, ArrayList<ProjectionKit> search) {
+    public int order(String code, ArrayList<ProjectionKit> search) {
         Collections.sort(search, new CodeComparator());
         System.out.println("datosOrdenados" + search.size());
         System.out.println("datosOrdenados" + search);

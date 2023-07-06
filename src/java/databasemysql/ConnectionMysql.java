@@ -26,7 +26,7 @@ public class ConnectionMysql {
     String bd = "world";
     String url = "jdbc:mysql://localhost:3306/";
     String usuario = "root";
-    String contraseña = "Alfaher1503!";
+    String contraseña = "Racataca2305.";
     String driver = "com.mysql.cj.jdbc.Driver";
     Connection cx;
 
@@ -378,8 +378,8 @@ public class ConnectionMysql {
                 String typeUser = rs.getString("type_user");
                 String career = rs.getString("career");
                 String nameAccessory = rs.getString("name_accessory");
-                Date loanDate = rs.getDate("loan_date");
-                Date returnDate = rs.getDate("return_date");
+                java.sql.Timestamp loanDate = rs.getTimestamp("loan_date");
+               java.sql.Timestamp returnDate = rs.getTimestamp("return_date");
                 String category = rs.getString("category");
                 LogBookLoans logBookLoan = new LogBookLoans(id, code, ucrCard, fullName,
                         typeUser, career, nameAccessory, loanDate, returnDate, category);
@@ -422,8 +422,8 @@ public class ConnectionMysql {
                 String typeUser = rs.getString("type_user");
                 String career = rs.getString("career");
                 String nameAccessory = rs.getString("name_accessory");
-                Date loanDate = rs.getDate("loan_date");
-                Date returnDate = rs.getDate("return_date");
+                java.sql.Timestamp loanDate = rs.getTimestamp("loan_date");
+                java.sql.Timestamp returnDate = rs.getTimestamp("return_date");
                 String category = rs.getString("category");
                 LogBookLoans logBookLoan = new LogBookLoans(id, code, ucrCard, fullName,
                         typeUser, career, nameAccessory, loanDate, returnDate, category);

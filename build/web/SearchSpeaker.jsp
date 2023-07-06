@@ -36,7 +36,7 @@
         }
         .home{
             margin-top: 25px;
-            margin-right: 1170px;
+            margin-right: 1400px;
             padding: 25px 25px;
             background-color: #e6e6e6;
             border: none;
@@ -80,8 +80,8 @@
             String codeSearch = "";
             looking = request.getParameter("buscando");
             codeSearch = request.getParameter("txtSearch");
-            root.insertarNodo(listSpeaker);
-            root.getInOrden(root.retornaraiz());
+            root.insertNode(listSpeaker);
+            root.getInOrden(root.returnRoot());
             System.out.println("tamaño: "+ root.getDatos().size());
             for (int i = 0; i < listSpeakerSearch.size(); i++) {
                  System.out.println(listSpeakerSearch.get(i).getCode());

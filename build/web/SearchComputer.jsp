@@ -31,7 +31,7 @@
         }
         .home{
             margin-top: 35px;
-            margin-right: 1170px;
+            margin-right: 1400px;
             padding: 25px 25px;
             background-color: #e6e6e6;
             border: none;

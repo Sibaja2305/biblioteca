@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="databasemysql.ConnectionMysql"%>
-<meta charset="UTF-8">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 
     ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
@@ -21,13 +21,13 @@
     String powerStrip = request.getParameter("txtPowerStrip").trim();
     String plasticBox = request.getParameter("txtPlasticBox").trim();
 
-    // Validar el usuario y contraseña
+    // Validar el usuario y contraseÃ±a
     if (mysql.insertProjectionKit(code, projectionCase, electricityWire, VGAConnector, HDMIConnector, projectionControl, battery, extension, powerStrip, plasticBox)) {
-        // Inicio de sesión exitoso
+        // Inicio de sesiÃ³n exitoso
 
-        response.sendRedirect("SearchProjection.jsp"); // Página de inicio después de iniciar sesión
+        response.sendRedirect("SearchProjection.jsp"); // PÃ¡gina de inicio despuÃ©s de iniciar sesiÃ³n
     } else {
-        // Inicio de sesión fallido
+        // Inicio de sesiÃ³n fallido
         out.println("<script>alert('Codigo ya esta registrado'); window.location.href='AddProjectionKit.jsp';</script>");
     }
 %>

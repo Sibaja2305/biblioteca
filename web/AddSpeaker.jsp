@@ -4,7 +4,7 @@
     Author     : Hp EliteBook
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,59 +50,84 @@
             font-family: Arial, sans-serif;
 
         }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+        }
+        .column {
+            display: flex;
+            flex-direction: column;
+        }
+        .grid-item {
+            margin-bottom: 10px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
-    <body style="background-color: #e6e6e6;">
-        <div class="title">
-            <h1>Agregar Parlante</h1>
-              <a href="menu.jsp">
-                <button class="home">
-                </button>
-            </a>
-        </div>
-        <div class="container" style="font-family: Arial, sans-serif;">
-            <br><br><br><br><br>
-            <form action="RegisterValidationSpeaker.jsp" method="post" class="form-control" style="background-color: #e6e6e6;">
-                Código:
-                <input type="text" name="txtCodeSpeaker" class="form-control" required>
-                <br>
-                Cable de Electricidad:
-                <br>
-                <label>
-
-                    <input type="radio" name="txtspeakerWire" value="1" class="form-check-input" checked >
-                    Sí
-                    <br>
-                    <input type="radio" name="txtspeakerWire" value="2" class="form-check-input" >
-                    No
-                </label>
-                <br>
-                Conector a electricidad:
-                <br>
-                <label>
-
-                    <input type="radio" name="txtElectricalConnector" value="1" class="form-check-input" checked >
-                    Sí
-                    <br>
-                    <input type="radio" name="txtElectricalConnector" value="2" class="form-check-input" >
-                    No
-                </label>
-                <br>
-                Auxiliar audio:
-                <br>
-                <label>
-
-                    <input type="radio" name="txtAuxiliaryAudio" value="1" class="form-check-input" checked>
-                    Sí
-                    <br>
-                    <input type="radio" name="txtAuxiliaryAudio" value="2" class="form-check-input" >
-                    No
-                </label>
-                <br><br>
+   <body style="background-color: #e6e6e6;">
+    <div class="title">
+        <h1>Agregar Parlante</h1>
+        <a href="menu.jsp">
+            <button class="home"></button>
+        </a>
+    </div>
+    <div class="container" style="font-family: Arial, sans-serif;">
+        <br><br><br><br><br><br><br>
+        <form action="RegisterValidationSpeaker.jsp" method="post" class="form-control" style="background-color: #e6e6e6;">
+            <div class="grid-container">
+                <div class="column">
+                    <div class="grid-item">
+                        <label>Código:</label>
+                        <input type="text" name="txtCodeSpeaker" class="form-control" required>
+                    </div>
+                    
+                    <div class="grid-item">
+                        <label>Auxiliar audio:</label>
+                        <br>
+                        <input type="radio" name="txtAuxiliaryAudio" value="1" class="form-check-input" checked>
+                        <label>Sí</label>
+                        <br>
+                        <input type="radio" name="txtAuxiliaryAudio" value="2" class="form-check-input">
+                        <label>No</label>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <br><br><br>
+                    <div class="grid-item">
+                        <label>Cable de Electricidad:</label>
+                        <br>
+                        <input type="radio" name="txtspeakerWire" value="1" class="form-check-input" checked>
+                        <label>Sí</label>
+                        <br>
+                        <input type="radio" name="txtspeakerWire" value="2" class="form-check-input">
+                        <label>No</label>
+                    </div>
+                    <div class="grid-item">
+                        <label>Conector a electricidad:</label>
+                        <br>
+                        <input type="radio" name="txtElectricalConnector" value="1" class="form-check-input" checked>
+                        <label>Sí</label>
+                        <br>
+                        <input type="radio" name="txtElectricalConnector" value="2" class="form-check-input">
+                        <label>No</label>
+                    </div>
+                </div>
+            </div>
+            <br><br><br><br>
+            <div class="button-container">
                 <button type="submit" class="btn btn-primary btn-lg" style="background-color: #005da4;">Guardar</button>
                 <a href="SearchSpeaker.jsp" class="btn btn-primary btn-lg" style="background-color: #005da4;">Regresar</a>
-            </form>
-        </div>
-    </body>
+            </div>
+        </form>
+    </div>
+    <style>
+        
+    </style>
+</body>
      <script type="text/javascript">
             // Inactivity time in minutes (5 minutes in this example)
             var inactivityTime = 10;

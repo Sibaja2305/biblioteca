@@ -20,8 +20,8 @@ public class LogBookLoans {
     private String typeUser;
     private String career;
     private String nameAccesory;
-    private Date loanDate;
-    private Date returnDate;
+    private java.sql.Timestamp loanDate;
+    private java.sql.Timestamp returnDate;
     private String category;
 
     /**
@@ -65,7 +65,7 @@ public class LogBookLoans {
      * @param returnDate The date of the loan.
      * @param category The category of the accessory being loaned.
      */
-    public LogBookLoans(int id, String code, String ucrCard, String fullName, String typeUser, String career, String nameAccesory, Date loanDate, Date returnDate, String category) {
+    public LogBookLoans(int id, String code, String ucrCard, String fullName, String typeUser, String career, String nameAccesory, java.sql.Timestamp loanDate, java.sql.Timestamp returnDate, String category) {
         this.id = id;
         this.code = code;
         this.ucrCard = ucrCard;
@@ -200,7 +200,7 @@ public class LogBookLoans {
     /**
      * @param loanDate the loanDate to set
      */
-    public void setLoanDate(Date loanDate) {
+    public void setLoanDate(java.sql.Timestamp loanDate) {
         this.loanDate = loanDate;
     }
 
@@ -214,12 +214,13 @@ public class LogBookLoans {
     /**
      * @param returnDate the returnDate to set
      */
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(java.sql.Timestamp returnDate) {
         this.returnDate = returnDate;
     }
 
     /**
      * Returns a string representation of the `LogBookLoans` instance.
+     *
      *
      * @return A string representing the `LogBookLoans` instance.
      */

@@ -4,7 +4,7 @@
     Author     : Hp EliteBook
 --%>
 <%@page import="databasemysql.ConnectionMysql"%>
-<meta charset="UTF-8">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 
     ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
@@ -15,13 +15,13 @@
     String auxiliaryAudio = request.getParameter("txtAuxiliaryAudio").trim();
    
 
-    // Validar el usuario y contraseña
+    // Validar el usuario y contraseÃ±a
     if (mysql.insertSpeaker(code, speakerWire, electricalConnector, auxiliaryAudio)) {
-        // Inicio de sesión exitoso
+        // Inicio de sesiÃ³n exitoso
 
-        response.sendRedirect("SearchSpeaker.jsp"); // Página de inicio después de iniciar sesión
+        response.sendRedirect("SearchSpeaker.jsp"); // PÃ¡gina de inicio despuÃ©s de iniciar sesiÃ³n
     } else {
-        // Inicio de sesión fallido
+        // Inicio de sesiÃ³n fallido
         out.println("<script>alert('Datos incorrectos'); window.location.href='AddSpeaker.jsp';</script>");
     }
 %>

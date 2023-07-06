@@ -6,7 +6,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="databasemysql.ConnectionMysql"%>
-<meta charset="UTF-8">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 
     ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
@@ -21,18 +21,18 @@
     String returnDate = request.getParameter("txtReturnDate").trim();
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-    String fecha = loanDate.split("T")[0].replace("-", "/");
-    fecha = fecha.split("/")[2] + "/" + fecha.split("/")[1] + "/" + fecha.split("/")[0];
-    String hora = loanDate.split("T")[1].split("\\.")[0];
-    String fechaHora = fecha + " " + hora;
-    Date loanDateTime = dateFormat.parse(fechaHora);
+    String date = loanDate.split("T")[0].replace("-", "/");
+    date = date.split("/")[2] + "/" + date.split("/")[1] + "/" + date.split("/")[0];
+    String hour = loanDate.split("T")[1].split("\\.")[0];
+    String dateHour = date + " " + hour;
+    Date loanDateTime = dateFormat.parse(dateHour);
     java.sql.Timestamp sqlLoanDate = new java.sql.Timestamp(loanDateTime.getTime());
     //date returnDate
-    String devolver = returnDate.split("T")[0].replace("-", "/");
-    devolver = devolver.split("/")[2] + "/" + devolver.split("/")[1] + "/" + devolver.split("/")[0];
+    String deliver = returnDate.split("T")[0].replace("-", "/");
+    deliver = deliver.split("/")[2] + "/" + deliver.split("/")[1] + "/" + deliver.split("/")[0];
     String hoursReturn = loanDate.split("T")[1].split("\\.")[0];
-    String fechadevolver = devolver + " " + hoursReturn;
-    Date ReturnDateTime = dateFormat.parse(fechadevolver);
+    String dateReturn = deliver + " " + hoursReturn;
+    Date ReturnDateTime = dateFormat.parse(dateReturn);
     java.sql.Timestamp sqlReturnDate = new java.sql.Timestamp(ReturnDateTime.getTime());
 
     if (mysql.insertLoans(code, identification, fullName, typeUser, career, nameAccessorie, sqlLoanDate, sqlReturnDate, category)) {
@@ -41,7 +41,7 @@
         mysql.updateStatePres(category, code);
            
         }
-         response.sendRedirect("menu.jsp"); // Página de inicio después de iniciar sesión
+         response.sendRedirect("LoansAccessories.jsp"); // PÃ¡gina de inicio despuÃ©s de iniciar sesiÃ³n
 
     }
 %>
