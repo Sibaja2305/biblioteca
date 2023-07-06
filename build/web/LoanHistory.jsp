@@ -36,6 +36,7 @@
             text-align: center;
             font-family: Arial, sans-serif;
         }
+    
     </style>
     <body style="background-color: #e6e6e6;">
         <div class="title">
@@ -74,26 +75,26 @@
 
                     <input hidden="true" type="text" name="buscando" value="no" class="form-label">
 
-                    <input style="background-color: #00c0f3; margin-bottom: 5px; margin-left: 20px;"type="submit" class="btn btn-info btn-sm" value="Vaciar">
+                    <input style="background-color: #00c0f3; margin-top: 6px; margin-left: 20px;"type="submit" class="btn btn-info btn-sm" value="Vaciar">
                 </div>
             </form>
             
             
             <form action="LoanHistory.jsp" style="display: inline-block; float: right;">
-                <div style="display: inline-block;">
-                    <select class="form-control" name="txtCategory" style="margin-right: 10px;" required>
+                <div style="display: inline-block; margin-right: 20px;">
+                    <select class="form-control" name="txtCategory" style="margin-left: 100px;" required>
                         <option value="">Selecciona una opción</option>
                         <option value="computer">Computadora</option>
                         <option value="projection_kit">Kit de proyector</option>
                         <option value="speaker">Parlante</option>
                         <option value="Accesorio">Accesorio</option>
                     </select>
-                    
+                    </div>
                     <div style="display: inline-block;">
                         <input hidden="true" type="text" name="buscando" value="si" class="form-label">
-                        <input style="background-color: #00c0f3; margin-left: 200px;" type="submit" class="btn btn-info btn-sm" value="Buscar">
+                        <input style="background-color: #00c0f3; margin-left: 90px;" type="submit" class="btn btn-info btn-sm" value="Buscar">
                     </div>
-                </div>
+                
             </form>
             <% if (looking != null) {
 
