@@ -20,48 +20,92 @@ import java.util.List;
  */
 public class ListLogBookLoans {
 
+    public Node head;
+
+    /**
+     * the first node is initialized as null
+     */
+    public ListLogBookLoans() {
+        this.head = null;
+    }
+
+    /**
+     * Converts an ArrayList of LogBookLoans to a linked list of LogBookLoans
+     * and returns a new ArrayList.
+     *
+     * @param listings listings the ArrayList of LogBookLoans to convert.
+     * @return a new ArrayList representing the linked list of LogBookLoans.
+     */
+    public static ArrayList<LogBookLoans> convertList(ArrayList<LogBookLoans> listings) {
+        ListLogBookLoans list = new ListLogBookLoans();
+        for (LogBookLoans data : listings) {
+            list.addElement(data);
+        }
+        return list.convertArrayList();
+    }
+
+    /**
+     * Add a LogBookLoans element to the end of the linked list.
+     *
+     * @param loan loan el objeto LogBookLoans a agregar.
+     *
+     */
+    public void addElement(LogBookLoans loan) {
+        Node newNode = new Node(loan);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node currentNode = head;
+            while (currentNode.sig != null) {
+                currentNode = currentNode.sig;
+            }
+            currentNode.sig = newNode;
+        }
+    }
+
     /**
      * This method converts an arrayList to a linked list and returns the linked
      * list
      *
-     * @param list list that brings from LoansHistory
-     * @return linked list
+     * @return an arrayList
      */
-    public static LinkedList<Node> convertArray(ArrayList<LogBookLoans> list) {
-        LinkedList<Node> loanList = new LinkedList<>();
-
-        for (LogBookLoans elemento : list) {
-            Node nuevoNodo = new Node(elemento);
-            loanList.add(nuevoNodo);
+    public ArrayList<LogBookLoans> convertArrayList() {
+        ArrayList<LogBookLoans> arrayList = new ArrayList<>();
+        Node currentNode = head;
+        while (currentNode != null) {
+            arrayList.add(currentNode.dato);
+            currentNode = currentNode.sig;
         }
-
-        return loanList;
+        return arrayList;
     }
 
     /**
-     * it passes the linked list and sends it to the quicksort algorithms
+     * Sorts a linked list of LogBookLoans objects using the QuickSort
+     * algorithm. Items are sorted in place and the linked list is rebuilt with
+     * the sorted items.
      *
-     * @param loanList linked list
+     * @param loanList loanList the linked list of LogBookLoans objects to sort.
      */
-    public static void sortLinkedList(LinkedList<Node> loanList) {
-        List<Node> lista = new ArrayList<>(loanList);
+    public static void sortLinkedList(ArrayList<LogBookLoans> loanList) {
+        List<LogBookLoans> lista = new ArrayList<>(loanList);
         quicksort(lista, 0, lista.size() - 1);
 
-        // Reconstruir la lista enlazada ordenada
+        // Rebuild ordered linked list
         loanList.clear();
-        for (Node node : lista) {
+        for (LogBookLoans node : lista) {
             loanList.add(node);
         }
     }
 
     /**
-     * Sorts a list of nodes using the QuickSort algorithm.
+     * Sorts a list of LogBookLoans objects using the QuickSort algorithm.
      *
-     * @param lista list the list of nodes to sort
-     * @param low the lowest index of the sublist to sort
-     * @param high the highest index of the sublist to sort
+     * @param lista Sorts a list of LogBookLoans objects using the QuickSort
+     * algorithm.
+     * @param low the lowest index of the sublist to sort.
+     * @param high the highest index of the sublist to sort.
      */
-    private static void quicksort(List<Node> lista, int low, int high) {
+    private static void quicksort(List<LogBookLoans> lista, int low, int high) {
         if (low < high) {
             int pi = partition(lista, low, high);
             quicksort(lista, low, pi - 1);
@@ -70,21 +114,20 @@ public class ListLogBookLoans {
     }
 
     /**
-     * Split the list into two sublists, moving the smaller elements to the left
-     * and the largest elements to the right, using a pivot determined by the
-     * full data name of a node.
+     * Split the list elements in 2 and the smaller one goes to the left and the
+     * bigger elements to the right
      *
-     * @param lista list the list of nodes from
-     * @param low the lowest index of the sublist from
-     * @param high the highest index of the sublist to partition
-     * @return partition index
+     * @param lista list to split in 2
+     * @param low smallest list index
+     * @param high the highest index of the list
+     * @return the highest index of the list
      */
-    private static int partition(List<Node> lista, int low, int high) {
-        String pivot = lista.get(high).dato.getFullName();
+    private static int partition(List<LogBookLoans> lista, int low, int high) {
+        String pivot = lista.get(high).getFullName();
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
-            if (lista.get(j).dato.getFullName().compareToIgnoreCase(pivot) <= 0) {
+            if (lista.get(j).getFullName().compareToIgnoreCase(pivot) <= 0) {
                 i++;
                 swap(lista, i, j);
             }
@@ -94,14 +137,15 @@ public class ListLogBookLoans {
     }
 
     /**
-     * Swaps two elements in a given list.
+     * swap 2 elements within the list so that they are sorted alphabetically by
+     * name
      *
-     * @param list the list on which the exchange is made
-     * @param i the index of the first element to swap
-     * @param j the index of the second element to swap
+     * @param list swap 2 list items
+     * @param i the index of the first element to change
+     * @param j the index of the second element to change
      */
-    private static void swap(List<Node> list, int i, int j) {
-        Node temp = list.get(i);
+    private static void swap(List<LogBookLoans> list, int i, int j) {
+        LogBookLoans temp = list.get(i);
         list.set(i, list.get(j));
         list.set(j, temp);
     }

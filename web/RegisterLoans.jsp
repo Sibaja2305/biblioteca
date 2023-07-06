@@ -6,7 +6,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="databasemysql.ConnectionMysql"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%
 
     ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
@@ -39,9 +39,12 @@
         // Registro correctamente a la dataBases
         if (!category.equalsIgnoreCase("Accesorio")) {
         mysql.updateStatePres(category, code);
-           
+         out.println("<script>alert('Accesorio Registrado'); window.location.href='menu.jsp';</script>"); 
+        }else{
+           out.println("<script>alert('Fallo del Ingreso del Accesorio'); window.location.href='LoansAccessories.jsp';</script>");   
         }
-         response.sendRedirect("LoansAccessories.jsp"); // Página de inicio después de iniciar sesión
+        
+         
 
     }
 %>

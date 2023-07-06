@@ -4,7 +4,7 @@
     Author     : Hp EliteBook
 --%>
 <%@page import="databasemysql.ConnectionMysql"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%
 
     ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");

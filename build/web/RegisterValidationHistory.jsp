@@ -7,7 +7,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Date"%>
 <%@page import="databasemysql.ConnectionMysql"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%
     
     ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
@@ -22,7 +22,7 @@
     String loanDate = request.getParameter("loanDate").trim();
     String returnDate = request.getParameter("returnDate").trim();
     
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     
     java.util.Date loanDateTime = dateFormat.parse(loanDate.replace("-", "/"));
     java.sql.Timestamp sqlLoanDate = new java.sql.Timestamp(loanDateTime.getTime());

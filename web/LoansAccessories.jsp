@@ -4,7 +4,7 @@
     Author     : Hp EliteBook
 --%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -134,7 +134,7 @@
                     <div class="form-group">
                         <label class="text">Identificación:</label>
                         <br>
-                        <input type="text" class="form-control" name="txtIdentification" maxlength="10" size="5" required>
+                        <input type="text" class="form-control" name="txtIdentification"   required>
                     </div>
                     <br>
                     <div class="form-group">
@@ -160,7 +160,7 @@
                     <div class="form-group">
                         <label class="text">Fecha de Devolución:</label>
                         <br>
-                        <input type="datetime-local" class="form-control" name="txtReturnDate" maxlength="10" size="5" required>
+                        <input type="datetime-local" class="form-control" name="txtReturnDate" maxlength="10"  required>
                     </div>
                 </div>
                 <div>
@@ -169,13 +169,13 @@
                     <div class="form-group">
                         <label class="text">Nombre completo:</label>
                         <br>
-                        <input type="text" class="form-control" size="10" name="txtFullName" size="5" required>
+                        <input type="text" class="form-control" size="10" name="txtFullName"  required>
                     </div>
                     <br>
                     <div class="form-group">
                         <label class="text">Accesorio Prestado:</label>
                         <br>
-                        <input type="text" class="form-control" name="txtNameAccessorie" size="5" required>
+                        <input type="text" class="form-control" name="txtNameAccessorie"  required>
                     </div>
                     <br>
 
