@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package databasemysql;
 
 import clases.Computer;
@@ -453,7 +449,7 @@ public class ConnectionMysql {
             // execute the preparedstatement
             preparedStmt.execute();
 
-      //      cx.close();
+            //      cx.close();
             return true;
         } catch (Exception e) {
             System.err.println("Got an exception! ");
@@ -463,6 +459,14 @@ public class ConnectionMysql {
 
     }
 
+    /**
+     * Method that is responsible for updating the details of a user in the
+     * database. This method is used to modify the details of an existing user
+     * in the "users" table.
+     *
+     * @param user The User object containing the new user details.
+     * @return true if the user update in the database was successful, false otherwise.
+     */
     public boolean updateUser(User user) {
         System.out.println(user.toString());
         Calendar calendar = Calendar.getInstance();
@@ -493,11 +497,20 @@ public class ConnectionMysql {
         }
 
     }
-    public void updateStatePres(String table, String code){
+
+    /**
+     * Updates the status of a record in a specific table in the database. This
+     * method is used to change the status of a record in a given table by
+     * setting the status value to "2".
+     *
+     * @param table The table on which the update will be performed.
+     * @param code The unique code that identifies the record to update.
+     */
+    public void updateStatePres(String table, String code) {
         try {
             String query = "UPDATE " + table + " SET state = ? "
                     + "WHERE code = ?;";
-            
+
             PreparedStatement preparedStmt = cx.prepareStatement(query);
             preparedStmt.setString(1, "2");
             preparedStmt.setString(2, code);
@@ -508,11 +521,20 @@ public class ConnectionMysql {
             System.err.println(e.getMessage());
         }
     }
-     public void updateStateDis(String table, String code){
+
+    /**
+     * Method that is responsible for updating the status of a record in a
+     * specific table of the database. This method is used to change the status
+     * of a record in a given table by setting the status value to "1".
+     *
+     * @param table The table on which the update will be performed.
+     * @param code The unique code that identifies the record to update.
+     */
+    public void updateStateDis(String table, String code) {
         try {
             String query = "UPDATE " + table + " SET state = ? "
                     + "WHERE code = ?;";
-            
+
             PreparedStatement preparedStmt = cx.prepareStatement(query);
             preparedStmt.setString(1, "1");
             preparedStmt.setString(2, code);
@@ -524,6 +546,17 @@ public class ConnectionMysql {
         }
     }
 
+    /**
+     * Method that is responsible for validating user credentials in the
+     * database. This method is used to verify if the user credentials (username
+     * and password) are valid.
+     *
+     * @param userName The username to validate.
+     * @param password The password to validate.
+     * @return true if the credentials are valid, false otherwise.
+     * @throws SQLException If an error occurs while executing the SQL query to
+     * validate the credentials against the database.
+     */
     public boolean userValidation(String userName, String password) throws SQLException {
         cx = conectar();
         Statement stmt = cx.createStatement();
@@ -547,6 +580,18 @@ public class ConnectionMysql {
 
     }
 
+    /**
+     * Method that inserts a new user in the database. This method is used to
+     * register a new user in the system, storing their information in the
+     * "users" table.
+     *
+     * @param userName The username of the new user. It must be unique in the
+     * database.
+     * @param password The password of the new user.
+     * @param level The level of access that the user will have
+     * @return true if the insert of the record into the database was
+     * successful, false otherwise.
+     */
     public boolean insertUser(String userName, String password, String level) {
 
         try {
@@ -577,6 +622,24 @@ public class ConnectionMysql {
         return false;
     }
 
+    /**
+     * Method that inserts a loan record into the log record in the database.
+     * This method is used to register a new accessory loan in the system,
+     * storing its information in the "logbook_loans" table.
+     *
+     * @param code The unique code that identifies the loan.
+     * @param identification The identification of the user who makes the loan.
+     * @param fullName The full name of the user who makes the loan.
+     * @param typeUser The type of user who makes the loan student or teacher
+     * @param career La carrera o área de estudio del usuario que realiza el
+     * préstamo.
+     * @param nameAccessory The name of the accessory being borrowed.
+     * @param loanDate The date and time of the loan.
+     * @param returnDate The date and time of return of the accessory.
+     * @param category The date and time of return of the accessory.
+     * @return true if the insert of the record into the database was
+     * successful, false otherwise.
+     */
     public boolean insertLoans(String code, String identification, String fullName, String typeUser,
             String career, String nameAccessory, java.sql.Timestamp loanDate, java.sql.Timestamp returnDate, String category) {
 
@@ -604,7 +667,7 @@ public class ConnectionMysql {
             // execute the preparedstatement
             preparedStmt.executeUpdate();
 
-         //   cx.close();
+            //   cx.close();
             return true;
         } catch (SQLException ex) {
             System.out.println("Fallo la inserción" + ex.getMessage());
@@ -613,6 +676,22 @@ public class ConnectionMysql {
         return false;
     }
 
+    /**
+     * Method that inserts a loan history record into the database. This method
+     * is used to register a new accessory loan in the system, storing its
+     * information in the "loan_history" table.
+     *
+     * @param code The unique code that identifies the loan.
+     * @param identification The identification of the user who makes the loan.
+     * @param fullName The full name of the user who makes the loan.
+     * @param typeUser The type of user who makes the loan
+     * @param career The career or area of study of the user who makes the loan.
+     * @param nameAccessory The name of the accessory being borrowed.
+     * @param loanDate The date and time of the loan.
+     * @param returnDate The date and time of return of the accessory.
+     * @param category The accessory category
+     * @return true if the insert of the record into the database was successful, false otherwise.
+     */
     public boolean insertHistoryLoans(String code, String identification, String fullName, String typeUser,
             String career, String nameAccessory, java.sql.Timestamp loanDate, java.sql.Timestamp returnDate, String category) {
 
@@ -646,6 +725,20 @@ public class ConnectionMysql {
         return false;
     }
 
+    /**
+     * Method that inserts a speaker record into the database. This method is
+     * used to register a new speaker in the system, storing its information in
+     * the "speaker" table.
+     *
+     * @param code The unique code that identifies the speaker.
+     * @param speakerWire The cable used to connect the speaker
+     * @param electricalConnector The electrical connector used to power the
+     * speaker
+     * @param auxiliaryAudio auxiliary audio input used to connect external
+     * devices to the speaker
+     * @return true if the insert of the record into the database was
+     * successful, false otherwise.
+     */
     public boolean insertSpeaker(String code, String speakerWire, String electricalConnector, String auxiliaryAudio) {
 
         try {
@@ -674,6 +767,21 @@ public class ConnectionMysql {
         return false;
     }
 
+    /**
+     * A method that inserts a computer record into the database. This method is
+     * used to register a new computer in the system, storing its information in
+     * the "computer" table.
+     *
+     * @param code The unique code that identifies the computer. It must be a
+     * non-null value and unique in the database.
+     * @param chargerComputer The charger used to power the computer. It can be
+     * a description or a specific charger model.
+     * @param softCaseComputer The soft case used to protect and transport the
+     * computer. It can be a description or a specific case model.
+     * @param briefcaseComputer The hard case used to store the computer.
+     * @return true if the insert of the record into the database was
+     * successful, false otherwise.
+     */
     public boolean insertComputer(String code, String chargerComputer, String softCaseComputer, String briefcaseComputer) {
 
         try {
@@ -702,6 +810,22 @@ public class ConnectionMysql {
         return false;
     }
 
+    /**
+     * The insertProjectionKit method is responsible for inserting a record into
+     * a database table called projection_kit.
+     *
+     * @param code projection kit code
+     * @param projectionCase projector case type
+     * @param electricityWire electricity cable
+     * @param VGAConnector vga connector
+     * @param HDMIConnector hdmi connector
+     * @param projectionControl projector control
+     * @param battery batteries
+     * @param extension extension
+     * @param powerStrip power strip
+     * @param plasticBox plastic box
+     * @return true if the insert was successful, false otherwise
+     */
     public boolean insertProjectionKit(String code, String projectionCase,
             String electricityWire, String VGAConnector, String HDMIConnector,
             String projectionControl, String battery, String extension, String powerStrip, String plasticBox) {

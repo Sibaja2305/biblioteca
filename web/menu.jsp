@@ -108,6 +108,9 @@
                 background-position: center;
                 background-repeat: no-repeat;
                 position: relative;
+                outline: none;
+                border: 0;
+                box-shadow: none;
             }
             .botonImagen1:hover::before{
                 content: 'Prestamos';
@@ -132,6 +135,9 @@
                 background-position: center;
                 background-repeat: no-repeat;
                 position: relative;
+                outline: none;
+                border: 0;
+                box-shadow: none;
             }
             .botonImagen2:hover::before{
                 content: 'Devoluciones';
@@ -143,6 +149,7 @@
                 color: black;
                 font-weight: bold;
                 font-family: Arial, sans-serif;
+                
             }
             .botonImagen3{
                 padding: 90px 90px;
@@ -155,6 +162,9 @@
                 background-position: center;
                 background-repeat: no-repeat;
                 position: relative;
+                outline: none;
+                border: 0;
+                box-shadow: none;
             }
             .botonImagen3:hover::before{
                 content: 'Informe';
@@ -183,8 +193,8 @@
             h1{
                 margin-top: 80px;
                 margin-left: 5px;
-                font-size: 30px;
-                font-family: Arial, sans-serif;
+                font-size: 40px;
+                font-family: EB Garamond;
                 font-weight: bold;
                 
 
@@ -293,6 +303,7 @@
                             <button class="botonImagen1" type="button" value="  Prestamos  " name="loans">
                             </button>
                         </a>
+                        
                         <a href="Return.jsp">
                             <button class="botonImagen2" type="button" value="devoluciones" name="returns">
                             </button>
