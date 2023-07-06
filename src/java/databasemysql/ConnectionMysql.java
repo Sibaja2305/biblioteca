@@ -26,7 +26,7 @@ public class ConnectionMysql {
     String bd = "world";
     String url = "jdbc:mysql://localhost:3306/";
     String usuario = "root";
-    String contraseña = "Kr0n0z&27&11";
+    String contraseña = "Racataca2305.";
     String driver = "com.mysql.cj.jdbc.Driver";
     Connection cx;
 
@@ -379,7 +379,49 @@ public class ConnectionMysql {
                 String career = rs.getString("career");
                 String nameAccessory = rs.getString("name_accessory");
                 java.sql.Timestamp loanDate = rs.getTimestamp("loan_date");
-               java.sql.Timestamp returnDate = rs.getTimestamp("return_date");
+                java.sql.Timestamp returnDate = rs.getTimestamp("return_date");
+                String category = rs.getString("category");
+                LogBookLoans logBookLoan = new LogBookLoans(id, code, ucrCard, fullName,
+                        typeUser, career, nameAccessory, loanDate, returnDate, category);
+
+                logBookLoans.add(logBookLoan);
+
+            }
+            return logBookLoans;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+
+        } finally {
+            rs.close();
+
+        }
+    }
+
+    /**
+     * Gets a list of LogBookLoans objects that match a search key.
+     *
+     * @param keySearch the search key to filter logbook_loans logs.
+     * @return a list of LogBookLoans objects that match the search key.
+     * @throws SQLException if an error occurs while executing the SQL query.
+     */
+    public ArrayList<LogBookLoans> getLogBookLoans(String keySearch) throws SQLException {
+        Statement stmt = cx.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM logbook_loans where identification='" + keySearch + "';");
+        ArrayList<LogBookLoans> logBookLoans = new ArrayList<>();
+        try {
+            while (rs.next()) {
+
+                int id = Integer.parseInt(rs.getString("id"));
+                String code = rs.getString("code");
+                String ucrCard = rs.getString("identification");
+                String fullName = rs.getString("full_name");
+                String typeUser = rs.getString("type_user");
+                String career = rs.getString("career");
+                String nameAccessory = rs.getString("name_accessory");
+                java.sql.Timestamp loanDate = rs.getTimestamp("loan_date");
+                java.sql.Timestamp returnDate = rs.getTimestamp("return_date");
                 String category = rs.getString("category");
                 LogBookLoans logBookLoan = new LogBookLoans(id, code, ucrCard, fullName,
                         typeUser, career, nameAccessory, loanDate, returnDate, category);
@@ -442,6 +484,17 @@ public class ConnectionMysql {
 
         }
     }
+
+    /**
+     * Gets a list of LogBookLoans objects that correspond to a loan history in
+     * a specified category.
+     *
+     * @param categorySearch the search category to filter the loan_history
+     * records.
+     * @return a list of LogBookLoans objects that correspond to the loan
+     * history in the specified category.
+     * @throws SQLException if an error occurs while executing the SQL query.
+     */
     public ArrayList<LogBookLoans> getHistoryLoans(String categorySearch) throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM loan_history where category='" + categorySearch + "';");

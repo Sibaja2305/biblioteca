@@ -39,13 +39,14 @@
         // Registro correctamente a la dataBases
         if (!category.equalsIgnoreCase("Accesorio")) {
         mysql.updateStatePres(category, code);
+        
+        }
          out.println("<script>alert('Accesorio Registrado'); window.location.href='menu.jsp';</script>"); 
-        }else{
+    } else{
            out.println("<script>alert('Fallo del Ingreso del Accesorio'); window.location.href='LoansAccessories.jsp';</script>");   
         }
-        
          
 
-    }
+    
 %>
 

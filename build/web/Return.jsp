@@ -45,16 +45,20 @@
             ArrayList<LogBookLoans> listLogBookLoans = mysql.getLogBookLoans();
             ArrayList<LogBookLoans> listLogBookSearch =new ArrayList<>();
             String looking = "";
-            String nameSearch = "";
+            String codeSearch = "";
             looking = request.getParameter("buscando");
-            nameSearch = request.getParameter("txtSearch");
-           
+            codeSearch = request.getParameter("txtSearch");
+               if (codeSearch != null) {
 
+                listLogBookSearch = mysql.getLogBookLoans(codeSearch);
+            }
+     
+           
         %>
         <div class="container">
             <br><br><br><br><br>
 
-            <form action="SearchProjection.jsp" style="display: inline-block; float: right;">
+            <form action="Return.jsp" style="display: inline-block; float: right;">
                 <div style="display: inline-block;">
 
                     <input hidden="true" type="text" name="buscando" value="no" class="form-label">
@@ -72,7 +76,7 @@
             </form>
             <% if (looking != null) {
 
-                    if (looking.equalsIgnoreCase("si") && !nameSearch.equalsIgnoreCase("")) {
+                    if (looking.equalsIgnoreCase("si") && !codeSearch.equalsIgnoreCase("")) {
 
 
             %>
@@ -111,18 +115,24 @@
                         <td class="align-middle text-center"><%=listLogBookSearch.get(i).getLoanDate()%></td>
                         <td class="align-middle text-center"><%=listLogBookSearch.get(i).getReturnDate()%></td>
 
-                        <td class="align-middle text-center ">
-                            <form action="ReturnRegisterValidation.jsp">
-                                <input 
-                                    hidden="true"
-                                    type="text" 
-                                    name="select"                                         
-                                    value="<%=listLogBookSearch.get(i).getCode()%>">
+                         <td class="align-middle text-center ">
+                            <form action="RegisterValidationHistory.jsp" method="post">
+                                <input type="hidden" name="category" value="<%= listLogBookSearch.get(i).getCategory()%>" />
+                                <input type="hidden" name="id" value="<%= listLogBookSearch.get(i).getId()%>" />
+                                <input type="hidden" name="code" value="<%= listLogBookSearch.get(i).getCode()%>" />
+                                <input type="hidden" name="identification" value="<%= listLogBookSearch.get(i).getUcrCard()%>" />
+                                <input type="hidden" name="fullName" value="<%= listLogBookSearch.get(i).getFullName()%>" />
+                                <input type="hidden" name="typeUser" value="<%= listLogBookSearch.get(i).getTypeUser()%>" />
+                                <input type="hidden" name="career" value="<%= listLogBookSearch.get(i).getCareer()%>" />
+                                <input type="hidden" name="nameAccesory" value="<%= listLogBookSearch.get(i).getNameAccesory()%>" />
+                                <input type="hidden" name="loanDate" value="<%= listLogBookSearch.get(i).getLoanDate()%>" />
+                                <input type="hidden" name="returnDate" value="<%= listLogBookSearch.get(i).getReturnDate()%>" />
                                 <input                                        
                                     class="btn btn-outline-success btn-sm" 
                                     type="submit"                                                                              
-                                    value="selectReturn" >
+                                    value="Devolución" >
                             </form>
+                           
                         </td>
 
 
@@ -184,7 +194,7 @@
                                     type="submit"                                                                              
                                     value="Devolución" >
                             </form>
-                            </form>
+                           
                         </td>
 
 
