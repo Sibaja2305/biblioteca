@@ -3,10 +3,15 @@ package clases;
 import java.util.Date;
 
 /**
+ * The `LogBookLoans` class represents a LogBookLoans object.
  *
- * @author yorda
+ * @author Diego Herrera López
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Jonathan Alfaro Herrera
  */
-public class LogBookLoans  {
+public class LogBookLoans {
+// Class attributes
 
     private int id;
     private String code;
@@ -19,6 +24,10 @@ public class LogBookLoans  {
     private Date returnDate;
     private String category;
 
+    /**
+     * Default constructor for the `LogBookLoans` class. Initializes the
+     * attributes with default values.
+     */
     public LogBookLoans() {
         this.code = "No registrado";
         this.ucrCard = "No";
@@ -32,11 +41,30 @@ public class LogBookLoans  {
 
     }
 
+    /**
+     * Constructor for the `LogBookLoans` class that accepts a full name
+     * parameter.
+     *
+     * @param fullName The full name of the user who made a loan.
+     */
     public LogBookLoans(String fullName) {
         this.fullName = fullName;
     }
-    
 
+    /**
+     * * Constructor for the `LogBookLoans` class that accepts all parameters.
+     *
+     * @param id The ID of the loan entry.
+     * @param code code of the accessory to lend
+     * @param ucrCard The UCR card of the person requesting the loan.
+     * @param fullName The full name of the person requesting the loan.
+     * @param typeUser The type of person requesting the loan.
+     * @param career The full name of the person requesting the loan.
+     * @param nameAccesory The name of the accessory being loaned.
+     * @param loanDate The date of the loan.
+     * @param returnDate The date of the loan.
+     * @param category The category of the accessory being loaned.
+     */
     public LogBookLoans(int id, String code, String ucrCard, String fullName, String typeUser, String career, String nameAccesory, Date loanDate, Date returnDate, String category) {
         this.id = id;
         this.code = code;
@@ -47,7 +75,7 @@ public class LogBookLoans  {
         this.nameAccesory = nameAccesory;
         this.loanDate = loanDate;
         this.returnDate = returnDate;
-       this.category = category;
+        this.category = category;
     }
 
     /**
@@ -63,6 +91,7 @@ public class LogBookLoans  {
     public void setCategory(String category) {
         this.category = category;
     }
+
     /**
      * @return the id
      */
@@ -189,6 +218,11 @@ public class LogBookLoans  {
         this.returnDate = returnDate;
     }
 
+    /**
+     * Returns a string representation of the `LogBookLoans` instance.
+     *
+     * @return A string representing the `LogBookLoans` instance.
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -205,7 +239,5 @@ public class LogBookLoans  {
         sb.append('}');
         return sb.toString();
     }
-
-  
 
 }

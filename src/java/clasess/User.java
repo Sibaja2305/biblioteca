@@ -7,38 +7,48 @@ package clasess;
 import java.sql.Date;
 
 /**
+ * The `User` class represents a user with its associated attributes. It
+ * contains information about the user's ID, username, password, access level,
+ * date of creation, application access, and update date.
  *
- * @author ucr
+ * @author Diego Herrera López
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Jonathan Alfaro Herrera
  */
 public class User {
-    
+
     private int id;
     private String userName;
     private String password;
-    private String accessLevel ;
+    private String accessLevel;
     private Date dateCreated;
     private String appAccess;
     private Date updateDate;
-    
+
     /**
-     * Constructor para nuevos usuarios;
+     * Default constructor for the `User` class. Initializes the attributes with
+     * default values.
      */
     public User() {
-        this.userName ="No registrado";
+        this.userName = "No registrado";
         this.password = "No registrado";
         this.accessLevel = ""; // no hay un nivel de acceso definido
         this.dateCreated = null;
         this.updateDate = null;
-        this.appAccess ="No registrado";
+        this.appAccess = "No registrado";
     }
+
     /**
-     * Cuando el usuario ya esta ingresado
-     * @param id
-     * @param userName
-     * @param password
-     * @param accessLevel
-     * @param dateCreated
-     * @param appAccess 
+     * * Constructor for the `User` class that accepts parameters. Used for new
+     * users.
+     *
+     * @param id The user's ID.
+     * @param userName The user's ID.
+     * @param password The password.
+     * @param accessLevel The access level.
+     * @param dateCreated The date of creation.
+     * @param appAccess The application access.
      */
     public User(int id, String userName, String password, String accessLevel, Date dateCreated, String appAccess) {
         this.id = id;
@@ -49,9 +59,22 @@ public class User {
         this.appAccess = appAccess;
     }
 
-    public User(int id, String userName, String password, String acLevel, 
+    /**
+     * Constructor for the `User` class that accepts additional update date
+     * parameter. Used when the user is already registered and has an update
+     * date.
+     *
+     * @param id The user's ID.
+     * @param userName The username.
+     * @param password The password.
+     * @param acLevel The access level.
+     * @param dateCreated The date of creation.
+     * @param appAccess The application access.
+     * @param dateUpdate The update date.
+     */
+    public User(int id, String userName, String password, String acLevel,
             Date dateCreated, String appAccess, Date dateUpdate) {
-     this.id = id;
+        this.id = id;
         this.userName = userName;
         this.password = password;
         this.accessLevel = acLevel;
@@ -158,6 +181,11 @@ public class User {
         this.updateDate = updateDate;
     }
 
+    /**
+     * Returns the string representation of the `User` object.
+     *
+     * @return The string representation of the `User` object.
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -170,8 +198,5 @@ public class User {
         sb.append('}');
         return sb.toString();
     }
-    
-    
-    
-    
+
 }

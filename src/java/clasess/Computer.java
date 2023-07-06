@@ -1,17 +1,24 @@
 package clases;
 
 /**
+ * The `Computer` class represents a computer object.
  *
- * @author yorda
+ * @author Diego Herrera López
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Jonathan Alfaro Herrera
  */
 public class Computer {
-
+// Class attributes
     private String code;
     private String charger;
     private String softCase;
     private String briefcase;
     private String state;
-
+/**
+     * Default constructor for the `Computer` class.
+     * Initializes the attributes with default values.
+     */
     public Computer() {
         this.code = "No";
         this.charger = "";
@@ -19,7 +26,14 @@ public class Computer {
         this.briefcase = "";
         this.state = "";
     }
-
+/**
+ *  Constructor for the `Computer` class that accepts parameters.
+ * @param code code The computer's code.
+ * @param charger charger The computer's charger.
+ * @param softCase softCase The computer's soft case.x
+ * @param briefcase briefcase The computer's briefcase.
+ * @param state state The computer's state.
+ */
     public Computer(String code, String charger, String softCase, String briefcase, String state) {
         this.code = code;
         this.charger = charger;
@@ -97,7 +111,10 @@ public class Computer {
     public void setState(String state) {
         this.state = state;
     }
-
+/**
+ * Returns a string representation of the `Computer` instance.
+ * @return 
+ */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

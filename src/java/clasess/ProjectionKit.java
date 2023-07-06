@@ -1,10 +1,16 @@
 package clases;
 
 /**
+ * The `ProjectionKit` class represents a projection kit consisting of various
+ * accessories.
  *
- * @author yorda
+ * @author Diego Herrera López
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Jonathan Alfaro Herrera
  */
 public class ProjectionKit {
+// Class attributes
 
     private String code;
     private String projectorCase;
@@ -18,6 +24,10 @@ public class ProjectionKit {
     private String plasticBox;
     private String state;
 
+    /**
+     * Default constructor for the `ProjectionKit` class. Initializes the
+     * attributes with default values.
+     */
     public ProjectionKit() {
         this.code = "No";
         this.projectorCase = "";
@@ -33,10 +43,31 @@ public class ProjectionKit {
 
     }
 
+    /**
+     * Constructor for the `ProjectionKit` class that accepts a code parameter.
+     *
+     * @param code The code of the projection kit.
+     */
     public ProjectionKit(String code) {
         this.code = code;
     }
-  
+
+    /**
+     *  * Constructor for the `ProjectionKit` class that accepts all parameters.
+     *
+     * @param code The code of the projection kit.
+     * @param projectorCase The case for the projector.
+     * @param electricityWire The electricity wire for the projector.
+     * @param VGAConnector The VGA connector for the projector.
+     * @param HDMIConnector The HDMI connector for the projector.
+     * @param projectorControl The control for the projector.
+     * @param batteries The batteries for the projector control.
+     * @param extension The extension cord for the projector.
+     * @param powerStrip The power strip for the projector.
+     * @param plasticBox The plastic box for the projection kit.
+     * @param state The state of the projection kit.
+     *
+     */
     public ProjectionKit(String code, String projectorCase, String electricityWire, String VGAConnector, String HDMIConnector, String projectorControl, String batteries, String extension, String powerStrip, String plasticBox, String state) {
         this.code = code;
         this.projectorCase = projectorCase;
@@ -205,6 +236,11 @@ public class ProjectionKit {
         this.state = state;
     }
 
+    /**
+     * Returns a string representation of the `ProjectionKit` instance.
+     *
+     * @return A string representing the `ProjectionKit` instance.
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
