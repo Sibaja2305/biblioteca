@@ -26,7 +26,7 @@ public class ConnectionMysql {
     String bd = "world";
     String url = "jdbc:mysql://localhost:3306/";
     String usuario = "root";
-    String contraseña = "Racataca2305.";
+    String contraseña = "Alfaher1503!";
     String driver = "com.mysql.cj.jdbc.Driver";
     Connection cx;
 
@@ -35,6 +35,12 @@ public class ConnectionMysql {
         cx = conectar();
     }
 
+    /**
+     * This method establishes the connection to the database.
+     *
+     * @return returns an instance of the Connection class that represents the
+     * established connection.
+     */
     public Connection conectar() {
         try {
             Class.forName(driver);
@@ -54,6 +60,14 @@ public class ConnectionMysql {
 
     }
 
+    /**
+     * Get the list of speakers from the database.
+     *
+     * @return returns a list of Speaker type objects with the speakers obtained
+     * from the database.
+     * @throws java.sql.SQLException if an error occurs while executing the SQL
+     * query.
+     */
     public ArrayList<Speaker> getSpeaker() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM speaker;");
@@ -85,6 +99,15 @@ public class ConnectionMysql {
         }
     }
 
+    /**
+     * This method get a list of speakers according to a code.
+     *
+     * @param codigo is the speaker code to look for.
+     * @return returns a list of objects of type Speaker that match the given
+     * code.
+     * @throws java.sql.SQLException if an error occurs while executing the SQL
+     * query.
+     */
     public ArrayList<Speaker> getSpeaker(String codigo) throws SQLException {
         Statement stmt = cx.createStatement();
         String consulta = "SELECT * FROM speaker where code='" + codigo + "';";
@@ -118,6 +141,14 @@ public class ConnectionMysql {
         }
     }
 
+    /**
+     * Gets a list of Computer objects from the database.
+     *
+     * @return returns a list of Computer type objects with the computers
+     * obtained from the database.
+     * @throws java.sql.SQLException if an error occurs while executing the SQL
+     * query
+     */
     public ArrayList<Computer> getComputer() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM computer;");
@@ -149,6 +180,15 @@ public class ConnectionMysql {
         }
     }
 
+    /**
+     * This method get a list of speakers according to a code.
+     *
+     * @param codeSearch is the computer code to look for.
+     * @return returns a list of objects of type Computer that match the given
+     * code.
+     * @throws java.sql.SQLException if an error occurs while executing the SQL
+     * query.
+     */
     public ArrayList<Computer> getComputer(String codeSearch) throws SQLException {
         Statement stmt = cx.createStatement();
         String consulta = "SELECT * FROM computer where code='" + codeSearch + "';";
@@ -182,6 +222,14 @@ public class ConnectionMysql {
         }
     }
 
+    /**
+     * Gets a list of ProjectionKit objects from the database.
+     *
+     * @return returns a list of ProjectionKit type objects with the projection
+     * kit obtained from the database.
+     * @throws java.sql.SQLException if an error occurs while executing the SQL
+     * query.
+     */
     public ArrayList<ProjectionKit> getProjectionKit() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM projection_kit;");
@@ -219,6 +267,15 @@ public class ConnectionMysql {
         }
     }
 
+    /**
+     * This method get a list of projection kit according to a code.
+     *
+     * @param codeSearch is the projection kit code to look for.
+     * @return returns a list of objects of type ProjetionKit that match the
+     * given code.
+     * @throws java.sql.SQLException if an error occurs while executing the SQL
+     * query.
+     */
     public ArrayList<ProjectionKit> getProjectionKit(String codeSearch) throws SQLException {
         Statement stmt = cx.createStatement();
         String consulta = "SELECT * FROM projection_kit where code='" + codeSearch + "';";
@@ -258,6 +315,15 @@ public class ConnectionMysql {
         }
     }
 
+    /**
+     * Gets a list of User objects and adds the user from the database to an
+     * ArrayList.
+     *
+     * @return returns an ArrayList of User objects with the data retrieved from
+     * the database.
+     * @throws java.sql.SQLException if an error occurs while executing the SQL
+     * query.
+     */
     public ArrayList<User> getUsers() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM users;");
@@ -289,6 +355,15 @@ public class ConnectionMysql {
         }
     }
 
+    /**
+     * Gets a list of LogBook Loans objects and adds the loan items from the
+     * database to an ArrayList.
+     *
+     * @return returns an ArrayList of LogBookLoans objects with the loan data
+     * retrieved from the database.
+     * @throws java.sql.SQLException if an error occurs while executing the SQL
+     * query.
+     */
     public ArrayList<LogBookLoans> getLogBookLoans() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM logbook_loans;");
@@ -324,6 +399,15 @@ public class ConnectionMysql {
         }
     }
 
+    /**
+     * Gets a list of LogBook Loans objects with the elements of the history of
+     * loans from the database and adds to an Arraylist to the base
+     *
+     * @return returns an ArrayList with the history loan data retrieved from
+     * the database.
+     * @throws java.sql.SQLException if an error occurs while executing the SQL
+     * query.
+     */
     public ArrayList<LogBookLoans> getHistoryLoans() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM loan_history;");
@@ -359,6 +443,13 @@ public class ConnectionMysql {
         }
     }
 
+    /**
+     * This method delete users from the database.
+     *
+     * @param id is ID of the user to delete.
+     * @return returns true if the user was deleted successfully, false if an
+     * error occurred.
+     */
     public boolean deleteUser(int id) {
         try {
 
@@ -379,6 +470,13 @@ public class ConnectionMysql {
 
     }
 
+    /**
+     * This method delete speakers from the database.
+     *
+     * @param code is the code of the speaker to delete.
+     * @return returns true if the speaker was deleted successfully, false if an
+     * error occurred.
+     */
     public boolean deleteSpeaker(String code) {
         try {
 
@@ -399,6 +497,13 @@ public class ConnectionMysql {
 
     }
 
+    /**
+     * This method delete computers from the database.
+     *
+     * @param code is the code of the computer to delete.
+     * @return returns true if the computer was deleted successfully, false if
+     * an error occurred.
+     */
     public boolean deleteComputer(String code) {
         try {
 
@@ -419,6 +524,13 @@ public class ConnectionMysql {
 
     }
 
+    /**
+     * This method delete projetion kits from the database.
+     *
+     * @param code is the code of the projection kit to delete.
+     * @return returns true if the projection kit was deleted successfully,
+     * false if an error occurred.
+     */
     public boolean deleteProjectionKit(String code) {
         try {
 
@@ -439,6 +551,13 @@ public class ConnectionMysql {
 
     }
 
+    /**
+     * This method delete loans from the database.
+     *
+     * @param id is the ID of the loan to delete.
+     * @return returns true if the loan was deleted successfully, false if an
+     * error occurred.
+     */
     public boolean deleteLoan(int id) {
         try {
 
@@ -465,7 +584,8 @@ public class ConnectionMysql {
      * in the "users" table.
      *
      * @param user The User object containing the new user details.
-     * @return true if the user update in the database was successful, false otherwise.
+     * @return true if the user update in the database was successful, false
+     * otherwise.
      */
     public boolean updateUser(User user) {
         System.out.println(user.toString());
@@ -690,7 +810,8 @@ public class ConnectionMysql {
      * @param loanDate The date and time of the loan.
      * @param returnDate The date and time of return of the accessory.
      * @param category The accessory category
-     * @return true if the insert of the record into the database was successful, false otherwise.
+     * @return true if the insert of the record into the database was
+     * successful, false otherwise.
      */
     public boolean insertHistoryLoans(String code, String identification, String fullName, String typeUser,
             String career, String nameAccessory, java.sql.Timestamp loanDate, java.sql.Timestamp returnDate, String category) {

@@ -21,16 +21,107 @@
             background-color: #e6e6e6;
         }
 
-        .botonesArriba,
-        .botonGeneral {
-            font-size: 20px;
-            padding: 50px;
-            background-color: #005da4;
+        .botonAcceserory{
+            margin-bottom: 10px;
+            padding: 90px 90px;
+            margin-right: 40px;
             border: none;
-            border-radius: 10px;
-            color: #fff;
-            margin: 40px;
+            border-radius: 4px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #e6e6e6;
+            position: relative;
+            background-image: url('https://cdn2.iconfinder.com/data/icons/education-1008/64/physics-nuclear-pencils-education-science-256.png');
         }
+        .botonAcceserory:hover::before{
+            content: 'Accesorios';
+            position: absolute;
+            top: 195px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: black;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+
+        }
+        .botonSpeaker{
+            margin-bottom: 10px;
+            margin-left: 55px;
+            padding: 90px 90px;
+            border: none;
+            border-radius: 4px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #e6e6e6;
+            position: relative;
+            background-image: url('https://cdn3.iconfinder.com/data/icons/electronics-121/64/acoustics-256.png');
+        }
+        .botonSpeaker:hover::before{
+            content: 'Parlantes';
+            position: absolute;
+            top: 195px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: black;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+
+        }
+        .botonComputer{
+            margin-bottom: 10px;
+            margin-left: 55px;
+            padding: 90px 90px;
+            border: none;
+            border-radius: 4px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #e6e6e6;
+            position: relative;
+            background-image: url('https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-06-256.png');
+        }
+        .botonComputer:hover::before{
+            content: 'Computadoras';
+            position: absolute;
+            top: 190px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: black;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+
+        }
+        .botonProjector{
+            margin-bottom: 10px;
+            margin-left: 55px;
+            padding: 90px 90px;
+            border: none;
+            border-radius: 4px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #e6e6e6;
+            position: relative;
+            background-image: url('https://cdn1.iconfinder.com/data/icons/office-workers-2/64/Office_Outline_Icon_64px_Proyektor-256.png');
+        }
+        .botonProjector:hover::before{
+            content: 'Proyectores';
+            position: absolute;
+            top: 180px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: black;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+
+        }
+
         .title{
             width: 100%;
             height: 120px;
@@ -44,6 +135,7 @@
             font-family: Arial, sans-serif;
         }
 
+
     </style>
     <body>
         <div class="title">
@@ -56,22 +148,27 @@
 
             </a>
             <a href="LoansAccessories.jsp">
-                <input class="botonesArriba" type="button" value=" Accesorios   " name="accessories" />
+                <button class="botonAcceserory" type="button"  name="accessories" >
+                </button>
             </a>
 
 
             <a href="SearchSpeaker.jsp">
-                <input class="botonGeneral" type="button" value="   Parlantes   " name="speaker" />
+                <button class="botonSpeaker" type="button"  name="speaker" >
+                                    </button>
+
             </a>
 
 
             <a href="SearchComputer.jsp">
-                <input class="botonGeneral" type="button" value=" Computadoras  " name="computer" />
+                <button class="botonComputer" type="button" name="computer" >
+                </button>
             </a>
 
 
             <a href="SearchProjection.jsp">
-                <input class="botonesArriba" type="button" value="Kit proyectores" name="projector" />
+                <button class="botonProjector" type="button" name="projector" >
+                </button>
             </a>
 
         </div>
