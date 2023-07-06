@@ -44,23 +44,23 @@
         <%
 
             ConnectionMysql mysql = new ConnectionMysql("portal_sede_sur");
-           
-            ListLogBookLoans list =new ListLogBookLoans();
+
+            ListLogBookLoans list = new ListLogBookLoans();
             ArrayList<LogBookLoans> listHistoryLoans = mysql.getHistoryLoans();
-            
+            ArrayList<LogBookLoans> listLogBookSearch = new ArrayList<>();
             String looking = "";
-            String codeSearch = "";
+            String categorySearch = "";
             looking = request.getParameter("buscando");
-            codeSearch = request.getParameter("txtSearch");
+            categorySearch = request.getParameter("txtCategory");
             ArrayList<LogBookLoans> orderedList = list.convertList(listHistoryLoans);
             list.sortLinkedList(orderedList);
             for (LogBookLoans node : orderedList) {
-                   System.out.println(node.toString()); 
-                }
-           
-            if (codeSearch != null) {
+                System.out.println(node.toString());
+            }
 
-                //listLogBookSearch = mysql.getProjectionKit(codeSearch);
+            if (categorySearch != null) {
+
+                listLogBookSearch = mysql.getHistoryLoans(categorySearch);
             }
 
         %>
@@ -74,20 +74,30 @@
 
                     <input hidden="true" type="text" name="buscando" value="no" class="form-label">
 
-                    <input style="background-color: #00c0f3; margin-bottom: 5px "type="submit" class="btn btn-info btn-sm" value="Vaciar">
+                    <input style="background-color: #00c0f3; margin-bottom: 5px; margin-left: 20px;"type="submit" class="btn btn-info btn-sm" value="Vaciar">
                 </div>
             </form>
+            
+            
             <form action="LoanHistory.jsp" style="display: inline-block; float: right;">
                 <div style="display: inline-block;">
-                    <input type="text" name="txtSearch" class="form-label">
-                    <input hidden="true" type="text" name="buscando" value="si" class="form-label">
-                    <input style="background-color: #00c0f3; margin-right: 4px;" type="submit" class="btn btn-info btn-sm" value="Buscar">
-
+                    <select class="form-control" name="txtCategory" style="margin-right: 10px;" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="computer">Computadora</option>
+                        <option value="projection_kit">Kit de proyector</option>
+                        <option value="speaker">Parlante</option>
+                        <option value="Accesorio">Accesorio</option>
+                    </select>
+                    
+                    <div style="display: inline-block;">
+                        <input hidden="true" type="text" name="buscando" value="si" class="form-label">
+                        <input style="background-color: #00c0f3; margin-left: 200px;" type="submit" class="btn btn-info btn-sm" value="Buscar">
+                    </div>
                 </div>
             </form>
             <% if (looking != null) {
 
-                    if (looking.equalsIgnoreCase("si") && !codeSearch.equalsIgnoreCase("")) {
+                    if (looking.equalsIgnoreCase("si") && !categorySearch.equalsIgnoreCase("")) {
 
 
             %>
@@ -102,6 +112,7 @@
                         <th class="text-center">tipo de Usuario</th>
                         <th class="text-center">Carrera</th>
                         <th class="text-center">Nombre de Accesorio</th>
+                        <th class="text-center">Categoría</th>
                         <th class="text-center">Fecha de Préstamos</th>
                         <th class="text-center">Fecha de Devolución</th>
 
@@ -111,20 +122,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (int i = 0; i < orderedList.size(); i++) {
+                    <% for (int i = 0; i < listLogBookSearch.size(); i++) {
                     %>
                     <tr>
 
 
-                        <td class="align-middle text-center"><%=orderedList.get(i).getId()%> </td>
-                        <td class="align-middle text-center"><%=orderedList.get(i).getCode()%></td>
-                        <td class="align-middle text-center"><%=orderedList.get(i).getUcrCard()%></td>
-                        <td class="align-middle text-center"><%=orderedList.get(i).getFullName()%> </td>
-                        <td class="align-middle text-center"><%=orderedList.get(i).getTypeUser()%></td>
-                        <td class="align-middle text-center"><%=orderedList.get(i).getCareer()%></td>
-                        <td class="align-middle text-center"><%=orderedList.get(i).getNameAccesory()%> </td>
-                        <td class="align-middle text-center"><%=orderedList.get(i).getLoanDate()%></td>
-                        <td class="align-middle text-center"><%=orderedList.get(i).getReturnDate()%></td>
+                        <td class="align-middle text-center"><%=listLogBookSearch.get(i).getId()%> </td>
+                        <td class="align-middle text-center"><%=listLogBookSearch.get(i).getCode()%></td>
+                        <td class="align-middle text-center"><%=listLogBookSearch.get(i).getUcrCard()%></td>
+                        <td class="align-middle text-center"><%=listLogBookSearch.get(i).getFullName()%> </td>
+                        <td class="align-middle text-center"><%=listLogBookSearch.get(i).getTypeUser()%></td>
+                        <td class="align-middle text-center"><%=listLogBookSearch.get(i).getCareer()%></td>
+                        <td class="align-middle text-center"><%=listLogBookSearch.get(i).getNameAccesory()%> </td>
+                        <td class="align-middle text-center"><%=listLogBookSearch.get(i).getCategory()%> </td>
+                        <td class="align-middle text-center"><%=listLogBookSearch.get(i).getLoanDate()%></td>
+                        <td class="align-middle text-center"><%=listLogBookSearch.get(i).getReturnDate()%></td>
 
 
 
@@ -149,6 +161,7 @@
                         <th class="text-center">tipo de Usuario</th>
                         <th class="text-center">Carrera</th>
                         <th class="text-center">Nombre de Accesorio</th>
+                        <th class="text-center">Categoria</th>
                         <th class="text-center">Fecha de Préstamos</th>
                         <th class="text-center">Fecha de Devolución</th>
 
@@ -167,6 +180,7 @@
                         <td class="align-middle text-center"><%=orderedList.get(i).getTypeUser()%> </td>
                         <td class="align-middle text-center"><%=orderedList.get(i).getCareer()%></td>
                         <td class="align-middle text-center"><%=orderedList.get(i).getNameAccesory()%></td>
+                        <td class="align-middle text-center"><%=orderedList.get(i).getCategory()%> </td>
                         <td class="align-middle text-center"><%=orderedList.get(i).getLoanDate()%> </td>
                         <td class="align-middle text-center"><%=orderedList.get(i).getReturnDate()%></td>
 

@@ -19,7 +19,10 @@ public class Node {
 
     public LogBookLoans dato;
     public Node sig;
-
+/**
+ * node builder
+ * @param datos The content of the node
+ */
     public Node(LogBookLoans datos) {
         this.dato = datos;
         this.sig = null;

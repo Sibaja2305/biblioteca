@@ -26,7 +26,7 @@ public class ConnectionMysql {
     String bd = "world";
     String url = "jdbc:mysql://localhost:3306/";
     String usuario = "root";
-    String contraseña = "Racataca2305.";
+    String contraseña = "Supercell07*";
     String driver = "com.mysql.cj.jdbc.Driver";
     Connection cx;
 
@@ -411,6 +411,40 @@ public class ConnectionMysql {
     public ArrayList<LogBookLoans> getHistoryLoans() throws SQLException {
         Statement stmt = cx.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM loan_history;");
+        ArrayList<LogBookLoans> logBookLoans = new ArrayList<>();
+        try {
+            while (rs.next()) {
+
+                int id = Integer.parseInt(rs.getString("id"));
+                String code = rs.getString("code");
+                String ucrCard = rs.getString("identification");
+                String fullName = rs.getString("full_name");
+                String typeUser = rs.getString("type_user");
+                String career = rs.getString("career");
+                String nameAccessory = rs.getString("name_accessory");
+                java.sql.Timestamp loanDate = rs.getTimestamp("loan_date");
+                java.sql.Timestamp returnDate = rs.getTimestamp("return_date");
+                String category = rs.getString("category");
+                LogBookLoans logBookLoan = new LogBookLoans(id, code, ucrCard, fullName,
+                        typeUser, career, nameAccessory, loanDate, returnDate, category);
+
+                logBookLoans.add(logBookLoan);
+
+            }
+            return logBookLoans;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+
+        } finally {
+            rs.close();
+
+        }
+    }
+    public ArrayList<LogBookLoans> getHistoryLoans(String categorySearch) throws SQLException {
+        Statement stmt = cx.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM loan_history where category='" + categorySearch + "';");
         ArrayList<LogBookLoans> logBookLoans = new ArrayList<>();
         try {
             while (rs.next()) {
