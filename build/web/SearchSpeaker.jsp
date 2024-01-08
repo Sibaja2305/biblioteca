@@ -81,7 +81,10 @@
             looking = request.getParameter("buscando");
             codeSearch = request.getParameter("txtSearch");
             root.insertNode(listSpeaker);
-            root.getInOrden(root.returnRoot());
+            if (root.returnRoot()!=null) {
+                 root.getInOrden(root.returnRoot());    
+                }
+           
             System.out.println("tamaño: "+ root.getDatos().size());
             for (int i = 0; i < listSpeakerSearch.size(); i++) {
                  System.out.println(listSpeakerSearch.get(i).getCode());
